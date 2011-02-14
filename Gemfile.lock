@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    nephophobia (0.0.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    minitest (2.0.2)
+    rake (0.8.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest
+  nephophobia!
+  rake
