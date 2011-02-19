@@ -134,3 +134,138 @@
       - keep-alive
     body: <?xml version="1.0" ?><DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-08-31/"><requestId>ICOTF2FCAI2M5WDYUG6S</requestId><reservationSet><item><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-j9p2hrxf</reservationId><instancesSet><item><displayDescription/><displayName>Server 164</displayName><keyName>None (production, e3ab3)</keyName><instanceId>i-000000a4</instanceId><instanceState><code>1</code><name>running</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName>10.1.171.10</privateDnsName><dnsName>10.1.171.10</dnsName><launchTime>2011-02-14 21:09:41</launchTime><placement><availabilityZone>nova</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></item></reservationSet></DescribeInstancesResponse>
     http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&InstanceId.1=i-000000a4&Signature=LTtVNRfGyPUxa/O+Qk5DJNzi6xLBktvBjQcscQCxJyQ=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2011-02-19T07:17:56Z&Version=2010-08-31
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "906"
+      date: 
+      - Sat, 19 Feb 2011 23:56:15 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-08-31/"><requestId>B1Z9RRZ7R0K6LRK2NG0K</requestId><reservationSet><item><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-j9p2hrxf</reservationId><instancesSet><item><displayDescription/><displayName>Server 164</displayName><keyName>None (production, e3ab3)</keyName><instanceId>i-000000a4</instanceId><instanceState><code>1</code><name>running</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName>10.1.171.10</privateDnsName><dnsName>10.1.171.10</dnsName><launchTime>2011-02-14 21:09:41</launchTime><placement><availabilityZone>nova</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></item></reservationSet></DescribeInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&InstanceId.1=i-000000a4&Signature=LTtVNRfGyPUxa/O+Qk5DJNzi6xLBktvBjQcscQCxJyQ=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2011-02-19T07:17:56Z&Version=2010-08-31
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "906"
+      date: 
+      - Sat, 19 Feb 2011 23:56:19 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-08-31/"><requestId>3QSLD2KU9NE50GCE5DXM</requestId><reservationSet><item><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-j9p2hrxf</reservationId><instancesSet><item><displayDescription/><displayName>Server 164</displayName><keyName>None (production, e3ab3)</keyName><instanceId>i-000000a4</instanceId><instanceState><code>1</code><name>running</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName>10.1.171.10</privateDnsName><dnsName>10.1.171.10</dnsName><launchTime>2011-02-14 21:09:41</launchTime><placement><availabilityZone>nova</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></item></reservationSet></DescribeInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&InstanceId.1=i-000000a4&Signature=LTtVNRfGyPUxa/O+Qk5DJNzi6xLBktvBjQcscQCxJyQ=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2011-02-19T07:17:56Z&Version=2010-08-31
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "906"
+      date: 
+      - Sat, 19 Feb 2011 23:56:22 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-08-31/"><requestId>CMV5EE0SK2JRL46VG9-D</requestId><reservationSet><item><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-j9p2hrxf</reservationId><instancesSet><item><displayDescription/><displayName>Server 164</displayName><keyName>None (production, e3ab3)</keyName><instanceId>i-000000a4</instanceId><instanceState><code>1</code><name>running</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName>10.1.171.10</privateDnsName><dnsName>10.1.171.10</dnsName><launchTime>2011-02-14 21:09:41</launchTime><placement><availabilityZone>nova</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></item></reservationSet></DescribeInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&InstanceId.1=i-000000a4&Signature=LTtVNRfGyPUxa/O+Qk5DJNzi6xLBktvBjQcscQCxJyQ=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2011-02-19T07:17:56Z&Version=2010-08-31
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "906"
+      date: 
+      - Sat, 19 Feb 2011 23:56:54 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-08-31/"><requestId>PUIIL3FH7BZ5L142YV6Q</requestId><reservationSet><item><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-j9p2hrxf</reservationId><instancesSet><item><displayDescription/><displayName>Server 164</displayName><keyName>None (production, e3ab3)</keyName><instanceId>i-000000a4</instanceId><instanceState><code>1</code><name>running</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName>10.1.171.10</privateDnsName><dnsName>10.1.171.10</dnsName><launchTime>2011-02-14 21:09:41</launchTime><placement><availabilityZone>nova</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></item></reservationSet></DescribeInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&InstanceId.1=i-000000a4&Signature=LTtVNRfGyPUxa/O+Qk5DJNzi6xLBktvBjQcscQCxJyQ=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2011-02-19T07:17:56Z&Version=2010-08-31
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "906"
+      date: 
+      - Sat, 19 Feb 2011 23:57:11 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-08-31/"><requestId>YUNRGBI80-3K51XT2RUE</requestId><reservationSet><item><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-j9p2hrxf</reservationId><instancesSet><item><displayDescription/><displayName>Server 164</displayName><keyName>None (production, e3ab3)</keyName><instanceId>i-000000a4</instanceId><instanceState><code>1</code><name>running</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName>10.1.171.10</privateDnsName><dnsName>10.1.171.10</dnsName><launchTime>2011-02-14 21:09:41</launchTime><placement><availabilityZone>nova</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></item></reservationSet></DescribeInstancesResponse>
+    http_version: "1.1"
