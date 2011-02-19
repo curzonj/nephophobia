@@ -5,7 +5,7 @@ module Nephophobia
     end
 
     def describe_instances params = {}
-      @base.action "get", { "Action" => "DescribeInstances" }.merge(params)
+      @base.action "get", "DescribeInstances", params
     end
   end
 end

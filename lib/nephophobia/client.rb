@@ -13,8 +13,12 @@ module Nephophobia
       @aws        = aws
     end
 
-    def action method, params
+    def raw method, params
       @connection.send method, @path, :query => @aws.signed_params(method, params)
+    end
+
+    def action method, inflict, params
+      raw method, { "Action" => inflict }.merge(params)
     end
   end
 
