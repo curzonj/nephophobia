@@ -20,5 +20,23 @@ module Nephophobia
 
       response.body.xpath('//xmlns:item')
     end
+
+
+    ##
+    # Returns information about the specified instance.
+    #
+    # +instance_id+: A String representing the ID of the instance.
+
+    def find instance_id
+      filter = {
+        "InstanceId.1" => instance_id
+  #      "Filter.1.Name"    => "instance-id",
+  #      "Filter.1.Value.1" => instance_id
+      }
+
+      response = @base.action "get", "DescribeInstances", filter
+
+      response.body
+    end
   end
 end
