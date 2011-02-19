@@ -20,7 +20,9 @@ Compatibility with [VCR](https://github.com/myronmarston/vcr) largely drove this
       :project    => "production"
     )
 
-    CLIENT.compute.describe_instances
+### Returns information about instances that you own (DescribeInstances).
+
+    CLIENT.compute.all
 
 ## Testing
 

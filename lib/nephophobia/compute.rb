@@ -12,7 +12,7 @@ module Nephophobia
     #           { "Filter.1.Name" => "instance-type" }
 
 
-    def describe_instances params = {}
+    def all params = {}
       @base.action "get", "DescribeInstances", params
     end
   end
