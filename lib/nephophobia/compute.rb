@@ -9,11 +9,16 @@ module Nephophobia
     #
     # +params+: Intended for filtering.
     #           See the API Reference for further details.
-    #           { "Filter.1.Name" => "instance-type" }
+    #           {
+    #             "Filter.1.Name"    => "instance-type",
+    #             "Filter.1.Value.1" => "m1.small"
+    #           }
 
 
     def all params = {}
-      @base.action "get", "DescribeInstances", params
+      response = @base.action "get", "DescribeInstances", params
+
+      response.body.xpath('//xmlns:item')
     end
   end
 end
