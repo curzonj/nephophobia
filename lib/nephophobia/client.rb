@@ -17,8 +17,8 @@ module Nephophobia
       @connection.send method, @path, :query => @aws.signed_params(method, params)
     end
 
-    def action method, inflict, params
-      raw method, { "Action" => inflict }.merge(params)
+    def action method, inflict, filter
+      raw method, { "Action" => inflict }.merge(filter)
     end
   end
 
