@@ -1,37 +1,22 @@
 require "test_helper"
 
 describe AWS do
-  describe "::canonical_string" do
+  describe "#signed_params" do
     before do
-      @params = {"name1" => "value1", "name2" => "value2 has spaces", "name3" => "value3~"}
-      @host   = "example.com"
-      @port   = 8080
+      @aws = AWS.new(
+        :host       => "example.com",
+        :port       => 8773,
+        :path       => "/services/Cloud",
+        :access_key => "9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c",
+        :secret_key => "3ae9d9f0-2723-480a-99eb-776f05950506",
+        :project    => "production"
+      )
     end
 
-    it "returns a proper path when required signature provided" do
-      result = AWS.canonical_string @params, @host, @port
+    it "returns signed query params" do
+      result = @aws.signed_params "get", "Action" => "DescribeInstances"
 
-      result.must_equal "POST\nexample.com:8080\n/\nname1=value1&name2=value2%20has%20spaces&name3=value3~"
-    end
-
-    it "returns a proper path when optional signature provided" do
-      result = AWS.canonical_string @params, @host, @port, "METHOD", "/base"
-
-      result.must_equal "METHOD\nexample.com:8080\n/base\nname1=value1&name2=value2%20has%20spaces&name3=value3~"
-    end
-  end
-
-  describe "::encode" do
-    it "returns a Base64 encoded string" do
-      result = AWS.encode "secretaccesskey", "foobar123", false
-
-      result.must_equal "CPzGGhtvlG3P3yp88fPZp0HKouUV8mQK1ZcdFGQeAug="
-    end
-
-    it "returns a URL encoded string" do
-      result = AWS.encode "secretaccesskey", "foobar123", true
-
-      result.must_equal "CPzGGhtvlG3P3yp88fPZp0HKouUV8mQK1ZcdFGQeAug%3D"
+      result.must_equal "AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c%3Aproduction&Action=DescribeInstances&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2011-02-19T07%3A17%3A56Z&Version=2010-08-31&Signature=rw4KU2oHC5rR1jpDeLDjiYrm86w48%2F2FaAcxOfI7hQA%3D"
     end
   end
 end

@@ -1,56 +1,51 @@
 ##
-# Extracted from from grempe/amazon-ec2
+# Taken from geemus/fog
 #
-# TODO: Could use better tests.
+# TODO: document
 
 require "cgi"
 require "openssl"
 require "base64"
 
 class AWS
-  ##
-  # Builds the canonical string for signing requests. This strips out all '&', '?', and '='
-  # from the query string to be signed.  The parameters in the path passed in must already
-  # be sorted in case-insensitive alphabetical order and must not be url encoded.
-  #
-  # +params+: A Hash that will be sorted and encoded.
-  # +host+: A String with the hostname of the API endpoint.
-  # +host+: An Integer with the HTTP port of the API endpoint.
-  # +method+: A String with the HTTP method that will be used to submit the request.
-  # +base+: A String to the base URI path for submission.
-
-  def self.canonical_string params, host, port, method="POST", base="/"
-    ### Sort, and encode parameters into a canonical string.
-    sorted_params  = params.sort { |x,y| x[0] <=> y[0] }
-    encoded_params = sorted_params.collect do |p|
-      encoded = "#{CGI::escape p[0].to_s}=#{CGI::escape p[1].to_s}"
-      # Ensure spaces are encoded as '%20', not '+'
-      encoded = encoded.gsub '+', '%20'
-      # According to RFC3986 (the scheme for values expected by signing requests), '~'
-      # should not be encoded
-      encoded = encoded.gsub '%7E', '~'
-    end
-
-    ### Generate the request description string.
-    "#{method}\n#{host}:#{port}\n#{base}\n#{encoded_params.join "&"}"
+  def initialize options
+    @host       = options[:host]
+    @port       = options[:port]
+    @path       = options[:path]
+    @access_key = options[:access_key]
+    @secret_key = options[:secret_key]
+    @project    = options[:project]
   end
 
-  ##
-  # Encodes the given string with the secret_access_key by taking the
-  # hmac-sha1 sum, and then base64 encoding it.  Optionally, it will also
-  # url encode the result of that to protect the string if it's going to
-  # be used as a query string parameter.
-  #
-  # +secret_access_key+: A String containing the user's key for signing.
-  # +str+: A String to be hashed and encoded.
-  # +urlencode+: A Boolean whether or not to URL encode the result.
+  def signed_params method, params
+    sign method, common_params.merge(params)
+  end
 
-  def AWS.encode secret_access_key, str, urlencode=true
-    digest   = OpenSSL::Digest::Digest.new "sha256"
-    b64_hmac = Base64.encode64(
-      OpenSSL::HMAC.digest digest, secret_access_key, str
-    ).gsub "\n",""
+private
+  def common_params
+    {
+      "AWSAccessKeyId"    => "#{@access_key}:#{@project}",
+      "SignatureMethod"   => "HmacSHA256",
+      "SignatureVersion"  => "2",
+      "Timestamp"         => "2011-02-19T07:17:56Z", #Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
+      "Version"           => "2010-08-31"
+    }
+  end
 
-    urlencode ? CGI::escape(b64_hmac) : b64_hmac
+  def sign method, params
+    sorted_params = sort_params params
+
+    data   = "#{method.upcase}\n#{@host}:#{@port}\n#{@path}\n" << sorted_params.chop
+    digest = OpenSSL::Digest::Digest.new "sha256"
+    signed = OpenSSL::HMAC.digest digest, @secret_key, data
+    sorted_params << "Signature=#{CGI.escape(Base64.encode64(signed).chomp!).gsub /\+/, '%20'}"
+
+    sorted_params
+  end
+
+  def sort_params params
+    params.keys.sort.inject("") { |result, key|
+      result << "#{key}=#{CGI.escape(params[key]).gsub(/\+/, '%20')}&" if params[key]
+    }
   end
 end
