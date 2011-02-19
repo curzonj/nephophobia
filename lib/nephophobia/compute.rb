@@ -15,8 +15,8 @@ module Nephophobia
     #           }
 
 
-    def all filter = {}
-      response = @base.action "get", "DescribeInstances", filter
+    def all params = {}
+      response = @base.action "get", "DescribeInstances", params
 
       response.body.xpath('//xmlns:item')
     end
