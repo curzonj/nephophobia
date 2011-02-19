@@ -4,6 +4,14 @@ module Nephophobia
       @base = base
     end
 
+    ##
+    # Returns information about instances that you own.
+    #
+    # +params+: Intended for filtering.
+    #           See the API Reference for further details.
+    #           { "Filter.1.Name" => "instance-type" }
+
+
     def describe_instances params = {}
       @base.action "get", "DescribeInstances", params
     end
