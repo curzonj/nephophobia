@@ -30,8 +30,6 @@ module Nephophobia
     def find instance_id
       filter = {
         "InstanceId.1" => instance_id
-  #      "Filter.1.Name"    => "instance-id",
-  #      "Filter.1.Value.1" => instance_id
       }
 
       response = @base.action "get", "DescribeInstances", filter
