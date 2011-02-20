@@ -22,7 +22,7 @@ Timecop.travel Time.local 1999, 12, 31, 11, 59, 59
 VCR.config do |c|
   c.stub_with :webmock
   c.cassette_library_dir     = "test/fixtures/cassettes"
-  c.default_cassette_options = { :record => :new_episodes }
+  c.default_cassette_options = { :record => :none }
 end
 
 MiniTest::Unit.autorun
