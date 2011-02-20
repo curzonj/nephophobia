@@ -27,8 +27,8 @@ private
       "AWSAccessKeyId"    => "#{@access_key}:#{@project}",
       "SignatureMethod"   => "HmacSHA256",
       "SignatureVersion"  => "2",
-      "Timestamp"         => "2011-02-19T07:17:56Z", #Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
-      "Version"           => "2010-08-31" #TODO: 2010-11-15
+      "Timestamp"         => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
+      "Version"           => "2010-11-15"
     }
   end
 

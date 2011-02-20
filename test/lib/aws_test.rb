@@ -16,7 +16,7 @@ describe AWS do
     it "returns signed query params" do
       result = @aws.signed_params "get", "Action" => "DescribeInstances"
 
-      result.must_equal "AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c%3Aproduction&Action=DescribeInstances&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2011-02-19T07%3A17%3A56Z&Version=2010-08-31&Signature=rw4KU2oHC5rR1jpDeLDjiYrm86w48%2F2FaAcxOfI7hQA%3D"
+      result.must_equal "AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c%3Aproduction&Action=DescribeInstances&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=x0wJmpbCeXpNcwVuTmB7E59zmlyTRkjDxjlO%2BCQi4z4%3D"
     end
   end
 end

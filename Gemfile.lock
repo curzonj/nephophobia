@@ -19,6 +19,7 @@ GEM
     net-http-persistent (1.4.1)
     nokogiri (1.4.4)
     rake (0.8.7)
+    timecop (0.3.5)
     vcr (1.5.0)
     webmock (1.6.2)
       addressable (>= 2.2.2)
@@ -32,5 +33,6 @@ DEPENDENCIES
   minitest
   nephophobia!
   rake
+  timecop
   vcr (= 1.5.0)
   webmock

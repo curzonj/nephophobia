@@ -3,6 +3,7 @@ Bundler.setup :default, :test
 require "nephophobia"
 
 require "minitest/spec"
+require "timecop"
 require "vcr"
 require "webmock"
 
@@ -13,7 +14,10 @@ class MiniTest::Unit::TestCase
     :secret_key => "3ae9d9f0-2723-480a-99eb-776f05950506",
     :project    => "production"
   )
+
 end
+
+Timecop.travel Time.local 1999, 12, 31, 11, 59, 59
 
 VCR.config do |c|
   c.stub_with :webmock
