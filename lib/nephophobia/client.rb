@@ -35,16 +35,33 @@ module Nephophobia
       )
     end
 
-    def compute
-      @compute ||= Nephophobia::Compute.new self #Base.new(@connection, @path, @aws)
-    end
+    ##
+    # Worker method which constructs the properly signed URL, and
+    # performs the Net::HTTP call.
+    #
+    # +method+: The HTTP method used for the request.
+    # +params+: A Hash containing the parameters to sign.
 
     def raw method, params
       @connection.send method, @path, :query => @aws.signed_params(method, params)
     end
 
+    ##
+    # Vanity wrapper around #raw.
+    #
+    # +method+: The HTTP method used for the request.
+    # +inflict+: A String with the EC2 API action to execute.
+    # +filter+: A Hash containing _optional_ EC2 API filters.
+
     def action method, inflict, filter
       raw method, { "Action" => inflict }.merge(filter)
+    end
+
+    ##
+    # Provide a simple API of the EC2 Compute resources.
+
+    def compute
+      @compute ||= Nephophobia::Compute.new self
     end
   end
 end
