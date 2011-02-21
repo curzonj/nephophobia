@@ -1,27 +1,8 @@
 require "nephophobia/compute"
 
-require "base64"
-require "cgi"
 require "hugs"
-require "openssl"
 
 module Nephophobia
-  class Base
-    def initialize connection, path, aws
-      @connection = connection
-      @path       = path
-      @aws        = aws
-    end
-
-    def raw method, params
-      @connection.send method, @path, :query => @aws.signed_params(method, params)
-    end
-
-    def action method, inflict, filter
-      raw method, { "Action" => inflict }.merge(filter)
-    end
-  end
-
   class Client
     ##
     # Required:
@@ -55,7 +36,15 @@ module Nephophobia
     end
 
     def compute
-      @compute ||= Nephophobia::Compute.new Base.new(@connection, @path, @aws)
+      @compute ||= Nephophobia::Compute.new self #Base.new(@connection, @path, @aws)
+    end
+
+    def raw method, params
+      @connection.send method, @path, :query => @aws.signed_params(method, params)
+    end
+
+    def action method, inflict, filter
+      raw method, { "Action" => inflict }.merge(filter)
     end
   end
 end

@@ -1,7 +1,7 @@
 module Nephophobia
   class Compute
-    def initialize base
-      @base = base
+    def initialize client
+      @client = client
     end
 
     ##
@@ -16,7 +16,7 @@ module Nephophobia
 
 
     def all filter = {}
-      response = @base.action "get", "DescribeInstances", filter
+      response = @client.action "get", "DescribeInstances", filter
 
       response.body.xpath('//xmlns:item')
     end
@@ -32,7 +32,7 @@ module Nephophobia
         "InstanceId.1" => instance_id
       }
 
-      response = @base.action "get", "DescribeInstances", filter
+      response = @client.action "get", "DescribeInstances", filter
 
       response.body
     end
