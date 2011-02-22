@@ -1,3 +1,7 @@
+##
+# TODO:
+#   - Filters do not appear to work.
+
 module Nephophobia
   class Compute
     def initialize client
@@ -53,8 +57,3 @@ module Nephophobia
     end
   end
 end
-
-# create
-# startup
-# shutdown
-# reboot

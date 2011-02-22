@@ -1,3 +1,9 @@
+##
+# TODO:
+#   - Filters do not appear to work.
+#   - #all should return images +@client+ has access to run.
+#     Appears to return everything.
+
 module Nephophobia
   class Image
     def initialize client
