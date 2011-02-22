@@ -1,0 +1,28 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProjectMembers&Name=production&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=to4Ia9Otnptorh4mIc11yfQgkbSZOiUdvt2%2FcqD%2Foa8%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "605"
+      date: 
+      - Tue, 22 Feb 2011 06:52:40 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>KR4WD541JK-40-5M6F8P</requestId><members><item><member>root</member></item><item><member>foo</member></item><item><member>jkleinpeter</member></item><item><member>ccrissman</member></item><item><member>amikula</member></item><item><member>kbringard</member></item><item><member>cnoshpitz</member></item><item><member>dfong</member></item><item><member>jheiss</member></item><item><member>gnolan</member></item><item><member>msaltman</member></item></members></DescribeProjectMembersResponse>
+    http_version: "1.1"

@@ -1,0 +1,67 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=ModifyUserRole&Operation=remove&Role=sysadmin&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=foobar_user&Version=2010-11-15&Signature=NPQY7sAUsOW4MR05%2Byq96qoA%2FDhrh%2BIFjfFQEjzocVc%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 403
+      message: Forbidden
+    headers: 
+      content-length: 
+      - "157"
+      content-type: 
+      - text/html; charset=UTF-8
+      date: 
+      - Tue, 22 Feb 2011 07:34:35 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <html>
+       <head>
+        <title>403 Forbidden</title>
+       </head>
+       <body>
+        <h1>403 Forbidden</h1>
+        Access was denied to this resource.<br /><br />
+      
+      
+      
+       </body>
+      </html>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DeregisterProject&Name=foobar_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=1zBz5ubPCcCv4zNP8X%2Fr0v6%2B%2BuiQsy4yZFqtgjqhWhQ%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "190"
+      date: 
+      - Tue, 22 Feb 2011 16:34:56 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DeregisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>Q96BL-H52WS3SVOFOZ14</requestId><return>true</return></DeregisterProjectResponse>
+    http_version: "1.1"

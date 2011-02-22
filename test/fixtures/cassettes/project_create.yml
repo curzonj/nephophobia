@@ -1,0 +1,55 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=RegisterUser&Name=foobar_user&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=i0l%2Bd24KlYwnDkSyncn6MqM7clMzbDUPM1e3HLGhBCw%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "316"
+      date: 
+      - Tue, 22 Feb 2011 07:14:31 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>1Z1RNH1QML50XSCCOS-Q</requestId><username>foobar_user</username><secretkey>001268f9-c48e-4ca8-987d-56c9bed80839</secretkey><accesskey>d3b42645-55e5-473c-9da8-c013e9dd696c</accesskey><file/></RegisterUserResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=RegisterProject&ManagerUser=foobar_user&Name=foobar_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=%2BKIpQdHzxLFbf1zgbL8Y1NxZq9o8ahsJcTVElLzn5IY%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "295"
+      date: 
+      - Tue, 22 Feb 2011 07:14:31 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RegisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>IPZZQ9Y9G4G93J0LWMVO</requestId><projectname>foobar_project</projectname><projectManagerId>foobar_user</projectManagerId><description>foobar_project</description></RegisterProjectResponse>
+    http_version: "1.1"
