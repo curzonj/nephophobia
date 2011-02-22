@@ -12,9 +12,9 @@ describe Nephophobia::Compute do
       end
     end
 
-    # TODO: Doesn't seem to work.
-    #it "returns instances from the given filter" do
-    #  VCR.use_cassette "compute_all_filter_on_instance-type" do
+    # TODO: Filters implemented in OpenStacks cloud.py?
+    #it "returns all instances from the given filter" do
+    #  VCR.use_cassette "compute_all_with_filter" do
     #    response = @compute.all(
     #      "Filter.1.Name"    => "instance-type",
     #      "Filter.1.Value.1" => "m1.small"
