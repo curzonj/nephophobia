@@ -14,18 +14,18 @@ module Nephophobia
     #             "Filter.1.Value.1" => "m1.small"
     #           }
 
-    def all filter = {}
-      response = @client.action "get", "DescribeInstances", filter
+    def all params = {}
+      response = @client.action "get", "DescribeInstances", params
 
       response.body.xpath("//xmlns:item")
     end
 
     ##
+    # Shuts down one or more instances. This operation is idempotent; if
+    # you terminate an instance more than once, each call will succeed.
     # Returns instances response to a state change.
-    # Terminated instances will remain visible after termination (approximately one hour).
     #
     # +instance_id+: A String representing the ID of the instance.
-    # instancesSet
 
     def destroy instance_id
       filter = {

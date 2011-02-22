@@ -1,4 +1,5 @@
 require "nephophobia/compute"
+require "nephophobia/image"
 
 require "hugs"
 
