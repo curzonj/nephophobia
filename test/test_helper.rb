@@ -8,7 +8,7 @@ require "timecop"
 require "vcr"
 
 class MiniTest::Unit::TestCase
-  USER = Nephophobia::Client.new(
+  CLIENT = Nephophobia::Client.new(
     :host       => "10.1.170.32",
     :access_key => "9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c",
     :secret_key => "3ae9d9f0-2723-480a-99eb-776f05950506",

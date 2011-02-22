@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Nephophobia::Compute do
-  before { @compute = Nephophobia::Compute.new USER }
+  before { @compute = Nephophobia::Compute.new CLIENT }
 
   describe "#all" do
     it "returns all instances" do
