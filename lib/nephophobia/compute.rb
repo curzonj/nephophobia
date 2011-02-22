@@ -5,7 +5,7 @@ module Nephophobia
     end
 
     ##
-    # Returns information about instances that you own.
+    # Returns information about instances that +@client+ owns.
     #
     # +params+: Intended for filtering.
     #           See the API Reference for further details.
@@ -38,7 +38,7 @@ module Nephophobia
     end
 
     ##
-    # Returns information about the specified instance you own.
+    # Returns information about the specified instance +@client+ owns.
     #
     # +instance_id+: A String representing the ID of the instance.
 
