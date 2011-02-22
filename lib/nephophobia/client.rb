@@ -40,7 +40,7 @@ module Nephophobia
     # performs the Net::HTTP call.
     #
     # +method+: The HTTP method used for the request.
-    # +params+: A Hash containing the parameters to sign.
+    # +params+: A Hash containing the
 
     def raw method, params
       @connection.send method, @path, :query => @aws.signed_params(method, params)
@@ -59,9 +59,11 @@ module Nephophobia
 
     ##
     # Provide a simple API of the EC2 Compute resources.
+    #
+    # TODO: disabled for now.
 
-    def compute
-      @compute ||= Nephophobia::Compute.new self
-    end
+    #def compute
+    #  @compute ||= Nephophobia::Compute.new self
+    #end
   end
 end
