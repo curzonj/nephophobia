@@ -31,7 +31,7 @@ module Nephophobia
     end
 
     ##
-    # Returns information about the specified image.
+    # Returns information about the specified 'image_id'.
     #
     # +image_id+: A String representing the ID of the image.
 

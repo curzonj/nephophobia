@@ -25,7 +25,7 @@ module Nephophobia
     end
 
     ##
-    # Shuts down one or more instances. This operation is idempotent; if
+    # Shuts down the given 'instance_id'. This operation is idempotent; if
     # you terminate an instance more than once, each call will succeed.
     # Returns instances response to a state change.
     #
@@ -42,7 +42,7 @@ module Nephophobia
     end
 
     ##
-    # Returns information about the specified instance +@client+ owns.
+    # Returns information about the given 'instance_id' +@client+ owns.
     #
     # +instance_id+: A String representing the ID of the instance.
 

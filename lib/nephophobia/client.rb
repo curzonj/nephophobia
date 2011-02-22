@@ -1,5 +1,6 @@
 require "nephophobia/compute"
 require "nephophobia/image"
+require "nephophobia/user"
 
 require "hugs"
 

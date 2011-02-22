@@ -14,6 +14,14 @@ class MiniTest::Unit::TestCase
     :secret_key => "3ae9d9f0-2723-480a-99eb-776f05950506",
     :project    => "production"
   )
+
+  ADMIN_CLIENT = Nephophobia::Client.new(
+    :host       => "10.1.170.32",
+    :access_key => "1d7a687b-0065-44d6-9611-5bf6c6c72424",
+    :secret_key => "fd3053fd-25c2-48f8-b893-9f22661ec63c",
+    :project    => "production",
+    :path       => "/services/Admin/"
+  )
 end
 
 Timecop.travel Time.local 1999, 12, 31, 11, 59, 59
