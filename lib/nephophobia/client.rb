@@ -60,7 +60,7 @@ module Nephophobia
     end
 
     ##
-    # Provide a simple API of the EC2 Compute resources.
+    # Provide a simple interface to the EC2 Compute resources.
     #
     # TODO: disabled for now.
 
