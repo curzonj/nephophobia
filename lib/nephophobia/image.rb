@@ -24,8 +24,8 @@ module Nephophobia
     #             "ExecutableBy.1"   => "self",
     #           }
 
-    def all params = {}
-      response = @client.action "get", "DescribeImages", params
+    def all filter = {}
+      response = @client.action "get", "DescribeImages", filter
 
       response.body.xpath("//xmlns:item")
     end

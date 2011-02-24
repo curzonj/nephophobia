@@ -1,27 +1,28 @@
 require "test_helper"
 
 describe Nephophobia::Image do
-  before { @image = Nephophobia::Image.new USER_CLIENT }
+  before do
+    @image = Nephophobia::Image.new USER_CLIENT
+    @total = 8
+  end
 
   describe "#all" do
     it "returns all images" do
       VCR.use_cassette "image_all" do
         response = @image.all
 
-        response.size.must_equal 8
+        response.size.must_equal @total
       end
     end
 
-    # TODO: Filters implemented in OpenStacks cloud.py?
-    #it "returns all images from the given filter" do
-    #  VCR.use_cassette "image_all_with_filter" do
-    #    response = @image.all(
-    #      "ExecutableBy.1" => "self"
-    #    )
+    # TODO: RackSpace EC2 Filters un-implemented in OpenStack.
+    it "is a pointless test displaying the unimplemented filter" do
+      VCR.use_cassette "image_all_with_filter" do
+        response = @image.all "ExecutableBy.1" => "self"
 
-    #    puts response #response.size.must_equal 88
-    #  end
-    #end
+        response.size.must_equal @total
+      end
+    end
   end
 
   describe "#find" do

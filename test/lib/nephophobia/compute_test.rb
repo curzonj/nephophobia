@@ -12,17 +12,17 @@ describe Nephophobia::Compute do
       end
     end
 
-    # TODO: Filters implemented in OpenStacks cloud.py?
-    #it "returns all instances from the given filter" do
-    #  VCR.use_cassette "compute_all_with_filter" do
-    #    response = @compute.all(
-    #      "Filter.1.Name"    => "instance-type",
-    #      "Filter.1.Value.1" => "m1.small"
-    #    )
+    # TODO: RackSpace EC2 Filters un-implemented in OpenStack.
+    it "is a pointless test displaying the unimplemented filter" do
+      VCR.use_cassette "compute_all_with_filter" do
+        filter = {
+          "Filter.1.Name"    => "instance-type",
+          "Filter.1.Value.1" => "m1.small"
+        }
 
-    #    puts response #response.size.must_equal 88
-    #  end
-    #end
+        lambda { @compute.all filter }.must_raise Hugs::Errors::BadRequest
+      end
+    end
   end
 
   describe "#destroy" do

@@ -18,8 +18,8 @@ module Nephophobia
     #             "Filter.1.Value.1" => "m1.small"
     #           }
 
-    def all params = {}
-      response = @client.action "get", "DescribeInstances", params
+    def all filter = {}
+      response = @client.action "get", "DescribeInstances", filter
 
       response.body.xpath("//xmlns:item")
     end
