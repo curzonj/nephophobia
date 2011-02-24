@@ -25,7 +25,7 @@ module Nephophobia
     #           }
 
     def all filter = {}
-      response = @client.action "get", "DescribeImages", filter
+      response = @client.action "DescribeImages", filter
 
       response.body.xpath("//xmlns:item")
     end
@@ -40,7 +40,7 @@ module Nephophobia
         "ImageId.1" => image_id
       }
 
-      response = @client.action "get", "DescribeImages", filter
+      response = @client.action "DescribeImages", filter
 
       response.body
     end

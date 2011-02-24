@@ -19,7 +19,7 @@ module Nephophobia
     # Returns information about all projects.
 
     def all params = {}
-      response = @client.action "get", "DescribeProjects", params
+      response = @client.action "DescribeProjects", params
 
       response.body.xpath("//xmlns:item")
     end
@@ -37,7 +37,7 @@ module Nephophobia
         "ManagerUser" => user_name
       }
 
-      response = @client.action "get", "RegisterProject", params
+      response = @client.action "RegisterProject", params
 
       response.body
     end
@@ -49,7 +49,7 @@ module Nephophobia
     # +project_name+: A String representing a nova project name.
 
     def destroy project_name
-      response = @client.action "get", "DeregisterProject", "Name" => project_name
+      response = @client.action "DeregisterProject", "Name" => project_name
 
       response.body
     end
@@ -60,7 +60,7 @@ module Nephophobia
     # +project_name+: A String representing a nova project name.
 
     def find project_name
-      response = @client.action "get", "DescribeProject", "Name" => project_name
+      response = @client.action "DescribeProject", "Name" => project_name
 
       response.body
     end
@@ -69,7 +69,7 @@ module Nephophobia
     # Returns information about all members of the given 'project_name'.
 
     def members project_name
-      response = @client.action "get", "DescribeProjectMembers", "Name" => project_name
+      response = @client.action "DescribeProjectMembers", "Name" => project_name
 
       response.body.xpath("//xmlns:item")
     end
@@ -93,7 +93,7 @@ module Nephophobia
         "Operation" => operation
       }
 
-      response = @client.action "get", "ModifyProjectMember", params
+      response = @client.action "ModifyProjectMember", params
 
       response.body
     end

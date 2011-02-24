@@ -52,12 +52,11 @@ module Nephophobia
     ##
     # Vanity wrapper around #raw.
     #
-    # +method+: The HTTP method used for the request.
     # +inflict+: A String with the EC2 API action to execute.
-    # +filter+: A Hash containing _optional_ EC2 API filters.
+    # +filter+: An optional Hash containing the EC2 API filters.
 
-    def action method, inflict, filter
-      raw method, { "Action" => inflict }.merge(filter)
+    def action inflict, filter
+      raw "get", { "Action" => inflict }.merge(filter)
     end
 
     ##

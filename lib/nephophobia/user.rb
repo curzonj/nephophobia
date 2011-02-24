@@ -24,7 +24,7 @@ module Nephophobia
     # +user_name+: A String representing a nova user_name.
 
     def create user_name
-      response = @client.action "get", "RegisterUser", "Name" => user_name
+      response = @client.action "RegisterUser", "Name" => user_name
 
       response.body
     end
@@ -38,7 +38,7 @@ module Nephophobia
     def destroy user_name, project_name
       remove_role user_name, project_name
 
-      response = @client.action "get", "DeregisterUser", "Name" => user_name
+      response = @client.action "DeregisterUser", "Name" => user_name
 
       response.body
     end
@@ -49,7 +49,7 @@ module Nephophobia
     # +user_name+: A String representing the user_name.
 
     def find user_name
-      response = @client.action "get", "DescribeUser", "Name" => user_name
+      response = @client.action "DescribeUser", "Name" => user_name
 
       response.body
     end
@@ -72,7 +72,7 @@ module Nephophobia
         "Operation" => operation
       }
 
-      response = @client.action "get", "ModifyUserRole", params
+      response = @client.action "ModifyUserRole", params
 
       response.body
     end
