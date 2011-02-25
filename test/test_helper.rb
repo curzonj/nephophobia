@@ -31,7 +31,7 @@ class MiniTest::Unit::TestCase
   end
 end
 
-Timecop.travel Time.local 1999, 12, 31, 11, 59, 59
+Timecop.freeze Time.local 1999, 12, 31, 11, 59, 59
 
 VCR.config do |c|
   c.stub_with :fakeweb
