@@ -2,11 +2,11 @@ Bundler.setup :default, :test
 
 require "nephophobia"
 
-require "fakeweb"
 require "minitest/spec"
 require "nokogiri"
 require "timecop"
 require "vcr"
+require "webmock"
 
 class MiniTest::Unit::TestCase
   USER_CLIENT = Nephophobia::Client.new(
@@ -34,7 +34,7 @@ end
 Timecop.freeze Time.local 1999, 12, 31, 11, 59, 59
 
 VCR.config do |c|
-  c.stub_with :fakeweb
+  c.stub_with :webmock
   c.cassette_library_dir     = "test/fixtures/cassettes"
   c.default_cassette_options = { :record => :new_episodes }
 end
