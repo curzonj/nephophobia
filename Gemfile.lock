@@ -29,6 +29,7 @@ DEPENDENCIES
   fakeweb
   minitest
   nephophobia!
+  nokogiri
   rake
   timecop
   vcr (= 1.5.0)

@@ -4,6 +4,7 @@ require "nephophobia"
 
 require "fakeweb"
 require "minitest/spec"
+require "nokogiri"
 require "timecop"
 require "vcr"
 
@@ -22,6 +23,12 @@ class MiniTest::Unit::TestCase
     :project    => "production",
     :path       => "/services/Admin/"
   )
+
+  def cassette_for cassette
+    c = VCR::Cassette.new(cassette).send :recorded_interactions
+
+    Nokogiri::XML::Document.parse c.first.response.body
+  end
 end
 
 Timecop.travel Time.local 1999, 12, 31, 11, 59, 59

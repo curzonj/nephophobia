@@ -1,3 +1,5 @@
+require "aws"
+require "hashify"
 require "nephophobia/compute"
 require "nephophobia/image"
 require "nephophobia/project"
