@@ -25,6 +25,22 @@ module Nephophobia
     end
 
     ##
+    # Create the compute instance identified by +instance_id+.
+    # Returns information about the new instance.
+    #
+    # +image_id+: A String representing the ID of the image.
+
+    def create image_id
+      filter = {
+        "ImageId" => image_id
+      }
+
+      response = @client.action "RunInstances", filter
+
+      response.body
+    end
+
+    ##
     # Shuts down the given 'instance_id'. This operation is idempotent; if
     # you terminate an instance more than once, each call will succeed.
     # Returns instances response to a state change.
@@ -54,6 +70,28 @@ module Nephophobia
       response = @client.action "DescribeInstances", filter
 
       response.body
+    end
+
+    ##
+    # Reboot the compute instance identified by +instance_id+.
+    # Returns instances response to a state change.
+    #
+    # +instance_id+: A String representing the ID of the instance.
+
+    #def reboot compute_id, project = nil
+    #  filter = {
+    #    "InstanceId.1" => instance_id
+    #  }
+
+    #  response = @client.action "StartInstances", filter
+
+    #  response.body
+    #end
+
+    def start
+    end
+
+    def stop
     end
   end
 end

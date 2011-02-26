@@ -1,0 +1,55 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=RunInstances&ImageId=ami-usc3oydl&Signature=Pj+k1BhY5X1256+u8lMPvPdoxkDsm0bJPXqF2PGUzwY=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19:59:59Z&Version=2010-11-15
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "807"
+      date: 
+      - Sat, 26 Feb 2011 20:35:39 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>VN7DNCKOPTQ-URZ7A2GR</requestId><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-b7smgixt</reservationId><instancesSet><item><displayDescription/><displayName>Server 1132</displayName><keyName>None (production, None)</keyName><instanceId>i-0000046c</instanceId><instanceState><code/><name>scheduling</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName/><dnsName/><launchTime>2011-02-26 20:35:39</launchTime><placement><availabilityZone>unknown zone</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></RunInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=RunInstances&ImageId=ami-usc3oydl&Signature=Pj+k1BhY5X1256+u8lMPvPdoxkDsm0bJPXqF2PGUzwY=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19:59:59Z&Version=2010-11-15
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "807"
+      date: 
+      - Sat, 26 Feb 2011 20:36:22 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>QKZKL05T-FQK3CPH0R7A</requestId><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-tdtnfceu</reservationId><instancesSet><item><displayDescription/><displayName>Server 1133</displayName><keyName>None (production, None)</keyName><instanceId>i-0000046d</instanceId><instanceState><code/><name>scheduling</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName/><dnsName/><launchTime>2011-02-26 20:36:22</launchTime><placement><availabilityZone>unknown zone</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></RunInstancesResponse>
+    http_version: "1.1"
