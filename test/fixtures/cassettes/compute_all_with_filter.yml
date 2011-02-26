@@ -173,3 +173,90 @@
       <?xml version="1.0"?>
       <Response><Errors><Error><Code>UnknownError</Code><Message>An unknown error has occurred. Please try your request again.</Message></Error></Errors><RequestID>VG1QD2EN3F4BYSVLRFKC</RequestID></Response>
     http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&Filter.1.Name=instance-type&Filter.1.Value.1=m1.small&Signature=A/oo6aKfI7sbuEdwy8TCgZQq9TPUgu+EgrwliuiygZ0=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19:59:59Z&Version=2010-11-15
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 400
+      message: Bad Request
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "223"
+      date: 
+      - Sat, 26 Feb 2011 22:43:03 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <?xml version="1.0"?>
+      <Response><Errors><Error><Code>UnknownError</Code><Message>An unknown error has occurred. Please try your request again.</Message></Error></Errors><RequestID>0FP38T3QSPA1HXMC24DC</RequestID></Response>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&Filter.1.Name=instance-type&Filter.1.Value.1=m1.small&Signature=A/oo6aKfI7sbuEdwy8TCgZQq9TPUgu+EgrwliuiygZ0=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19:59:59Z&Version=2010-11-15
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 400
+      message: Bad Request
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "223"
+      date: 
+      - Sat, 26 Feb 2011 22:43:55 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <?xml version="1.0"?>
+      <Response><Errors><Error><Code>UnknownError</Code><Message>An unknown error has occurred. Please try your request again.</Message></Error></Errors><RequestID>YETCX-2QZ6TBH8UAJPR9</RequestID></Response>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c:production&Action=DescribeInstances&Filter.1.Name=instance-type&Filter.1.Value.1=m1.small&Signature=A/oo6aKfI7sbuEdwy8TCgZQq9TPUgu+EgrwliuiygZ0=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19:59:59Z&Version=2010-11-15
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 400
+      message: Bad Request
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "223"
+      date: 
+      - Sat, 26 Feb 2011 22:45:00 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <?xml version="1.0"?>
+      <Response><Errors><Error><Code>UnknownError</Code><Message>An unknown error has occurred. Please try your request again.</Message></Error></Errors><RequestID>UBJKNX6JASRIZ2NRO147</RequestID></Response>
+    http_version: "1.1"

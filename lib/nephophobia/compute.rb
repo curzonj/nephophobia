@@ -78,15 +78,15 @@ module Nephophobia
     #
     # +instance_id+: A String representing the ID of the instance.
 
-    #def reboot compute_id, project = nil
-    #  filter = {
-    #    "InstanceId.1" => instance_id
-    #  }
+    def reboot instance_id
+      filter = {
+        "InstanceId.1" => instance_id
+      }
 
-    #  response = @client.action "StartInstances", filter
+      response = @client.action "RebootInstances", filter
 
-    #  response.body
-    #end
+      response.body
+    end
 
     ##
     # Starts the compute instance identified by +instance_id+.

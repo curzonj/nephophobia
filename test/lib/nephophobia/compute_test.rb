@@ -60,6 +60,18 @@ describe Nephophobia::Compute do
     end
   end
 
+  describe "#reboot" do
+    before { @instance_id = "i-00000471" }
+
+    it "reboots the given 'instance_id'" do
+      VCR.use_cassette "compute_reboot" do
+        response = @compute.reboot @instance_id
+
+        response.xpath("//xmlns:return").text.must_equal "true"
+      end
+    end
+  end
+
   describe "#start" do
     before { @instance_id = "i-00000471" }
 
