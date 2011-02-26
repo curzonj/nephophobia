@@ -24,17 +24,17 @@ describe Nephophobia::Compute do
     end
   end
 
-  #describe "#create" do
-  #  before { @image_id = "ami-usc3oydl" }
+  describe "#create" do
+    before { @image_id = "ami-usc3oydl" }
 
-  #  it "create an instance with given 'image_id'" do
-  #    VCR.use_cassette "compute_create" do
-  #      response = @compute.create @image_id
+    it "create an instance with given 'image_id'" do
+      VCR.use_cassette "compute_create" do
+        response = @compute.create @image_id
 
-  #      response.xpath("//xmlns:imageId").text.must_equal @image_id
-  #    end
-  #  end
-  #end
+        response.xpath("//xmlns:imageId").text.must_equal @image_id
+      end
+    end
+  end
 
   describe "#destroy" do
     before { @instance_id = "i-000000c7" }
