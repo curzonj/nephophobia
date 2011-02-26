@@ -12,8 +12,7 @@ describe Nephophobia::Compute do
       end
     end
 
-    # TODO: RackSpace EC2 Filters un-implemented in OpenStack.
-    it "is a pointless test displaying the unimplemented filter" do
+    it "API doesn't implement Filter" do
       VCR.use_cassette "compute_all_with_filter" do
         filter = {
           "Filter.1.Name"    => "instance-type",
@@ -25,17 +24,17 @@ describe Nephophobia::Compute do
     end
   end
 
-  describe "#create" do
-    before { @image_id = "ami-usc3oydl" }
+  #describe "#create" do
+  #  before { @image_id = "ami-usc3oydl" }
 
-    it "create an instance with given 'image_id'" do
-      VCR.use_cassette "compute_create" do
-        response = @compute.create @image_id
+  #  it "create an instance with given 'image_id'" do
+  #    VCR.use_cassette "compute_create" do
+  #      response = @compute.create @image_id
 
-        response.xpath("//xmlns:imageId").text.must_equal @image_id
-      end
-    end
-  end
+  #      response.xpath("//xmlns:imageId").text.must_equal @image_id
+  #    end
+  #  end
+  #end
 
   describe "#destroy" do
     before { @instance_id = "i-000000c7" }
@@ -57,6 +56,28 @@ describe Nephophobia::Compute do
         response = @compute.find @instance_id
 
         response.xpath("//xmlns:instanceId").text.must_equal @instance_id
+      end
+    end
+  end
+
+  describe "#start" do
+    before { @instance_id = "i-00000471" }
+
+    # 2011-02-26 22:24:55,809 ERROR nova.api [HU844ZYTDM1-8QJIY6MI jdewey production] Unexpected error raised: Unsupported API request: controller = CloudController, action = StartInstances
+    it "API doesn't implement StartInstances" do
+      VCR.use_cassette "compute_start" do
+        lambda { @compute.start @instance_id }.must_raise Hugs::Errors::BadRequest
+      end
+    end
+  end
+
+  describe "#stop" do
+    before { @instance_id = "i-00000471" }
+
+    # 2011-02-26 20:50:45,375 ERROR nova.api [HIA363E2X4025I-FIZ7E jdewey production] Unexpected error raised: Unsupported API request: controller = CloudController, action = StopInstances
+    it "API doesn't implement StopInstances" do
+      VCR.use_cassette "compute_stop" do
+        lambda { @compute.stop @instance_id }.must_raise Hugs::Errors::BadRequest
       end
     end
   end

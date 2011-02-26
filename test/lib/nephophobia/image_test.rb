@@ -15,8 +15,7 @@ describe Nephophobia::Image do
       end
     end
 
-    # TODO: RackSpace EC2 Filters un-implemented in OpenStack.
-    it "is a pointless test displaying the unimplemented filter" do
+    it "API doesn't implement Filter" do
       VCR.use_cassette "image_all_with_filter" do
         response = @image.all "ExecutableBy.1" => "self"
 

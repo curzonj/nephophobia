@@ -88,10 +88,36 @@ module Nephophobia
     #  response.body
     #end
 
-    def start
+    ##
+    # Starts the compute instance identified by +instance_id+.
+    # Returns instances current and previous state.
+    #
+    # +instance_id+: A String representing the ID of the instance.
+
+    def start instance_id
+      filter = {
+        "InstanceId.1" => instance_id
+      }
+
+      response = @client.action "StopInstances", filter
+
+      response.body
     end
 
-    def stop
+    ##
+    # Stops the compute instance identified by +instance_id+.
+    # Returns instances current and previous state.
+    #
+    # +instance_id+: A String representing the ID of the instance.
+
+    def stop instance_id
+      filter = {
+        "InstanceId.1" => instance_id
+      }
+
+      response = @client.action "StartInstances", filter
+
+      response.body
     end
   end
 end
