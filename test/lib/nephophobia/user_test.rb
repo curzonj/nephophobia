@@ -32,13 +32,12 @@ describe Nephophobia::User do
 
   describe "#destroy" do
     before do
-      @user_name    = "foobar_user"
-      @project_name = "production"
+      @user_name = "foobar_user"
     end
 
     it "destroys the given 'user_name'" do
       VCR.use_cassette "user_destroy" do
-        response = @user.destroy @user_name, @project_name
+        response = @user.destroy @user_name
 
         response.xpath("//xmlns:return").text.must_equal "true"
       end

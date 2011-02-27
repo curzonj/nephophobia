@@ -30,14 +30,12 @@ module Nephophobia
     end
 
     ##
-    # Removes the given 'user_name', and un-registers from the specified project_name.
+    # Removes the given 'user_name'.
     # Returns a response to the state change.
     #
     # +user_name+: A String representing a nova user_name.
 
-    def destroy user_name, project_name
-      remove_role user_name, project_name
-
+    def destroy user_name
       response = @client.action "DeregisterUser", "Name" => user_name
 
       response.body

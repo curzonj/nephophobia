@@ -39,7 +39,6 @@ describe Nephophobia::Project do
 
     it "creates the given 'project_name'" do
       VCR.use_cassette "project_create" do
-        @user.create @user_name
         response = @project.create @project_name, @user_name
 
         response.xpath("//xmlns:projectname").text.must_equal @project_name
