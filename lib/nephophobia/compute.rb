@@ -21,7 +21,7 @@ module Nephophobia
     def all filter = {}
       response = @client.action "DescribeInstances", filter
 
-      response.body.xpath("//xmlns:item")
+      response.body['DescribeInstancesResponse']['reservationSet']['item']
     end
 
     ##
@@ -37,7 +37,7 @@ module Nephophobia
 
       response = @client.action "RunInstances", filter
 
-      response.body
+      response.body['RunInstancesResponse']['instancesSet']['item']
     end
 
     ##
@@ -54,7 +54,7 @@ module Nephophobia
 
       response = @client.action "TerminateInstances", filter
 
-      response.body
+      response.body['TerminateInstancesResponse']
     end
 
     ##
@@ -69,7 +69,7 @@ module Nephophobia
 
       response = @client.action "DescribeInstances", filter
 
-      response.body
+      response.body['DescribeInstancesResponse']['reservationSet']['item']
     end
 
     ##
@@ -85,7 +85,7 @@ module Nephophobia
 
       response = @client.action "RebootInstances", filter
 
-      response.body
+      response.body['RebootInstancesResponse']
     end
 
     ##

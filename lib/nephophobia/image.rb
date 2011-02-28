@@ -27,7 +27,7 @@ module Nephophobia
     def all filter = {}
       response = @client.action "DescribeImages", filter
 
-      response.body.xpath("//xmlns:item")
+      response.body['DescribeImagesResponse']['imagesSet']['item']
     end
 
     ##
@@ -42,7 +42,7 @@ module Nephophobia
 
       response = @client.action "DescribeImages", filter
 
-      response.body
+      response.body['DescribeImagesResponse']['imagesSet']['item']
     end
   end
 end

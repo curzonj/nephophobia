@@ -31,7 +31,7 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_find" do
         response = @image.find @image_id
 
-        response.xpath("//xmlns:imageId").text.must_equal @image_id
+        response['imageId'].must_equal @image_id
       end
     end
   end

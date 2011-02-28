@@ -8,7 +8,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_all" do
         response = @compute.all
 
-        response.size.must_equal 6
+        response.size.must_equal 2
       end
     end
 
@@ -31,7 +31,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_create" do
         response = @compute.create @image_id
 
-        response.xpath("//xmlns:imageId").text.must_equal @image_id
+        response['imageId'].must_equal @image_id
       end
     end
   end
@@ -43,7 +43,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_destroy" do
         response = @compute.destroy @instance_id
 
-        response.xpath("//xmlns:return").text.must_equal "true"
+        response['return'].must_equal "true"
       end
     end
   end
@@ -55,7 +55,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_find" do
         response = @compute.find @instance_id
 
-        response.xpath("//xmlns:instanceId").text.must_equal @instance_id
+        response['instancesSet']['item']['instanceId'].must_equal @instance_id
       end
     end
   end
@@ -67,7 +67,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_reboot" do
         response = @compute.reboot @instance_id
 
-        response.xpath("//xmlns:return").text.must_equal "true"
+        response['return'].must_equal "true"
       end
     end
   end

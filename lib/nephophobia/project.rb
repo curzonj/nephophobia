@@ -21,7 +21,7 @@ module Nephophobia
     def all params = {}
       response = @client.action "DescribeProjects", params
 
-      response.body.xpath("//xmlns:item")
+      response.body['DescribeProjectsResponse']['projectSet']['item']
     end
 
     ##
@@ -39,7 +39,7 @@ module Nephophobia
 
       response = @client.action "RegisterProject", params
 
-      response.body
+      response.body['RegisterProjectResponse']
     end
 
     ##
@@ -51,7 +51,7 @@ module Nephophobia
     def destroy project_name
       response = @client.action "DeregisterProject", "Name" => project_name
 
-      response.body
+      response.body['DeregisterProjectResponse']
     end
 
     ##
@@ -62,7 +62,7 @@ module Nephophobia
     def find project_name
       response = @client.action "DescribeProject", "Name" => project_name
 
-      response.body
+      response.body['DescribeProjectResponse']
     end
 
     ##
@@ -71,7 +71,7 @@ module Nephophobia
     def members project_name
       response = @client.action "DescribeProjectMembers", "Name" => project_name
 
-      response.body.xpath("//xmlns:item")
+      response.body['DescribeProjectMembersResponse']['members']['item']
     end
 
     ##
@@ -95,7 +95,7 @@ module Nephophobia
 
       response = @client.action "ModifyProjectMember", params
 
-      response.body
+      response.body['ModifyProjectMemberResponse']
     end
   end
 end
