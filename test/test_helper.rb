@@ -5,7 +5,6 @@ require "nephophobia"
 require "fakeweb"
 require "minitest/spec"
 require "nokogiri"
-require "timecop"
 require "vcr"
 
 class MiniTest::Unit::TestCase
@@ -37,5 +36,12 @@ VCR.config do |c|
   c.default_cassette_options = { :record => :new_episodes }
 end
 
-Timecop.freeze Time.local 1999, 12, 31, 11, 59, 59
+class Time
+  class << self
+    alias_method :real_now, :now
+    def now
+      Time.utc 1999, 12, 31, 19, 59, 59
+    end
+  end
+end
 MiniTest::Unit.autorun
