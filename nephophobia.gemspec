@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "hugs"
 
+  s.add_development_dependency "autotest-standalone"
+  s.add_development_dependency "fakeweb"
   s.add_development_dependency "minitest"
   s.add_development_dependency "nokogiri"
   s.add_development_dependency "rake"
