@@ -21,9 +21,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "hugs"
 
-  s.add_development_dependency "fakeweb"
   s.add_development_dependency "minitest"
   s.add_development_dependency "nokogiri"
   s.add_development_dependency "rake"
   s.add_development_dependency "vcr", "1.5.0"
+  s.add_development_dependency "webmock"
 end
