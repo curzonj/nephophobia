@@ -1,12 +1,3 @@
-require "aws"
-require "hashify"
-require "nephophobia/compute"
-require "nephophobia/image"
-require "nephophobia/project"
-require "nephophobia/user"
-
-require "hugs"
-
 module Nephophobia
   class Client
     ##
