@@ -67,11 +67,16 @@ module Nephophobia
 
     ##
     # Provide a simple interface to the EC2 Compute resources.
-    #
-    # TODO: disabled for now.
 
-    #def compute
-    #  @compute ||= Nephophobia::Compute.new self
-    #end
+    def compute
+      @compute ||= Nephophobia::Compute.new self
+    end
+
+    ##
+    # Provide a simple interface to the EC2 Image resources.
+
+    def image
+      @image ||= Nephophobia::Image.new self
+    end
   end
 end

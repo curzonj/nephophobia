@@ -3,6 +3,12 @@ require "test_helper"
 describe Nephophobia::Compute do
   before { @compute = Nephophobia::Compute.new USER_CLIENT }
 
+  describe "#compute" do
+    it "has compute decorator" do
+      USER_CLIENT.must_respond_to :compute
+    end
+  end
+
   describe "#all" do
     it "returns all instances" do
       VCR.use_cassette "compute_all" do

@@ -5,6 +5,12 @@ describe Nephophobia::Image do
     @image = Nephophobia::Image.new USER_CLIENT
   end
 
+  describe "#image" do
+    it "has image decorator" do
+      USER_CLIENT.must_respond_to :image
+    end
+  end
+
   describe "#all" do
     it "returns all images" do
       VCR.use_cassette "image_all" do
