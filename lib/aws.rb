@@ -24,7 +24,7 @@ class AWS
 private
   def common_params
     {
-      "AWSAccessKeyId"   => "#{@access_key}:#{@project}",
+      "AWSAccessKeyId"   => @project ? "#{@access_key}:#{@project}" : @access_key,
       "SignatureMethod"  => "HmacSHA256",
       "SignatureVersion" => "2",
       "Timestamp"        => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
