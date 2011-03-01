@@ -34,6 +34,14 @@ describe Nephophobia::Compute do
         response.xpath("//xmlns:imageId").text.must_equal @image_id
       end
     end
+    it 'should accept optional web params as a Hash' do
+      options = {'DisplayName' => 'testserver1', 'DisplayDescription' => 'test description'}
+      VCR.use_cassette 'compute_create_options' do
+        response = @compute.create @image_id, options
+        response.xpath("//xmlns:displayName").text.must_equal 'testserver1'
+        response.xpath("//xmlns:displayDescription").text.must_equal 'test description'
+      end
+    end
   end
 
   describe "#destroy" do
