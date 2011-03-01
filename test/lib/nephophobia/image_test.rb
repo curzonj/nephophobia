@@ -3,7 +3,6 @@ require "test_helper"
 describe Nephophobia::Image do
   before do
     @image = Nephophobia::Image.new USER_CLIENT
-    @total = 8
   end
 
   describe "#all" do
@@ -11,7 +10,7 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_all" do
         response = @image.all
 
-        response.size.must_equal @total
+        response.size.must_equal 8
       end
     end
 
@@ -19,7 +18,7 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_all_with_filter" do
         response = @image.all "ExecutableBy.1" => "self"
 
-        response.size.must_equal @total
+        response.size.must_equal 8
       end
     end
   end
@@ -32,6 +31,16 @@ describe Nephophobia::Image do
         response = @image.find @image_id
 
         response['imageId'].must_equal @image_id
+      end
+    end
+  end
+
+  describe "#public" do
+    it "returns all public images" do
+      VCR.use_cassette "image_all" do
+        response = @image.public
+
+        response.size.must_equal 2
       end
     end
   end

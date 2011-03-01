@@ -44,5 +44,22 @@ module Nephophobia
 
       response.body['DescribeImagesResponse']['imagesSet']['item']
     end
+
+    ##
+    # Return information about all public images.
+
+    def public
+      all.select do |image|
+        public? image
+      end
+    end
+
+  private
+    ##
+    # images which do not have a valid kernel_id are not runnable.
+
+    def public? image
+      image['isPublic'] == "true" && image['kernelId'] != "true"
+    end 
   end
 end
