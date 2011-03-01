@@ -43,6 +43,7 @@ module Nephophobia
     ##
     # Worker method which constructs the properly signed URL, and
     # performs the Net::HTTP call.
+    # Returns a typical Net::HTTP response with a Hash body.
     #
     # +method+: The HTTP method used for the request.
     # +params+: A Hash containing the
