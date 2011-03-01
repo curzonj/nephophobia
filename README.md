@@ -1,6 +1,6 @@
 # Nephophobia
 
-Lean Ruby bindings to OpenStack's AWS EC2 endpoint.  Hands back a Nokogiri::XML::Document.
+Lean Ruby bindings to OpenStack's AWS EC2 endpoint.  Hands back a Hash (for now).
 
 ## Why
 
