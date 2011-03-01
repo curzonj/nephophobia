@@ -49,9 +49,9 @@ module Nephophobia
     # +params+: A Hash containing the
 
     def raw method, params
-      response = @connection.send method, @path, :query => @aws.signed_params(method, params)
-
+      response      = @connection.send method, @path, :query => @aws.signed_params(method, params)
       response.body = Hashify.convert response.body.root
+
       response
     end
 
