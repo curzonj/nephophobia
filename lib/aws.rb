@@ -44,8 +44,8 @@ private
   end
 
   def sort_params params
-    params.keys.sort.inject("") { |result, key|
+    params.keys.sort.inject("") do |result, key|
       result << "#{key}=#{CGI.escape(params[key]).gsub(/\+/, '%20')}&" if params[key]
-    }
+    end 
   end
 end
