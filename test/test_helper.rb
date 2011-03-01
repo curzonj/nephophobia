@@ -2,10 +2,10 @@ Bundler.setup :default, :test
 
 require "nephophobia"
 
+require "fakeweb"
 require "minitest/spec"
 require "nokogiri"
 require "vcr"
-require "webmock"
 
 class MiniTest::Unit::TestCase
   USER_CLIENT = Nephophobia::Client.new(
@@ -31,7 +31,7 @@ class MiniTest::Unit::TestCase
 end
 
 VCR.config do |c|
-  c.stub_with :webmock
+  c.stub_with :fakeweb
   c.cassette_library_dir     = "test/fixtures/cassettes"
   c.default_cassette_options = { :record => :new_episodes }
 end
