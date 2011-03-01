@@ -12,17 +12,9 @@ Compatibility with [VCR](https://github.com/myronmarston/vcr) largely drove this
 
     gem "nephophobia"
 
-## Examples
-    CLIENT = Nephophobia::Client.new(
-      :host       => "example.com",
-      :access_key => "9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c",
-      :secret_key => "3ae9d9f0-2723-480a-99eb-776f05950506",
-      :project    => "production"
-    )
+### Examples
 
-### Returns information about instances that you own (DescribeInstances).
-
-    Nephophobia::Compute.new(CLIENT).all
+See the examples section in the [wiki](http://github.com/retr0h/nephophobia/wiki).
 
 ## Testing
 
