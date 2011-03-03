@@ -5,20 +5,20 @@ module Nephophobia
     attr_reader :private_dns_name, :project_id, :public_dns_name, :state
 
     def initialize hash
-      @project_id       = hash["ownerId"]
-      item              = hash["instancesSet"]["item"]
-      @description      = item["displayDescription"]
-      @name             = item["displayName"]
-      @key_name         = item["keyName"]
-      @instance_id      = item["instanceId"]
-      @state            = item["instanceState"]["name"]
-      @public_dns_name  = item["publicDnsName"]
-      @private_dns_name = item["privateDnsName"]
-      @image_id         = item["imageId"]
-      @dns_name         = item["dnsName"]
-      @launch_time      = Time.new(item["launchTime"]).utc
-      @placement        = item["placement"]["availabilityZone"]
-      @instance_type    = item["instanceType"]
+      @project_id       = hash['ownerId']
+      item              = hash['instancesSet']['item']
+      @description      = item['displayDescription']
+      @name             = item['displayName']
+      @key_name         = item['keyName']
+      @instance_id      = item['instanceId']
+      @state            = item['instanceState']['name']
+      @public_dns_name  = item['publicDnsName']
+      @private_dns_name = item['privateDnsName']
+      @image_id         = item['imageId']
+      @dns_name         = item['dnsName']
+      @launch_time      = Time.new(item['launchTime']).utc
+      @placement        = item['placement']['availabilityZone']
+      @instance_type    = item['instanceType']
     end
   end
 

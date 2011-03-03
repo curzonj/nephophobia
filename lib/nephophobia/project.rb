@@ -3,9 +3,9 @@ module Nephophobia
     attr_reader :name, :manager_id, :description
 
     def initialize hash
-      @name        = hash["projectname"]
-      @manager_id  = hash["projectManagerId"]
-      @description = hash["description"]
+      @name        = hash['projectname']
+      @manager_id  = hash['projectManagerId']
+      @description = hash['description']
     end
   end
 
