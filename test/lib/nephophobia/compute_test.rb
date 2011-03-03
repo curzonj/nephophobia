@@ -1,7 +1,7 @@
 require "test_helper"
 
-describe Nephophobia::API::Compute do
-  before { @compute = Nephophobia::API::Compute.new USER_CLIENT }
+describe Nephophobia::Compute do
+  before { @compute = Nephophobia::Compute.new USER_CLIENT }
 
   describe "#compute" do
     it "has compute decorator" do
