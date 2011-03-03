@@ -7,4 +7,3 @@ require "nephophobia/project"
 require "nephophobia/user"
 
 require "hugs"
-
