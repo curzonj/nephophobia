@@ -19,21 +19,12 @@ describe Nephophobia::Project do
   end
 
   describe "#all" do
-    before do
-      VCR.use_cassette "project_all" do
-        @response = @project.all
-      end
-    end
-
     it "returns all projects" do
-      @response.size.must_equal 4
-    end
+      VCR.use_cassette "project_all" do
+        response = @project.all
 
-    it "contains the project data" do
-      project = @response.first
-      project.name.must_equal "production"
-      project.manager_id.must_equal "root"
-      project.description.must_equal "production"
+        response.size.must_equal 4
+      end
     end
   end
 
@@ -59,14 +50,25 @@ describe Nephophobia::Project do
   end
 
   describe "#find" do
-    before { @project_name = "production" }
+    before do
+      @project_name = "production"
+
+      VCR.use_cassette "project_find" do
+        @response = @project.find @project_name
+      end
+    end
+
 
     it "returns the given 'project_name'" do
-      VCR.use_cassette "project_find" do
-        response = @project.find @project_name
+      @response.name.must_equal @project_name
+    end
 
-        response.name.must_equal @project_name
-      end
+    it "contains the project data" do
+      project = @response
+
+      project.name.must_equal "production"
+      project.manager_id.must_equal "root"
+      project.description.must_equal "production"
     end
   end
 

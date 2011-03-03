@@ -1,4 +1,14 @@
 module Nephophobia
+  class UserData
+    attr_reader :accesskey, :username, :secretkey
+
+    def initialize hash
+      @accesskey = hash['accesskey']
+      @username  = hash['username']
+      @secretkey = hash['secretkey']
+    end
+  end
+
   class User
     DEFAULT_ROLE = "sysadmin"
 
@@ -26,7 +36,7 @@ module Nephophobia
     def create user_name
       response = @client.action "RegisterUser", "Name" => user_name
 
-      response.body['RegisterUserResponse']
+      Nephophobia::UserData.new response.body['RegisterUserResponse']
     end
 
     ##
@@ -38,7 +48,7 @@ module Nephophobia
     def destroy user_name
       response = @client.action "DeregisterUser", "Name" => user_name
 
-      response.body['DeregisterUserResponse']
+      Nephophobia::ResponseData.new response.body['DeregisterUserResponse']
     end
 
     ##
@@ -49,7 +59,7 @@ module Nephophobia
     def find user_name
       response = @client.action "DescribeUser", "Name" => user_name
 
-      response.body['DescribeUserResponse']
+      Nephophobia::UserData.new response.body['DescribeUserResponse']
     end
 
     ##
@@ -72,7 +82,7 @@ module Nephophobia
 
       response = @client.action "ModifyUserRole", params
 
-      response.body['ModifyUserRoleResponse']
+      Nephophobia::ResponseData.new response.body['ModifyUserRoleResponse']
     end
   end
 end
