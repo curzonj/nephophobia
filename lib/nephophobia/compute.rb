@@ -4,10 +4,12 @@
 
 module Nephophobia
   class ComputeData
-    attr_reader :project_id, :reservation_id, :description, :name, :key_name, :instance_id, :state, :public_dns_name, :image_id, :private_dns_name, :dns_name, :launch_time, :placement, :instance_type
+    attr_reader :description, :dns_name, :image_id, :instance_id, :instance_type
+    attr_reader :key_name, :launch_time, :name, :owner_id, :placement
+    attr_reader :private_dns_name, :project_id, :public_dns_name, :state
+
     def initialize hash
       @project_id       = hash["ownerId"]
-      @reservation_id   = hash["reservationId"]
       item              = hash["instancesSet"]["item"]
       @description      = item["displayDescription"]
       @name             = item["displayName"]
@@ -60,7 +62,7 @@ module Nephophobia
 
       response = @client.action "RunInstances", filter
 
-      response.body['RunInstancesResponse']['instancesSet']['item']
+      ComputeData.new response.body['RunInstancesResponse']
     end
 
     ##
@@ -77,7 +79,7 @@ module Nephophobia
 
       response = @client.action "TerminateInstances", filter
 
-      response.body['TerminateInstancesResponse']
+      Nephophobia::ResponseData.new response.body['TerminateInstancesResponse']
     end
 
     ##
@@ -92,7 +94,7 @@ module Nephophobia
 
       response = @client.action "DescribeInstances", filter
 
-      response.body['DescribeInstancesResponse']['reservationSet']['item']
+      ComputeData.new response.body['DescribeInstancesResponse']['reservationSet']['item']
     end
 
     ##
@@ -108,7 +110,7 @@ module Nephophobia
 
       response = @client.action "RebootInstances", filter
 
-      response.body['RebootInstancesResponse']
+      Nephophobia::ResponseData.new response.body['RebootInstancesResponse']
     end
 
     ##
@@ -124,7 +126,7 @@ module Nephophobia
 
       response = @client.action "StopInstances", filter
 
-      response.body
+      Nephophobia::ResponseData.new response.body
     end
 
     ##
@@ -140,7 +142,7 @@ module Nephophobia
 
       response = @client.action "StartInstances", filter
 
-      response.body
+      Nephophobia::ResponseData.new response.body
     end
   end
 end

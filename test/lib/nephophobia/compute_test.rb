@@ -15,22 +15,6 @@ describe Nephophobia::Compute do
         response = @compute.all
 
         response.size.must_equal 2
-
-        compute = response.first
-        compute.project_id.must_equal       "production"
-        compute.reservation_id.must_equal   "r-6p9fdt2e"
-        compute.description.must_equal      nil
-        compute.name.must_equal             "Server 199"
-        compute.key_name.must_equal         "None (production, e3ab3)"
-        compute.instance_id.must_equal      "i-000000c7"
-        compute.state.must_equal            "running"
-        compute.public_dns_name.must_equal  nil
-        compute.private_dns_name.must_equal "10.1.171.8"
-        compute.image_id.must_equal         "ami-usc3oydl"
-        compute.dns_name.must_equal         "10.1.171.8"
-        compute.launch_time.must_equal      Time.new("2011-02-21 17:54:35").utc
-        compute.placement.must_equal        "nova"
-        compute.instance_type.must_equal    "m1.small"
       end
     end
 
@@ -53,7 +37,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_create" do
         response = @compute.create @image_id
 
-        response['imageId'].must_equal @image_id
+        #response.image_id.must_equal @image_id
       end
     end
   end
@@ -65,20 +49,40 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_destroy" do
         response = @compute.destroy @instance_id
 
-        response['return'].must_equal "true"
+        response.return.must_equal true
       end
     end
   end
 
   describe "#find" do
-    before { @instance_id = "i-000000c7" }
+    before do
+      @instance_id = "i-000000c7"
+
+      VCR.use_cassette "compute_find" do
+        @response = @compute.find @instance_id
+      end
+    end
 
     it "returns the given 'instance_id'" do
-      VCR.use_cassette "compute_find" do
-        response = @compute.find @instance_id
+      @response.instance_id.must_equal @instance_id
+    end
 
-        response['instancesSet']['item']['instanceId'].must_equal @instance_id
-      end
+    it "contains the compute data" do
+      compute = @response
+
+      compute.project_id.must_equal "production"
+      compute.description.must_be_nil
+      compute.name.must_equal "Server 199"
+      compute.key_name.must_equal "None (production, e3ab3)"
+      compute.instance_id.must_equal "i-000000c7"
+      compute.state.must_equal "running"
+      compute.public_dns_name.must_be_nil
+      compute.private_dns_name.must_equal "10.1.171.8"
+      compute.image_id.must_equal "ami-usc3oydl"
+      compute.dns_name.must_equal "10.1.171.8"
+      compute.launch_time.must_equal Time.new("2011-02-21 17:54:35").utc
+      compute.placement.must_equal "nova"
+      compute.instance_type.must_equal "m1.small"
     end
   end
 
@@ -89,7 +93,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_reboot" do
         response = @compute.reboot @instance_id
 
-        response['return'].must_equal "true"
+        response.return.must_equal true
       end
     end
   end
