@@ -50,9 +50,9 @@ describe Nephophobia::Image do
       image.image_location.must_equal "ttylinx-bucket/ttylinux-uec-amd64-12.1_2.6.35-22_1.img.manifest.xml"
       image.image_owner_id.must_equal "production"
       image.image_type.must_equal "machine"
-      image.kernel_id.must_equal "ami-d0f0o14c"
       image.is_public.must_equal "false"
-      image.state.must_be_nil
+      image.kernel_id.must_equal "ami-d0f0o14c"
+      image.state.must_equal "available"
     end
   end
 

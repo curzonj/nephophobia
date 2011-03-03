@@ -10,8 +10,9 @@ module Nephophobia
       @image_location = hash['imageLocation']
       @image_owner_id = hash['imageOwnerId']
       @image_type     = hash['imageType']
-      @kernel_id      = hash['kernelId']
       @is_public      = hash['isPublic']
+      @kernel_id      = hash['kernelId']
+      @state          = hash['imageState']
     end
   end
 
