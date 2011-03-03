@@ -12,12 +12,28 @@ describe Nephophobia::Image do
   end
 
   describe "#all" do
-    it "returns all images" do
+    before do
       VCR.use_cassette "image_all" do
-        response = @image.all
-
-        response.size.must_equal 8
+        @response = @image.all
       end
+    end
+
+    it "returns all images" do
+      @response.size.must_equal 8
+    end
+
+    it "contains the image data" do
+      image = @response.first
+
+      image.architecture.must_equal "x86_64"
+      image.id.must_equal "ami-d0f0o14c"
+      image.image_id.must_equal "ami-d0f0o14c"
+      image.image_location.must_equal "ttylinx-bucket/ttylinux-uec-amd64-12.1_2.6.35-22_1-vmlinuz.manifest.xml"
+      image.image_owner_id.must_equal "production"
+      image.image_type.must_equal "kernel"
+      image.kernel_id.must_equal "true"
+      image.is_public.must_equal "false"
+      image.state.must_be_nil
     end
 
     it "API doesn't implement Filter" do
@@ -36,7 +52,7 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_find" do
         response = @image.find @image_id
 
-        response['imageId'].must_equal @image_id
+        response.image_id.must_equal @image_id
       end
     end
   end

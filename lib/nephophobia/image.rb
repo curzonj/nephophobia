@@ -1,10 +1,20 @@
-##
-# TODO:
-#   - Filters do not appear to work.
-#   - #all should return images +@client+ has access to run.
-#     Appears to return everything.
-
 module Nephophobia
+  class ImageData
+    attr_reader :architecture, :id, :image_id, :image_location, :image_owner_id
+    attr_reader :image_type, :kernel_id, :is_public, :state
+
+    def initialize hash
+      @architecture   = hash['architecture']
+      @id             = hash['id']
+      @image_id       = hash['imageId']
+      @image_location = hash['imageLocation']
+      @image_owner_id = hash['imageOwnerId']
+      @image_type     = hash['imageType']
+      @kernel_id      = hash['kernelId']
+      @is_public      = hash['isPublic']
+    end
+  end
+
   class Image
     def initialize client
       @client = client
@@ -27,7 +37,9 @@ module Nephophobia
     def all filter = {}
       response = @client.action "DescribeImages", filter
 
-      response.body['DescribeImagesResponse']['imagesSet']['item']
+      response.body['DescribeImagesResponse']['imagesSet']['item'].collect do |data|
+        ImageData.new data
+      end
     end
 
     ##
@@ -42,7 +54,7 @@ module Nephophobia
 
       response = @client.action "DescribeImages", filter
 
-      response.body['DescribeImagesResponse']['imagesSet']['item']
+      ImageData.new response.body['DescribeImagesResponse']['imagesSet']['item']
     end
 
     ##
@@ -59,7 +71,7 @@ module Nephophobia
     # images which do not have a valid kernel_id are not runnable.
 
     def public? image
-      image['isPublic'] == "true" && image['kernelId'] != "true"
-    end 
+      image.is_public == "true" && image.kernel_id != "true"
+    end
   end
 end
