@@ -46,7 +46,6 @@ describe Nephophobia::Image do
       image = @response
 
       image.architecture.must_equal "x86_64"
-      image.id.must_equal "ami-l1u1pqfm"
       image.image_id.must_equal "ami-l1u1pqfm"
       image.image_location.must_equal "ttylinx-bucket/ttylinux-uec-amd64-12.1_2.6.35-22_1.img.manifest.xml"
       image.image_owner_id.must_equal "production"

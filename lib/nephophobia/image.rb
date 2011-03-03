@@ -1,6 +1,6 @@
 module Nephophobia
   class ImageData
-    attr_reader :architecture, :id, :image_id, :image_location, :image_owner_id
+    attr_reader :architecture, :image_id, :image_location, :image_owner_id
     attr_reader :image_type, :kernel_id, :is_public, :state
 
     def initialize hash
