@@ -60,14 +60,14 @@ module Nephophobia
     # Provide a simple interface to the EC2 Compute resources.
 
     def compute
-      @compute ||= Nephophobia::Compute.new self
+      @compute ||= Nephophobia::API::Compute.new self
     end
 
     ##
     # Provide a simple interface to the EC2 Image resources.
 
     def image
-      @image ||= Nephophobia::Image.new self
+      @image ||= Nephophobia::API::Image.new self
     end
   end
 end

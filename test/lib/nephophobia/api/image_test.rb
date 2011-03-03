@@ -1,8 +1,8 @@
 require "test_helper"
 
-describe Nephophobia::Image do
+describe Nephophobia::API::Image do
   before do
-    @image = Nephophobia::Image.new USER_CLIENT
+    @image = Nephophobia::API::Image.new USER_CLIENT
   end
 
   describe "#image" do
