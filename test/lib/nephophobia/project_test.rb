@@ -49,7 +49,6 @@ describe Nephophobia::Project do
   end
 
   describe "#destroy" do
-
     it "destroys the given 'project_name'" do
       VCR.use_cassette "project_destroy" do
         response = @project.destroy @project_name
