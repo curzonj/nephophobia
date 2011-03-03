@@ -13,18 +13,27 @@ describe Nephophobia::Project do
       VCR.use_cassette "project_add_member" do
         response = @project.add_member @user_name, @project_name
 
-        response['return'].must_equal "true"
+        response.return.must_equal true
       end
     end
   end
 
   describe "#all" do
-    it "returns all projects" do
+    before do
       VCR.use_cassette "project_all" do
-        response = @project.all
-
-        response.size.must_equal 4
+        @response = @project.all
       end
+    end
+
+    it "returns all projects" do
+      @response.size.must_equal 4
+    end
+
+    it "contains the project data" do
+      project = @response.first
+      project.name.must_equal "production"
+      project.manager_id.must_equal "root"
+      project.description.must_equal "production"
     end
   end
 
@@ -33,8 +42,8 @@ describe Nephophobia::Project do
       VCR.use_cassette "project_create" do
         response = @project.create @project_name, @user_name
 
-        response['projectname'].must_equal @project_name
-        response['projectManagerId'].must_equal @user_name
+        response.name.must_equal @project_name
+        response.manager_id.must_equal @user_name
       end
     end
   end
@@ -45,7 +54,7 @@ describe Nephophobia::Project do
       VCR.use_cassette "project_destroy" do
         response = @project.destroy @project_name
 
-        response['return'].must_equal "true"
+        response.return.must_equal true
       end
     end
   end
@@ -57,7 +66,7 @@ describe Nephophobia::Project do
       VCR.use_cassette "project_find" do
         response = @project.find @project_name
 
-        response['projectname'].must_equal @project_name
+        response.name.must_equal @project_name
       end
     end
   end
@@ -79,7 +88,7 @@ describe Nephophobia::Project do
       VCR.use_cassette "project_remove_member" do
         response = @project.remove_member @user_name, @project_name
 
-        response['return'].must_equal "true"
+        response.return.must_equal true
       end
     end
   end

@@ -7,3 +7,13 @@ require "nephophobia/project"
 require "nephophobia/user"
 
 require "hugs"
+
+module Nephophobia
+  class ResponseData
+    attr_reader :request_id, :return
+    def initialize hash
+      @request_id = hash["requestId"]
+      @return     = hash["return"] == "true"
+    end
+  end
+end

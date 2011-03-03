@@ -15,6 +15,22 @@ describe Nephophobia::Compute do
         response = @compute.all
 
         response.size.must_equal 2
+
+        compute = response.first
+        compute.project_id.must_equal       "production"
+        compute.reservation_id.must_equal   "r-6p9fdt2e"
+        compute.description.must_equal      nil
+        compute.name.must_equal             "Server 199"
+        compute.key_name.must_equal         "None (production, e3ab3)"
+        compute.instance_id.must_equal      "i-000000c7"
+        compute.state.must_equal            "running"
+        compute.public_dns_name.must_equal  nil
+        compute.private_dns_name.must_equal "10.1.171.8"
+        compute.image_id.must_equal         "ami-usc3oydl"
+        compute.dns_name.must_equal         "10.1.171.8"
+        compute.launch_time.must_equal      Time.new("2011-02-21 17:54:35").utc
+        compute.placement.must_equal        "nova"
+        compute.instance_type.must_equal    "m1.small"
       end
     end
 

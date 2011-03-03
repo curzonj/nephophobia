@@ -1,4 +1,14 @@
 module Nephophobia
+  class ProjectData
+    attr_reader :name, :manager_id, :description
+
+    def initialize hash
+      @name        = hash["projectname"]
+      @manager_id  = hash["projectManagerId"]
+      @description = hash["description"]
+    end
+  end
+
   class Project
     def initialize client
       @client = client
@@ -21,7 +31,9 @@ module Nephophobia
     def all params = {}
       response = @client.action "DescribeProjects", params
 
-      response.body['DescribeProjectsResponse']['projectSet']['item']
+      response.body['DescribeProjectsResponse']['projectSet']['item'].collect do |data|
+        ProjectData.new data
+      end
     end
 
     ##
@@ -39,7 +51,7 @@ module Nephophobia
 
       response = @client.action "RegisterProject", params
 
-      response.body['RegisterProjectResponse']
+      ProjectData.new response.body['RegisterProjectResponse']
     end
 
     ##
@@ -51,7 +63,7 @@ module Nephophobia
     def destroy project_name
       response = @client.action "DeregisterProject", "Name" => project_name
 
-      response.body['DeregisterProjectResponse']
+      Nephophobia::ResponseData.new response.body['DeregisterProjectResponse']
     end
 
     ##
@@ -62,7 +74,7 @@ module Nephophobia
     def find project_name
       response = @client.action "DescribeProject", "Name" => project_name
 
-      response.body['DescribeProjectResponse']
+      ProjectData.new response.body['DescribeProjectResponse']
     end
 
     ##
@@ -95,7 +107,7 @@ module Nephophobia
 
       response = @client.action "ModifyProjectMember", params
 
-      response.body['ModifyProjectMemberResponse']
+      Nephophobia::ResponseData.new response.body['ModifyProjectMemberResponse']
     end
   end
 end
