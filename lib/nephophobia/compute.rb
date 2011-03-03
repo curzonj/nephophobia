@@ -1,7 +1,3 @@
-##
-# TODO:
-#   - Filters do not appear to work.
-
 module Nephophobia
   class ComputeData
     attr_reader :description, :dns_name, :image_id, :instance_id, :instance_type
