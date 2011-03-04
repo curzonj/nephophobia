@@ -30,7 +30,7 @@ module Nephophobia
     ##
     # Returns information about instances that +@client+ owns.
     #
-    # +params+: Intended for filtering.
+    # +filter+: An optional Hash, intended for filtering.
     #           See the API Reference for further details.
     #           {
     #             "Filter.1.Name"    => "instance-type",
@@ -50,11 +50,17 @@ module Nephophobia
     # Returns information about the new instance.
     #
     # +image_id+: A String representing the ID of the image.
+    # +params+: An optional Hash.
+    #           See the API Reference for further details.
+    #           {
+    #             "DisplayName"        => "testserver1",
+    #             "DisplayDescription" => "test description"
+    #           }
 
-    def create image_id, options={}
+    def create image_id, params = {}
       filter = {
         "ImageId" => image_id
-      }.merge! options
+      }.merge params
 
       response = @client.action "RunInstances", filter
 

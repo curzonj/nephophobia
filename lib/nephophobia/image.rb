@@ -27,7 +27,7 @@ module Nephophobia
     # owned by other AWS accounts but for which +@client+ has explicit launch
     # permissions.
     #
-    # +params+: Intended for filtering.
+    # +filter+: An optional Hash, intended for filtering.
     #           See the API Reference for further details.
     #           {
     #             "Filter.1.Name"    => "instance-type",

@@ -48,12 +48,18 @@ describe Nephophobia::Compute do
         response.image_id.must_equal @image_id
       end
     end
-    it 'should accept optional web params as a Hash' do
-      options = {'DisplayName' => 'testserver1', 'DisplayDescription' => 'test description'}
-      VCR.use_cassette 'compute_create_options' do
-        response = @compute.create @image_id, options
-        response.xpath("//xmlns:displayName").text.must_equal 'testserver1'
-        response.xpath("//xmlns:displayDescription").text.must_equal 'test description'
+
+    it "create an instance with optional params" do
+      params = {
+        "DisplayName"        => "testserver1",
+        "DisplayDescription" => "test description"
+      }
+
+      VCR.use_cassette 'compute_create_with_optional_params' do
+        response = @compute.create @image_id, params
+        
+        response.name.must_equal "testserver1"
+        response.description.must_equal "test description"
       end
     end
   end

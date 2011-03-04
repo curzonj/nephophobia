@@ -28,8 +28,8 @@ module Nephophobia
     ##
     # Returns information about all projects.
 
-    def all params = {}
-      response = @client.action "DescribeProjects", params
+    def all
+      response = @client.action "DescribeProjects", {}
 
       Nephophobia.coerce(response.body['DescribeProjectsResponse']['projectSet']['item']).collect do |data|
         ProjectData.new data
@@ -44,12 +44,12 @@ module Nephophobia
     # +project_name+: A String representing a nova project name.
 
     def create project_name, user_name
-      params = {
+      filter = {
         "Name"        => project_name,
         "ManagerUser" => user_name
       }
 
-      response = @client.action "RegisterProject", params
+      response = @client.action "RegisterProject", filter
 
       ProjectData.new response.body['RegisterProjectResponse']
     end
