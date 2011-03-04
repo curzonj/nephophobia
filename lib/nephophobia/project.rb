@@ -31,7 +31,8 @@ module Nephophobia
     def all params = {}
       response = @client.action "DescribeProjects", params
 
-      response.body['DescribeProjectsResponse']['projectSet']['item'].collect do |data|
+      item = response.body['DescribeProjectsResponse']['projectSet']['item']
+      ((item.is_a? Hash) ? [item] : item ).collect do |data|
         ProjectData.new data
       end
     end

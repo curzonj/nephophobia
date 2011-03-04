@@ -27,6 +27,14 @@ describe Nephophobia::Image do
         response.size.must_equal 8
       end
     end
+
+    it "has a 'TypeError: can't convert String into Integer' error" do
+      VCR.use_cassette "image_all_with_string_into_int_error" do
+        response = @image.all
+
+        response.size.must_equal 1
+      end
+    end
   end
 
   describe "#find" do

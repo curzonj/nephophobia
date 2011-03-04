@@ -1,0 +1,28 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProjects&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=9X90VDxMZC4r85r5C3CuAAqIFkDNdwp7xW%2BMKybpbVo%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "702"
+      date: 
+      - Tue, 22 Feb 2011 06:43:10 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeProjectsResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>Z70PV9C4OC3EO6HWL86O</requestId><projectSet><item><projectname>production</projectname><projectManagerId>root</projectManagerId><description>production</description></item></projectSet></DescribeProjectsResponse>
+    http_version: "1.1"

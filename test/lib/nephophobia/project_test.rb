@@ -26,6 +26,14 @@ describe Nephophobia::Project do
         response.size.must_equal 4
       end
     end
+
+    it "has a 'TypeError: can't convert String into Integer' error" do
+      VCR.use_cassette "project_all_with_string_into_int_error" do
+        response = @project.all
+
+        response.size.must_equal 1
+      end
+    end
   end
 
   describe "#create" do
