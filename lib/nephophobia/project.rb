@@ -63,7 +63,7 @@ module Nephophobia
     def destroy project_name
       response = @client.action "DeregisterProject", "Name" => project_name
 
-      Nephophobia::ResponseData.new response.body['DeregisterProjectResponse']
+      ResponseData.new response.body['DeregisterProjectResponse']
     end
 
     ##
@@ -107,7 +107,7 @@ module Nephophobia
 
       response = @client.action "ModifyProjectMember", params
 
-      Nephophobia::ResponseData.new response.body['ModifyProjectMemberResponse']
+      ResponseData.new response.body['ModifyProjectMemberResponse']
     end
   end
 end

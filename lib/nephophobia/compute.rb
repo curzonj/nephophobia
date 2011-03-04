@@ -75,7 +75,7 @@ module Nephophobia
 
       response = @client.action "TerminateInstances", filter
 
-      Nephophobia::ResponseData.new response.body['TerminateInstancesResponse']
+      ResponseData.new response.body['TerminateInstancesResponse']
     end
 
     ##
@@ -106,7 +106,7 @@ module Nephophobia
 
       response = @client.action "RebootInstances", filter
 
-      Nephophobia::ResponseData.new response.body['RebootInstancesResponse']
+      ResponseData.new response.body['RebootInstancesResponse']
     end
 
     ##
@@ -122,7 +122,7 @@ module Nephophobia
 
       response = @client.action "StopInstances", filter
 
-      Nephophobia::ResponseData.new response.body
+      ResponseData.new response.body
     end
 
     ##
@@ -138,7 +138,7 @@ module Nephophobia
 
       response = @client.action "StartInstances", filter
 
-      Nephophobia::ResponseData.new response.body
+      ResponseData.new response.body
     end
   end
 end

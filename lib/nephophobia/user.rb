@@ -34,7 +34,7 @@ module Nephophobia
     def create user_name
       response = @client.action "RegisterUser", "Name" => user_name
 
-      Nephophobia::UserData.new response.body['RegisterUserResponse']
+      UserData.new response.body['RegisterUserResponse']
     end
 
     ##
@@ -46,7 +46,7 @@ module Nephophobia
     def destroy user_name
       response = @client.action "DeregisterUser", "Name" => user_name
 
-      Nephophobia::ResponseData.new response.body['DeregisterUserResponse']
+      ResponseData.new response.body['DeregisterUserResponse']
     end
 
     ##
@@ -57,7 +57,7 @@ module Nephophobia
     def find user_name
       response = @client.action "DescribeUser", "Name" => user_name
 
-      Nephophobia::UserData.new response.body['DescribeUserResponse']
+      UserData.new response.body['DescribeUserResponse']
     end
 
     ##
@@ -80,7 +80,7 @@ module Nephophobia
 
       response = @client.action "ModifyUserRole", params
 
-      Nephophobia::ResponseData.new response.body['ModifyUserRoleResponse']
+      ResponseData.new response.body['ModifyUserRoleResponse']
     end
   end
 end
