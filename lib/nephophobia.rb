@@ -17,4 +17,13 @@ module Nephophobia
       @return     = hash["return"] == "true"
     end
   end
+
+  ##
+  # Wraps a Hash with an Array.
+  #
+  # +obj+: The Object to be tested for wrapping.
+
+  def self.to_eh obj
+    (obj.is_a? Hash) ? [obj] : obj
+  end
 end

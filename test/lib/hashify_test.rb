@@ -3,7 +3,7 @@ require "test_helper"
 describe Hashify do
   #TODO: *WAY* more testing
 
-  describe "#convert" do
+  describe "::convert" do
     it "creates a hash from a Nokogiri::XML::Document" do
       xml  = cassette_for "compute_all"
       hash = Hashify.convert xml.root

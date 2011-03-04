@@ -40,8 +40,7 @@ module Nephophobia
     def all filter = {}
       response = @client.action "DescribeInstances", filter
 
-      item = response.body['DescribeInstancesResponse']['reservationSet']['item']
-      ((item.is_a? Hash) ? [item] : item ).collect do |data|
+      Nephophobia.to_eh(response.body['DescribeInstancesResponse']['reservationSet']['item']).collect do |data|
         ComputeData.new data
       end
     end

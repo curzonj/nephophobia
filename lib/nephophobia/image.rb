@@ -38,8 +38,7 @@ module Nephophobia
     def all filter = {}
       response = @client.action "DescribeImages", filter
 
-      item = response.body['DescribeImagesResponse']['imagesSet']['item']
-      ((item.is_a? Hash) ? [item] : item ).collect do |data|
+      Nephophobia.to_eh(response.body['DescribeImagesResponse']['imagesSet']['item']).collect do |data|
         ImageData.new data
       end
     end
