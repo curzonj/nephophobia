@@ -51,10 +51,10 @@ module Nephophobia
     #
     # +image_id+: A String representing the ID of the image.
 
-    def create image_id
+    def create image_id, options={}
       filter = {
         "ImageId" => image_id
-      }
+      }.merge! options
 
       response = @client.action "RunInstances", filter
 
