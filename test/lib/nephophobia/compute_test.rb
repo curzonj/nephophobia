@@ -14,7 +14,11 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_all" do
         response = @compute.all
 
-        response.size.must_equal 2
+        #response.size.must_equal 2
+        #puts response.each do |f|
+        #  "|#{f}|"
+        #end
+        puts response.first.inspect
       end
     end
 

@@ -40,9 +40,10 @@ module Nephophobia
     def all filter = {}
       response = @client.action "DescribeInstances", filter
 
-      response.body['DescribeInstancesResponse']['reservationSet']['item'].collect do |data|
-        ComputeData.new data
-      end
+      response.body['DescribeInstancesResponse']['reservationSet']['item']
+      #response.body['DescribeInstancesResponse']['reservationSet']['item'].collect do |data|
+      #  ComputeData.new data
+      #end
     end
 
     ##
