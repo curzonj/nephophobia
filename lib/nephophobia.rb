@@ -10,7 +10,8 @@ require "hugs"
 
 module Nephophobia
   class ResponseData
-    attr_reader :request_id, :return
+    attr_reader :return, :request_id
+
     def initialize hash
       @request_id = hash["requestId"]
       @return     = hash["return"] == "true"
