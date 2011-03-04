@@ -1,6 +1,11 @@
 class Hashify
+  ##
+  # Return a Hash from a Nokogiri::XML::Document.
+  #
+  # +node+: An Nokogiri::XML::Document.
+
   def self.convert node
-    children = {}
+    children    = {}
     child_nodes = node.children
 
     if child_nodes.first.nil?
