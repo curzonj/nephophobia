@@ -45,7 +45,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_create" do
         response = @compute.create @image_id
 
-        #response.image_id.must_equal @image_id
+        response.image_id.must_equal @image_id
       end
     end
   end
