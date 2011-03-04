@@ -14,11 +14,7 @@ describe Nephophobia::Compute do
       VCR.use_cassette "compute_all" do
         response = @compute.all
 
-        #response.size.must_equal 2
-        #puts response.each do |f|
-        #  "|#{f}|"
-        #end
-        puts response.first.inspect
+        response.size.must_equal 2
       end
     end
 
@@ -30,6 +26,14 @@ describe Nephophobia::Compute do
         }
 
         lambda { @compute.all filter }.must_raise Hugs::Errors::BadRequest
+      end
+    end
+
+    it "has a 'TypeError: can't convert String into Integer' error" do
+      VCR.use_cassette "compute_all_with_string_into_int_error" do
+        response = @compute.all
+
+        response.size.must_equal 1
       end
     end
   end
