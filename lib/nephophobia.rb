@@ -4,6 +4,7 @@ require "nephophobia/client"
 require "nephophobia/compute"
 require "nephophobia/image"
 require "nephophobia/project"
+require "nephophobia/role"
 require "nephophobia/user"
 
 require "hugs"

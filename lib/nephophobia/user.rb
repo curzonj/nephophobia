@@ -10,14 +10,12 @@ module Nephophobia
   end
 
   class User
-    DEFAULT_ROLE = "sysadmin"
-
     def initialize client
       @client = client
     end
 
     ##
-    # Adds the given 'user_name' to the specified "project_name's" '::DEFAULT_ROLE'.
+    # Adds the given 'user_name' to the specified "project_name's" 'Role::DEFAULT'.
     # Returns a response to the state change.
     #
     # +user_name+: A String representing a nova user_name.
@@ -63,7 +61,7 @@ module Nephophobia
     end
 
     ##
-    # Removes the given 'user_name' from the specified "project_name's" '::DEFAULT_ROLE'.
+    # Removes the given 'user_name' from the specified "project_name's" 'Role::DEFAULT'.
     #
     # +user_name+: A String representing a nova user_name.
     # +project_name+: A String representing a nova project_name name.
@@ -76,7 +74,7 @@ module Nephophobia
     def modify_role user_name, operation, project_name
       params = {
         "User"      => user_name,
-        "Role"      => DEFAULT_ROLE,
+        "Role"      => Role::DEFAULT,
         "Operation" => operation
       }
 
