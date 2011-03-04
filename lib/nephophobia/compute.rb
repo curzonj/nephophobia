@@ -40,7 +40,7 @@ module Nephophobia
     def all filter = {}
       response = @client.action "DescribeInstances", filter
 
-      Nephophobia.to_eh(response.body['DescribeInstancesResponse']['reservationSet']['item']).collect do |data|
+      Nephophobia.coerce(response.body['DescribeInstancesResponse']['reservationSet']['item']).collect do |data|
         ComputeData.new data
       end
     end

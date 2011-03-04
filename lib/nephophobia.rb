@@ -23,7 +23,7 @@ module Nephophobia
   #
   # +obj+: The Object to be tested for wrapping.
 
-  def self.to_eh obj
+  def self.coerce obj
     (obj.is_a? Hash) ? [obj] : obj
   end
 end

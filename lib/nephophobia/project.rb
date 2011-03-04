@@ -31,7 +31,7 @@ module Nephophobia
     def all params = {}
       response = @client.action "DescribeProjects", params
 
-      Nephophobia.to_eh(response.body['DescribeProjectsResponse']['projectSet']['item']).collect do |data|
+      Nephophobia.coerce(response.body['DescribeProjectsResponse']['projectSet']['item']).collect do |data|
         ProjectData.new data
       end
     end
