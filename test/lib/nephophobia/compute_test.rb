@@ -55,7 +55,7 @@ describe Nephophobia::Compute do
         "DisplayDescription" => "test description"
       }
 
-      VCR.use_cassette 'compute_create_with_optional_params' do
+      VCR.use_cassette "compute_create_with_optional_params" do
         response = @compute.create @image_id, params
         
         response.name.must_equal "testserver1"
