@@ -10,7 +10,6 @@ module Nephophobia
 
     def initialize options
       @port = options[:port] || 8773
-      @path = options[:path] || "/services/Cloud"
 
       @connection = Hugs::Client.new(
         :host     => options[:host],
@@ -24,7 +23,6 @@ module Nephophobia
       @aws = AWS.new(
         :host       => options[:host],
         :port       => @port,
-        :path       => @path,
         :access_key => options[:access_key],
         :secret_key => options[:secret_key],
         :project    => options[:project]
@@ -40,6 +38,7 @@ module Nephophobia
     # +params+: A Hash containing the
 
     def raw method, params
+      @aws.path     = @path
       response      = @connection.send method, @path, :query => @aws.signed_params(method, params)
       response.body = Hashify.convert response.body.root
 
@@ -60,6 +59,7 @@ module Nephophobia
     # Provide a simple interface to the EC2 Compute resources.
 
     def compute
+      @path      = "/services/Cloud"
       @compute ||= Nephophobia::Compute.new self
     end
 
@@ -67,7 +67,24 @@ module Nephophobia
     # Provide a simple interface to the EC2 Image resources.
 
     def image
+      @path    = "/services/Cloud"
       @image ||= Nephophobia::Image.new self
+    end
+
+    ##
+    # Provide a simple interface to the OpenStack Project resources.
+
+    def project
+      @path      = "/services/Admin/"
+      @project ||= Nephophobia::Project.new self
+    end
+
+    ##
+    # Provide a simple interface to the OpenStack User resources.
+
+    def user
+      @path   = "/services/Admin/"
+      @user ||= Nephophobia::User.new self
     end
   end
 end

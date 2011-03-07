@@ -1,15 +1,7 @@
 require "test_helper"
 
 describe Nephophobia::Image do
-  before do
-    @image = Nephophobia::Image.new USER_CLIENT
-  end
-
-  describe "#image" do
-    it "has image decorator" do
-      USER_CLIENT.must_respond_to :image
-    end
-  end
+  before { @image = USER_CLIENT.image }
 
   describe "#all" do
     it "returns all images" do

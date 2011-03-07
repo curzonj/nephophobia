@@ -2,8 +2,8 @@ require "test_helper"
 
 describe Nephophobia::Project do
   before do
-    @project      = Nephophobia::Project.new ADMIN_CLIENT
-    @user         = Nephophobia::User.new ADMIN_CLIENT
+    @project      = ADMIN_CLIENT.project
+    @user         = ADMIN_CLIENT.user
     @user_name    = "foobar_user"
     @project_name = "foobar_project"
   end

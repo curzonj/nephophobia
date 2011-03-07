@@ -1,17 +1,16 @@
 ##
 # Taken from geemus/fog
-#
-# TODO: document
 
 require "cgi"
 require "openssl"
 require "base64"
 
 class AWS
+  attr_writer :path
+
   def initialize options
     @host       = options[:host]
     @port       = options[:port]
-    @path       = options[:path]
     @access_key = options[:access_key]
     @secret_key = options[:secret_key]
     @project    = options[:project]

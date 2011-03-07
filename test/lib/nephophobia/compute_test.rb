@@ -1,13 +1,7 @@
 require "test_helper"
 
 describe Nephophobia::Compute do
-  before { @compute = Nephophobia::Compute.new USER_CLIENT }
-
-  describe "#compute" do
-    it "has compute decorator" do
-      USER_CLIENT.must_respond_to :compute
-    end
-  end
+  before { @compute = USER_CLIENT.compute }
 
   describe "#all" do
     it "returns all instances" do
@@ -57,7 +51,7 @@ describe Nephophobia::Compute do
 
       VCR.use_cassette "compute_create_with_optional_params" do
         response = @compute.create @image_id, params
-        
+
         response.name.must_equal "testserver1"
         response.description.must_equal "test description"
       end
