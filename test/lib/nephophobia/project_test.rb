@@ -37,7 +37,7 @@ describe Nephophobia::Project do
   end
 
   describe "#create" do
-    it "creates the given 'project_name'" do
+    it "creates the given 'user_name' in the specified 'project_name'" do
       VCR.use_cassette "project_create" do
         response = @project.create @project_name, @user_name
 
@@ -77,6 +77,16 @@ describe Nephophobia::Project do
       project.name.must_equal "production"
       project.manager_id.must_equal "root"
       project.description.must_equal "production"
+    end
+  end
+
+  describe "#find with invalid project_name" do
+    it "rescues Hugs::Errors::BadRequest" do
+      VCR.use_cassette "project_find_with_invalid_username" do
+        @response = @project.find "invalid_project_name"
+      end
+
+      @response.must_be_nil
     end
   end
 

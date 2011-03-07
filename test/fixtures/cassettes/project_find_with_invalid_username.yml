@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProject&Name=invalid_project_name&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=8Sk4Nu3S6eiEiftNj3jhPusdsT7%2FRpkFMGLBKaCaurw%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 400
+      message: Bad Request
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "197"
+      date: 
+      - Mon, 07 Mar 2011 23:40:33 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <?xml version="1.0"?>
+      <Response><Errors><Error><Code>NotFound</Code><Message>No project with id invalid_project_name</Message></Error></Errors><RequestID>ZVKFOJ0MKX8MJ5JJO0II</RequestID></Response>
+    http_version: "1.1"
