@@ -21,8 +21,8 @@
       content-length: 
       - "184"
       date: 
-      - Tue, 01 Mar 2011 00:09:31 GMT
+      - Mon, 07 Mar 2011 23:09:07 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><ModifyUserRoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>D-7DGZ3BHUJ8OEXEYWMI</requestId><return>true</return></ModifyUserRoleResponse>
+    body: <?xml version="1.0" ?><ModifyUserRoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>J3NI8VJ2XF9WIYC7ZLSQ</requestId><return>true</return></ModifyUserRoleResponse>
     http_version: "1.1"

@@ -7,16 +7,6 @@ describe Nephophobia::User do
     @project_name = "foobar_project"
   end
 
-  describe "#add_role" do
-    it "adds the default role to the given 'user_name'" do
-      VCR.use_cassette "user_add_role" do
-        response = @user.add_role @user_name, @project_name
-
-        response.return.must_equal true
-      end
-    end
-  end
-
   describe "#create" do
     it "creates the given 'user_name'" do
       VCR.use_cassette "user_create" do
@@ -66,16 +56,6 @@ describe Nephophobia::User do
       end
 
       @response.must_be_nil
-    end
-  end
-
-  describe "#remove_role" do
-    it "removes the default role to the given 'user_name'" do
-      VCR.use_cassette "user_remove_role" do
-        response = @user.remove_role @user_name, @project_name
-
-        response.return.must_equal true
-      end
     end
   end
 end
