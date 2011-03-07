@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUser&Name=invalid_username&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=O4Ljcvuo%2BKnDxxWssxqGF36cNu%2B4WFRrI%2FPVD4BmAE4%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 400
+      message: Bad Request
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "189"
+      date: 
+      - Mon, 07 Mar 2011 04:52:21 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <?xml version="1.0"?>
+      <Response><Errors><Error><Code>NotFound</Code><Message>No user for id invalid_username</Message></Error></Errors><RequestID>0R2C84PAWETJ033HJLX2</RequestID></Response>
+    http_version: "1.1"

@@ -58,6 +58,7 @@ module Nephophobia
       response = @client.action "DescribeUser", "Name" => user_name
 
       UserData.new response.body['DescribeUserResponse']
+    rescue Hugs::Errors::BadRequest
     end
 
     ##

@@ -59,6 +59,16 @@ describe Nephophobia::User do
     end
   end
 
+  describe "#find with invalid username" do
+    it "rescues Hugs::Errors::BadRequest" do
+      VCR.use_cassette "user_find_with_invalid_username" do
+        @response = @user.find "invalid_username"
+      end
+
+      @response.must_be_nil
+    end
+  end
+
   describe "#remove_role" do
     it "removes the default role to the given 'user_name'" do
       VCR.use_cassette "user_remove_role" do
