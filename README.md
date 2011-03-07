@@ -1,6 +1,6 @@
 # Nephophobia
 
-Lean Ruby bindings to OpenStack's AWS EC2 endpoint.  Hands back a Hash (for now).
+Lean Ruby bindings to [EC2](http://aws.amazon.com/ec2/), and OpenStack's Admin endpoints.  Hands back an object for access.
 
 ## Why
 
