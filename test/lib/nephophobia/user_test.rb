@@ -2,9 +2,8 @@ require "test_helper"
 
 describe Nephophobia::User do
   before do
-    @user         = ADMIN_CLIENT.user
-    @user_name    = "foobar_user"
-    @project_name = "foobar_project"
+    @user      = ADMIN_CLIENT.user
+    @user_name = "foobar_user"
   end
 
   describe "#create" do
@@ -49,10 +48,10 @@ describe Nephophobia::User do
     end
   end
 
-  describe "#find with invalid username" do
+  describe "#find with invalid user_name" do
     it "rescues Hugs::Errors::BadRequest" do
-      VCR.use_cassette "user_find_with_invalid_username" do
-        @response = @user.find "invalid_username"
+      VCR.use_cassette "user_find_with_invalid_user_name" do
+        @response = @user.find "invalid_user_name"
       end
 
       @response.must_be_nil

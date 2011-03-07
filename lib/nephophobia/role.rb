@@ -1,4 +1,12 @@
 module Nephophobia
+  class RoleData
+    attr_reader :name
+
+    def initialize hash
+      @name = hash['role']
+    end
+  end
+
   class Role
     DEFAULT = "sysadmin"
 
@@ -25,6 +33,22 @@ module Nephophobia
 
     def destroy user_name, project_name
       modify_role user_name, "remove", project_name
+    end
+
+    ##
+    # Returns roles for the given 'user_name' and 'project_name'.
+
+    def all user_name, project_name
+      params = {
+        "User"    => user_name,
+        "Project" => project_name
+      }
+
+      response = @client.action "DescribeUserRoles", params
+
+      Nephophobia.coerce(response.body['DescribeUserRolesResponse']['roles']['item']).collect do |data|
+        RoleData.new data
+      end
     end
 
   private

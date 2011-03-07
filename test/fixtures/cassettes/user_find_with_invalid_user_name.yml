@@ -28,3 +28,32 @@
       <?xml version="1.0"?>
       <Response><Errors><Error><Code>NotFound</Code><Message>No user for id invalid_username</Message></Error></Errors><RequestID>0R2C84PAWETJ033HJLX2</RequestID></Response>
     http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUser&Name=invalid_user_name&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=5K4TfIF6QONc2CZjSsZHsgixj61JYDO4c1B1TndWe9A%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 400
+      message: Bad Request
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "190"
+      date: 
+      - Mon, 07 Mar 2011 23:40:04 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <?xml version="1.0"?>
+      <Response><Errors><Error><Code>NotFound</Code><Message>No user for id invalid_user_name</Message></Error></Errors><RequestID>N3AL9FC3HF0YCKA5AZLG</RequestID></Response>
+    http_version: "1.1"

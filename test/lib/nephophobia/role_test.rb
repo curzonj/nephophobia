@@ -8,7 +8,7 @@ describe Nephophobia::Role do
   end
 
   describe "#create" do
-    it "adds the default role to the given 'user_name'" do
+    it "adds the default role to the given 'user_name' and 'project_name'" do
       VCR.use_cassette "role_create" do
         response = @role.create @user_name, @project_name
 
@@ -18,11 +18,29 @@ describe Nephophobia::Role do
   end
 
   describe "#destroy" do
-    it "removes the default role to the given 'user_name'" do
+    it "removes the default role to the given 'user_name' and 'project_name'" do
       VCR.use_cassette "role_destroy" do
         response = @role.destroy @user_name, @project_name
 
         response.return.must_equal true
+      end
+    end
+  end
+
+  describe "#all" do
+    it "returns all roles for the given 'user_name' and 'project_name'" do
+      VCR.use_cassette "role_all" do
+        response = @role.all @user_name, @project_name
+
+        response.size.must_equal 2
+      end
+    end
+
+    it "has a 'TypeError: can't convert String into Integer' error" do
+      VCR.use_cassette "role_all_with_string_into_int_error" do
+        response = @role.all @user_name, @project_name
+
+        response.size.must_equal 1
       end
     end
   end
