@@ -8,6 +8,7 @@ module Nephophobia
   end
 
   class Role
+    ### TODO: Add a default attr.
     DEFAULT = "sysadmin"
 
     def initialize client
@@ -55,7 +56,7 @@ module Nephophobia
     def modify_role user_name, operation, project_name
       params = {
         "User"      => user_name,
-        "Role"      => Role::DEFAULT,
+        "Role"      => DEFAULT,
         "Operation" => operation
       }
 
