@@ -46,7 +46,7 @@ module Nephophobia
     end
 
     ##
-    # Create the compute instance identified by +instance_id+.
+    # Create a compute instance with the given 'image_id'.
     # Returns information about the new instance.
     #
     # +image_id+: A String representing the ID of the image.
@@ -68,8 +68,7 @@ module Nephophobia
     end
 
     ##
-    # Shuts down the given 'instance_id'. This operation is idempotent; if
-    # you terminate an instance more than once, each call will succeed.
+    # Removes the given 'instance_id'.
     # Returns instances response to a state change.
     #
     # +instance_id+: A String representing the ID of the instance.
@@ -85,7 +84,7 @@ module Nephophobia
     end
 
     ##
-    # Returns information about the given 'instance_id' +@client+ owns.
+    # Returns information about the given 'instance_id'.
     #
     # +instance_id+: A String representing the ID of the instance.
 
@@ -100,7 +99,7 @@ module Nephophobia
     end
 
     ##
-    # Reboot the compute instance identified by +instance_id+.
+    # Reboot the given 'instance_id'.
     # Returns instances response to a state change.
     #
     # +instance_id+: A String representing the ID of the instance.
@@ -116,7 +115,7 @@ module Nephophobia
     end
 
     ##
-    # Starts the compute instance identified by +instance_id+.
+    # Starts the given 'instance_id'.
     # Returns instances current and previous state.
     #
     # +instance_id+: A String representing the ID of the instance.
@@ -132,7 +131,7 @@ module Nephophobia
     end
 
     ##
-    # Stops the compute instance identified by +instance_id+.
+    # Stops the given 'instance_id'
     # Returns instances current and previous state.
     #
     # +instance_id+: A String representing the ID of the instance.

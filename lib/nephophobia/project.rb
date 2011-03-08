@@ -38,7 +38,7 @@ module Nephophobia
     end
 
     ##
-    # Creates the given 'project_name'.
+    # Creates the given 'project_name' and adds the specified 'user_name' as the manager.
     # Returns a response to the state change.
     #
     # +user_name+: A String representing a nova user_name.
@@ -103,7 +103,7 @@ module Nephophobia
     end
 
     ##
-    # Removes the given 'user_name' from the specified "project_name".
+    # Removes the given 'user_name' from the specified 'project_name'.
     # Returns a response to the state change.
     #
     # +user_name+: A String representing a nova user_name.
