@@ -1,11 +1,12 @@
 module Nephophobia
   class ProjectData
-    attr_reader :name, :manager_id, :description
+    attr_reader :name, :manager_id, :description, :member
 
     def initialize hash
       @name        = hash['projectname']
       @manager_id  = hash['projectManagerId']
       @description = hash['description']
+      @member      = hash['member']
     end
   end
 
@@ -80,11 +81,25 @@ module Nephophobia
 
     ##
     # Returns information about all members of the given 'project_name'.
+    #
+    # +project_name+: A String representing a nova project name.
 
     def members project_name
       response = @client.action "DescribeProjectMembers", "Name" => project_name
 
-      response.body['DescribeProjectMembersResponse']['members']['item']
+      response.body['DescribeProjectMembersResponse']['members']['item'].collect do |data|
+        ProjectData.new data
+      end
+    end
+
+    ##
+    # Return a Boolean if the given 'user_name' is a member of the specified 'project_name'.
+    #
+    # +user_name+: A String representing a nova user_name.
+    # +project_name+: A String representing a nova project_name name.
+
+    def member? user_name, project_name
+      members(project_name).any? { |f| f.member == user_name }
     end
 
     ##

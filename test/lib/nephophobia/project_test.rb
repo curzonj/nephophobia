@@ -97,7 +97,22 @@ describe Nephophobia::Project do
       VCR.use_cassette "project_members" do
         response = @project.members @project_name
 
-        response.size.must_equal 11
+        response.size.must_equal 10
+      end
+    end
+  end
+
+  describe "#member?" do
+    before do
+      @user_name    = "jdewey"
+      @project_name = "production"
+    end
+
+    it "returns true if the given 'user_name' is a member of the specified 'project_name'" do
+      VCR.use_cassette "project_members" do
+        response = @project.member? @user_name, @project_name
+
+        response.must_equal true
       end
     end
   end
