@@ -43,5 +43,13 @@ describe Nephophobia::Role do
         response.size.must_equal 1
       end
     end
+
+    it "has a 'NoMethodError: undefined method `[]' for nil:NilClass' error" do
+      VCR.use_cassette "role_all_with_no_roles" do
+        response = @role.all @user_name, @project_name
+
+        response.must_be_nil
+      end
+    end
   end
 end
