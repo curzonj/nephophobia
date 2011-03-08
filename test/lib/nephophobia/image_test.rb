@@ -61,7 +61,7 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_all" do
         response = @image.public
 
-        response.size.must_equal 2
+        response.size.must_equal 1
       end
     end
   end

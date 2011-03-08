@@ -72,7 +72,9 @@ module Nephophobia
     # Images which do not have a valid kernel_id are not runnable.
 
     def public? image
-      image.is_public == "true" && image.kernel_id != "true"
+      image.is_public == "true" &&
+      image.kernel_id != "true" &&
+      image.image_type == "machine"
     end
   end
 end
