@@ -8,8 +8,16 @@ describe Nephophobia::Role do
   end
 
   describe "#create" do
-    it "adds the default role to the given 'user_name' and 'project_name'" do
+    it "adds the default global role to the given 'user_name'" do
       VCR.use_cassette "role_create" do
+        response = @role.create @user_name
+
+        response.return.must_equal true
+      end
+    end
+
+    it "adds the default role to the given 'user_name' and 'project_name'" do
+      VCR.use_cassette "role_create_with_project_name" do
         response = @role.create @user_name, @project_name
 
         response.return.must_equal true
@@ -18,9 +26,17 @@ describe Nephophobia::Role do
   end
 
   describe "#destroy" do
-    it "removes the default role to the given 'user_name' and 'project_name'" do
+    it "removes the default global role to the given 'user_name'" do
       VCR.use_cassette "role_destroy" do
-        response = @role.destroy @user_name, @project_name
+        response = @role.destroy @user_name
+
+        response.return.must_equal true
+      end
+    end
+
+    it "removes the default role to the given 'user_name' and 'project_name'" do
+      VCR.use_cassette "role_destroy_with_project_name" do
+        response = @role.destroy @user_name
 
         response.return.must_equal true
       end

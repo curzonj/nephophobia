@@ -16,23 +16,23 @@ module Nephophobia
     end
 
     ##
-    # Adds the given 'user_name' to the specified "project_name's" 'Role::DEFAULT'.
+    # Adds the given 'user_name' to the global 'Role::DEFAULT'.
     # Returns a response to the state change.
     #
     # +user_name+: A String representing a nova user_name.
-    # +project_name+: A String representing a nova project_name name.
+    # +project_name+: An Optional String representing a nova project_name name.
 
-    def create user_name, project_name
+    def create user_name, project_name = nil
       modify_role user_name, "add", project_name
     end
 
     ##
-    # Removes the given 'user_name' from the specified "project_name's" 'Role::DEFAULT'.
+    # Removes the given 'user_name' from the global 'Role::DEFAULT'.
     #
     # +user_name+: A String representing a nova user_name.
-    # +project_name+: A String representing a nova project_name name.
+    # +project_name+: An Optional String representing a nova project_name name.
 
-    def destroy user_name, project_name
+    def destroy user_name, project_name = nil
       modify_role user_name, "remove", project_name
     end
 
@@ -54,12 +54,13 @@ module Nephophobia
     end
 
   private
-    def modify_role user_name, operation, project_name
+    def modify_role user_name, operation, project_name = nil
       params = {
         "User"      => user_name,
         "Role"      => DEFAULT,
         "Operation" => operation
       }
+      params.merge!("Project" => project_name) if project_name
 
       response = @client.action "ModifyUserRole", params
 
