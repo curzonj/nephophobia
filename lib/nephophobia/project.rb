@@ -41,8 +41,8 @@ module Nephophobia
     # Creates the given 'project_name' and adds the specified 'user_name' as the manager.
     # Returns a response to the state change.
     #
-    # +user_name+: A String representing a nova user_name.
     # +project_name+: A String representing a nova project name.
+    # +user_name+: A String representing a nova user_name.
 
     def create project_name, user_name
       filter = {

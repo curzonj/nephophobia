@@ -5,6 +5,7 @@ describe Nephophobia::Role do
     @role         = ADMIN_CLIENT.role
     @user_name    = "foobar_user"
     @project_name = "foobar_project"
+    @role_name    = "netadmin"
   end
 
   describe "#create" do
@@ -23,6 +24,15 @@ describe Nephophobia::Role do
         response.return.must_equal true
       end
     end
+
+    it "adds the specified 'role_name' to the given 'user_name' and 'project_name'" do
+      VCR.use_cassette "role_create_with_project_name_and_role_name" do
+        response = @role.create @user_name, @project_name, @role_name
+
+        response.return.must_equal true
+      end
+    end
+
   end
 
   describe "#destroy" do
@@ -36,7 +46,15 @@ describe Nephophobia::Role do
 
     it "removes the default role to the given 'user_name' and 'project_name'" do
       VCR.use_cassette "role_destroy_with_project_name" do
-        response = @role.destroy @user_name
+        response = @role.destroy @user_name, @project_name
+
+        response.return.must_equal true
+      end
+    end
+
+    it "removes the specified 'role_name' to the given 'user_name' and 'project_name'" do
+      VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
+        response = @role.destroy @user_name, @project_name, @role_name
 
         response.return.must_equal true
       end
