@@ -8,7 +8,6 @@ module Nephophobia
   end
 
   class Role
-    ### TODO: Add a default attr.
     DEFAULT = "sysadmin"
 
     def initialize client
