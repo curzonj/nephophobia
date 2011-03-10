@@ -1,12 +1,20 @@
 module Nephophobia
   class ProjectData
-    attr_reader :name, :manager_id, :description, :member
+    attr_reader :name, :manager_id, :description
 
     def initialize hash
       @name        = hash['projectname']
       @manager_id  = hash['projectManagerId']
       @description = hash['description']
       @member      = hash['member']
+    end
+  end
+
+  class MemberData
+    attr_reader :member
+
+    def initialize hash
+      @member = hash['member']
     end
   end
 
@@ -88,7 +96,7 @@ module Nephophobia
       response = @client.action "DescribeProjectMembers", "Name" => project_name
 
       response.body['DescribeProjectMembersResponse']['members']['item'].collect do |data|
-        ProjectData.new data
+        MemberData.new data
       end
     end
 
