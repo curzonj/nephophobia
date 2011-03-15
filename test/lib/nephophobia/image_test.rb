@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Nephophobia::Image do
-  before { @image = USER_CLIENT.image }
+  before { @image = ::Client.with(:user).image }
 
   describe "#all" do
     it "returns all images" do

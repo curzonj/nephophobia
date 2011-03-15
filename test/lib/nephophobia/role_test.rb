@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Nephophobia::Role do
   before do
-    @role         = ADMIN_CLIENT.role
+    @role         = ::Client.with(:admin).role
     @user_name    = "foobar_user"
     @project_name = "foobar_project"
     @role_name    = "netadmin"

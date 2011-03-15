@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Nephophobia::User do
   before do
-    @user      = ADMIN_CLIENT.user
+    @user      = ::Client.with(:admin).user
     @user_name = "foobar_user"
   end
 
