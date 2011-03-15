@@ -35,15 +35,21 @@ module Nephophobia
     end
 
     ##
-    # Returns information about all projects.
+    # Returns information about all projects, or all projects the given
+    # 'user_name' is in.
+    #
+    # +user_name+: An optional String representing a nova user_name.
 
-    def all
+    def all user_name = nil
       response = @client.action "DescribeProjects", {}
 
-      item = response.body['DescribeProjectsResponse']['projectSet']['item']
-      Nephophobia.coerce(item).collect do |data|
+      item     = response.body['DescribeProjectsResponse']['projectSet']['item']
+      projects = Nephophobia.coerce(item).collect do |data|
         ProjectData.new data
       end
+
+      return projects unless user_name
+      projects.map { |project| project if @client.project.member? user_name, project.name }.compact
     end
 
     ##

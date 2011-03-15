@@ -38,6 +38,16 @@ describe Nephophobia::Project do
     end
   end
 
+  describe "#all with a user_name" do
+    it "returns all projects for the given 'user_name'" do
+      VCR.use_cassette "project_all_with_with_user_name" do
+        response = @project.all @user_name
+
+        response.size.must_equal 1
+      end
+    end
+  end
+
   describe "#create" do
     it "creates the given 'user_name' in the specified 'project_name'" do
       VCR.use_cassette "project_create" do
