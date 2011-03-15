@@ -100,6 +100,7 @@ module Nephophobia
       Nephophobia.coerce(item).collect do |data|
         MemberData.new data
       end
+    rescue Hugs::Errors::BadRequest
     end
 
     ##

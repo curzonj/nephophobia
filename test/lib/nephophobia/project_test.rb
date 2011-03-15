@@ -81,7 +81,7 @@ describe Nephophobia::Project do
 
   describe "#find with invalid project_name" do
     it "rescues Hugs::Errors::BadRequest" do
-      VCR.use_cassette "project_find_with_invalid_username" do
+      VCR.use_cassette "project_find_with_invalid_project_name" do
         @response = @project.find "invalid_project_name"
       end
 
@@ -89,7 +89,6 @@ describe Nephophobia::Project do
     end
   end
 
-  # TypeError: can't convert String into Integer
   describe "#members" do
     it "returns all project members for the given 'project_name'" do
       VCR.use_cassette "project_members" do
@@ -105,6 +104,16 @@ describe Nephophobia::Project do
 
         response.size.must_equal 1
       end
+    end
+  end
+
+  describe "#members with invalid 'project_name'" do
+    it "rescues Hugs::Errors::BadRequest" do
+      VCR.use_cassette "project_members_with_invalid_project_name" do
+        @response = @project.members "invalid_project_name"
+      end
+
+      @response.must_be_nil
     end
   end
 
