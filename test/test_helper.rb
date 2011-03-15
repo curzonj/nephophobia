@@ -18,7 +18,7 @@ end
 VCR.config do |c|
   c.stub_with :fakeweb
   c.cassette_library_dir     = "test/cassettes"
-  c.default_cassette_options = { :record => :none }
+  c.default_cassette_options = { :record => :new_episodes }
 end
 
 class Client
