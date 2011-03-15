@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c%3Aproduction&Action=RunInstances&ImageId=ami-usc3oydl&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=Pj%2Bk1BhY5X1256%2Bu8lMPvPdoxkDsm0bJPXqF2PGUzwY%3D
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9dd4add8-ca15-42fd-8874-9a3d294ba459%3Avcr_project&Action=RunInstances&ImageId=ami-usc3oydl&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=4VK3USWpbkefKe%2FlaZET%2BqouqDKTXlit%2BzBolkJyI9o%3D
     body: 
     headers: 
       accept: 
@@ -19,10 +19,10 @@
       content-type: 
       - text/xml
       content-length: 
-      - "807"
+      - "776"
       date: 
-      - Sun, 27 Feb 2011 05:55:56 GMT
+      - Tue, 15 Mar 2011 07:05:27 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>ECX3QKATTRPYC9NNJG1M</requestId><ownerId>production</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-6l687lh5</reservationId><instancesSet><item><displayDescription/><displayName>Server 1145</displayName><keyName>None (production, None)</keyName><instanceId>i-00000479</instanceId><instanceState><code/><name>scheduling</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName/><dnsName/><launchTime>2011-02-27 05:55:56</launchTime><placement><availabilityZone>unknown zone</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></RunInstancesResponse>
+    body: <?xml version="1.0" ?><RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>Z5BQ34TEO12SU5KVZVGY</requestId><ownerId>vcr_project</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-x90t5kkp</reservationId><instancesSet><item><displayDescription/><displayName>Server 1189</displayName><keyName/><instanceId>i-000004a5</instanceId><instanceState><code/><name>scheduling</name></instanceState><publicDnsName/><imageId>ami-usc3oydl</imageId><productCodesSet/><privateDnsName/><dnsName/><launchTime>2011-03-15 07:05:27</launchTime><placement><availabilityZone>unknown zone</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></RunInstancesResponse>
     http_version: "1.1"

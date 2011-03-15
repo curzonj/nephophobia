@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c%3Aproduction&Action=RebootInstances&InstanceId.1=i-00000471&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=Dpwffm9TiKJ0TmJhOPAxVZKpc9PkGgu2Sp6GdpJTPms%3D
+    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9dd4add8-ca15-42fd-8874-9a3d294ba459%3Avcr_project&Action=RebootInstances&InstanceId.1=i-000004a5&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=4BsmNAV24RY8dL%2FJRyXq37Y25MMQk4GbuH718ZVSRyY%3D
     body: 
     headers: 
       accept: 
@@ -21,8 +21,8 @@
       content-length: 
       - "186"
       date: 
-      - Sun, 27 Feb 2011 05:55:56 GMT
+      - Tue, 15 Mar 2011 07:14:26 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><RebootInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>HCUIDG8ZQ63F-GHX4OFO</requestId><return>true</return></RebootInstancesResponse>
+    body: <?xml version="1.0" ?><RebootInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>TAXCQTEEWL235YLPR0RW</requestId><return>true</return></RebootInstancesResponse>
     http_version: "1.1"
