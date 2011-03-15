@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=ModifyUserRole&Operation=add&Project=foobar_project&Role=sysadmin&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=foobar_user&Version=2010-11-15&Signature=C2L3%2B8V6ntOk03jT%2FgLrKeOiG6WedYyZkbPrGaHc%2Frc%3D
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=ModifyUserRole&Operation=add&Project=vcr_project&Role=netadmin&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr&Version=2010-11-15&Signature=%2FS%2BG3qLo52kfwFMbcH5fKVAjId98%2BAlxUPfP54JGVFk%3D
     body: 
     headers: 
       accept: 
@@ -21,8 +21,8 @@
       content-length: 
       - "184"
       date: 
-      - Thu, 10 Mar 2011 07:08:09 GMT
+      - Tue, 15 Mar 2011 05:11:49 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><ModifyUserRoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>00EUFWNHSY9QJ8NEWUP7</requestId><return>true</return></ModifyUserRoleResponse>
+    body: <?xml version="1.0" ?><ModifyUserRoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>BWORTYN9M6IKYPKBJLRD</requestId><return>true</return></ModifyUserRoleResponse>
     http_version: "1.1"

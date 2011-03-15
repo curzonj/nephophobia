@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUserRoles&Project=foobar_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=foobar_user&Version=2010-11-15&Signature=b27VsAcRr9dEbjffLUzb4zeztwPFRSVWM53vxFcuyzY%3D
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUserRoles&Project=vcr_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr&Version=2010-11-15&Signature=%2BcyU1%2FtdIwdsSv93sPpEuIiqp98z9JrrgBUXFRG1%2BxU%3D
     body: 
     headers: 
       accept: 

@@ -24,7 +24,7 @@ module Nephophobia
     # +project_name+: An Optional String representing a nova role name.
 
     def create user_name, project_name = nil, role_name = nil
-      modify_role user_name, "add", project_name
+      modify_role user_name, "add", project_name, role_name
     end
 
     ##
