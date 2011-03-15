@@ -5,8 +5,8 @@ module Nephophobia
     # +host+: A String with the host to connect.
     # +access_key+: A String containing the AWS Access Key.
     # +secret_key+: A String containing the AWS Secret Key.
-    # +project+: A String containing the "Project Name" the
-    #            Acccess Key is intended for.
+    # +project+: An optional String containing the "Project Name"
+    #            the Acccess Key is intended for.
 
     def initialize options
       @port = options[:port] || 8773
