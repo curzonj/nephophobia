@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUser&Name=jdewey&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=SEgVk29ZPc%2BMBtuV4dIINMYpfLaPq13EUlxxuoOx%2BwA%3D
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUser&Name=vcr&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=m%2FqxB2OLz8sipjXCa93WzLYCd%2BKTYv%2B9EPlnUNPQpA4%3D
     body: 
     headers: 
       accept: 
@@ -19,10 +19,10 @@
       content-type: 
       - text/xml
       content-length: 
-      - "311"
+      - "308"
       date: 
-      - Tue, 22 Feb 2011 06:22:51 GMT
+      - Tue, 15 Mar 2011 06:14:14 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>HSXBUX3F32M3AZGBWKP8</requestId><username>jdewey</username><secretkey>3ae9d9f0-2723-480a-99eb-776f05950506</secretkey><accesskey>9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c</accesskey><file/></DescribeUserResponse>
+    body: <?xml version="1.0" ?><DescribeUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>QPR24WJDQF3FGODJQC9A</requestId><username>vcr</username><secretkey>a0d9ff15-2b76-416c-b6fb-03f63c4b8413</secretkey><accesskey>285db1a2-4c3b-4f35-a36f-1e5495fa94f2</accesskey><file/></DescribeUserResponse>
     http_version: "1.1"

@@ -3,7 +3,7 @@ require "test_helper"
 describe Nephophobia::User do
   before do
     @user      = ::Client.with(:admin).user
-    @user_name = "foobar_user"
+    @user_name = "vcr"
   end
 
   describe "#create" do
@@ -17,7 +17,7 @@ describe Nephophobia::User do
   end
 
   describe "#credentials" do
-    before { @project_name = "production" }
+    before { @project_name = "vcr_project" }
 
     it "returns the credentials for a given 'user_name' for the specified 'project_name'." do
       VCR.use_cassette "user_credentials" do
@@ -40,8 +40,6 @@ describe Nephophobia::User do
 
   describe "#find" do
     before do
-      @user_name = "jdewey"
-
       VCR.use_cassette "user_find" do
         @response = @user.find @user_name
       end
@@ -54,9 +52,9 @@ describe Nephophobia::User do
     it "contains the user data" do
       user = @response
 
-      user.username.must_equal "jdewey"
-      user.secretkey.must_equal "3ae9d9f0-2723-480a-99eb-776f05950506"
-      user.accesskey.must_equal "9c01b833-3047-4f2e-bb2a-5c8dc7c8ae9c"
+      user.username.must_equal "vcr"
+      user.secretkey.must_equal "a0d9ff15-2b76-416c-b6fb-03f63c4b8413"
+      user.accesskey.must_equal "285db1a2-4c3b-4f35-a36f-1e5495fa94f2"
     end
   end
 
