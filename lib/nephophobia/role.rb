@@ -53,8 +53,8 @@ module Nephophobia
 
       response = @client.action "DescribeUserRoles", params
 
-      response.body['DescribeUserRolesResponse']['roles'] &&
-      Nephophobia.coerce(response.body['DescribeUserRolesResponse']['roles']['item']).collect do |data|
+      roles = response.body['DescribeUserRolesResponse']['roles']
+      roles && Nephophobia.coerce(roles['item']).collect do |data|
         RoleData.new data
       end
     end
