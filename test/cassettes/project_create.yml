@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=RegisterProject&ManagerUser=foobar_user&Name=foobar_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=%2BKIpQdHzxLFbf1zgbL8Y1NxZq9o8ahsJcTVElLzn5IY%3D
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=RegisterProject&ManagerUser=vcr&Name=vcr_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=EWSy0yRlFf1F0%2FgAdSldHFLZ7nmz6l%2FkZtLT0hAWB7A%3D
     body: 
     headers: 
       accept: 
@@ -19,10 +19,10 @@
       content-type: 
       - text/xml
       content-length: 
-      - "295"
+      - "281"
       date: 
-      - Sun, 27 Feb 2011 06:05:55 GMT
+      - Tue, 15 Mar 2011 05:27:47 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><RegisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>NDJNFHGX-LKJ7EC-8-B9</requestId><projectname>foobar_project</projectname><projectManagerId>foobar_user</projectManagerId><description>foobar_project</description></RegisterProjectResponse>
+    body: <?xml version="1.0" ?><RegisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>63DRI9QQTDMH9YTJ6XN6</requestId><projectname>vcr_project</projectname><projectManagerId>vcr</projectManagerId><description>vcr_project</description></RegisterProjectResponse>
     http_version: "1.1"

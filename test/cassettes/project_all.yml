@@ -19,10 +19,10 @@
       content-type: 
       - text/xml
       content-length: 
-      - "702"
+      - "852"
       date: 
-      - Tue, 22 Feb 2011 06:43:10 GMT
+      - Tue, 15 Mar 2011 05:25:05 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectsResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>Z70PV9C4OC3EO6HWL86O</requestId><projectSet><item><projectname>production</projectname><projectManagerId>root</projectManagerId><description>production</description></item><item><projectname>non-production</projectname><projectManagerId>root</projectManagerId><description>non-production</description></item><item><projectname>openstack</projectname><projectManagerId>jtran</projectManagerId><description>openstack</description></item><item><projectname>jtran</projectname><projectManagerId>jtran</projectManagerId><description>jtran</description></item></projectSet></DescribeProjectsResponse>
+    body: <?xml version="1.0" ?><DescribeProjectsResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>14AT8GET5S8HT3MARR1N</requestId><projectSet><item><projectname>production</projectname><projectManagerId>kbringard</projectManagerId><description>production</description></item><item><projectname>non-production</projectname><projectManagerId>root</projectManagerId><description>non-production</description></item><item><projectname>jtran</projectname><projectManagerId>jtran</projectManagerId><description>jtran</description></item><item><projectname>foobar_project</projectname><projectManagerId>foobar_user</projectManagerId><description>foobar_project</description></item><item><projectname>vcr_project</projectname><projectManagerId>vcr</projectManagerId><description>vcr_project</description></item></projectSet></DescribeProjectsResponse>
     http_version: "1.1"

@@ -40,7 +40,8 @@ module Nephophobia
     def all
       response = @client.action "DescribeProjects", {}
 
-      Nephophobia.coerce(response.body['DescribeProjectsResponse']['projectSet']['item']).collect do |data|
+      item = response.body['DescribeProjectsResponse']['projectSet']['item']
+      Nephophobia.coerce(item).collect do |data|
         ProjectData.new data
       end
     end
@@ -95,7 +96,8 @@ module Nephophobia
     def members project_name
       response = @client.action "DescribeProjectMembers", "Name" => project_name
 
-      response.body['DescribeProjectMembersResponse']['members']['item'].collect do |data|
+      item = response.body['DescribeProjectMembersResponse']['members']['item']
+      Nephophobia.coerce(item).collect do |data|
         MemberData.new data
       end
     end

@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DeregisterProject&Name=foobar_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=1zBz5ubPCcCv4zNP8X%2Fr0v6%2B%2BuiQsy4yZFqtgjqhWhQ%3D
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DeregisterProject&Name=vcr_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=TbJIOoJ5oE8cB8DJbImN4J0w7D4JS14CyRvWCLvtX5Y%3D
     body: 
     headers: 
       accept: 
@@ -21,8 +21,8 @@
       content-length: 
       - "190"
       date: 
-      - Sun, 27 Feb 2011 06:06:56 GMT
+      - Tue, 15 Mar 2011 05:28:02 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DeregisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>LMY3RJA541QSDGF-9XYT</requestId><return>true</return></DeregisterProjectResponse>
+    body: <?xml version="1.0" ?><DeregisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>7XL9QDBXPV-3SB54Y-2E</requestId><return>true</return></DeregisterProjectResponse>
     http_version: "1.1"

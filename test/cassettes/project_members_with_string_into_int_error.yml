@@ -19,10 +19,10 @@
       content-type: 
       - text/xml
       content-length: 
-      - "279"
+      - "231"
       date: 
-      - Tue, 15 Mar 2011 05:48:27 GMT
+      - Tue, 15 Mar 2011 05:42:25 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>-F0TGZY-4PWD1CS4QBH6</requestId><members><item><member>vcr</member></item><item><member>vcr_secondary_user</member></item></members></DescribeProjectMembersResponse>
+    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>2BYDJ6PF2U85J6ASYMXY</requestId><members><item><member>vcr</member></item></members></DescribeProjectMembersResponse>
     http_version: "1.1"
