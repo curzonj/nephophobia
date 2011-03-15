@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUserRoles&Project=vcr_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr&Version=2010-11-15&Signature=%2BcyU1%2FtdIwdsSv93sPpEuIiqp98z9JrrgBUXFRG1%2BxU%3D
+    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeUserRoles&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr&Version=2010-11-15&Signature=4cL%2F8Xee6tVO2FdaLCDFqwMjUtcI7ZEGQ3jrObIDnME%3D
     body: 
     headers: 
       accept: 
@@ -21,8 +21,8 @@
       content-length: 
       - "252"
       date: 
-      - Tue, 15 Mar 2011 05:13:37 GMT
+      - Tue, 15 Mar 2011 18:42:15 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeUserRolesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>GTSH6DJB-6M7UXU3PUAV</requestId><roles><item><role>netadmin</role></item><item><role>sysadmin</role></item></roles></DescribeUserRolesResponse>
+    body: <?xml version="1.0" ?><DescribeUserRolesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>7A0XC5GFNKYV9KG6TLFN</requestId><roles><item><role>netadmin</role></item><item><role>sysadmin</role></item></roles></DescribeUserRolesResponse>
     http_version: "1.1"

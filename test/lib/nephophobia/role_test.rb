@@ -7,6 +7,42 @@ describe Nephophobia::Role do
     @project_name = "vcr_project"
   end
 
+  describe "#all" do
+    it "returns all roles for the given 'user_name'" do
+      VCR.use_cassette "role_all" do
+        response = @role.all @user_name
+
+        response.size.must_equal 2
+      end
+    end
+
+    it "has a 'TypeError: can't convert String into Integer' error" do
+      VCR.use_cassette "role_all_with_string_into_int_error" do
+        response = @role.all @user_name
+
+        response.size.must_equal 1
+      end
+    end
+
+    it "has a 'NoMethodError: undefined method `[]' for nil:NilClass' error" do
+      VCR.use_cassette "role_all_with_no_roles" do
+        response = @role.all @user_name
+
+        response.must_be_nil
+      end
+    end
+  end
+
+  describe "#all with a project_name" do
+    it "returns all roles for the given 'user_name' and 'project_name'" do
+      VCR.use_cassette "role_all_with_project_name" do
+        response = @role.all @user_name, @project_name
+
+        response.size.must_equal 1
+      end
+    end
+  end
+
   describe "#create" do
     before { @role_name = "netadmin" }
 
@@ -59,32 +95,6 @@ describe Nephophobia::Role do
         response = @role.destroy @user_name, @project_name, @role_name
 
         response.return.must_equal true
-      end
-    end
-  end
-
-  describe "#all" do
-    it "returns all roles for the given 'user_name' and 'project_name'" do
-      VCR.use_cassette "role_all" do
-        response = @role.all @user_name, @project_name
-
-        response.size.must_equal 2
-      end
-    end
-
-    it "has a 'TypeError: can't convert String into Integer' error" do
-      VCR.use_cassette "role_all_with_string_into_int_error" do
-        response = @role.all @user_name, @project_name
-
-        response.size.must_equal 1
-      end
-    end
-
-    it "has a 'NoMethodError: undefined method `[]' for nil:NilClass' error" do
-      VCR.use_cassette "role_all_with_no_roles" do
-        response = @role.all @user_name, @project_name
-
-        response.must_be_nil
       end
     end
   end
