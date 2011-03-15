@@ -66,5 +66,23 @@ module Nephophobia
       UserData.new response.body['DescribeUserResponse']
     rescue Hugs::Errors::BadRequest
     end
+
+    ##
+    # Apply a set of global and per-project permissions to the given 'user_name'.
+    # Do the following if the 'user_name' is not a member of the 'project_name'.
+    #  - Add the 'user_name' with the default role (sysadmin) globally.
+    #  - Add the 'user_name' to the 'project_name', with the default role (sysadmin).
+    #  - Add the 'user_name' as a member to the 'project_name'
+    #
+    # +user_name+: A String representing a nova user_name.
+    # +project_name+: A String representing a nova project_name name.
+
+    def register user_name, project_name
+      unless @client.project.member? user_name, project_name
+        @client.role.create user_name
+        @client.role.create user_name, project_name
+        @client.project.add_member user_name, project_name
+      end
+    end
   end
 end

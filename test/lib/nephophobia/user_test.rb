@@ -67,4 +67,24 @@ describe Nephophobia::User do
       @response.must_be_nil
     end
   end
+
+  describe "#register" do
+    before do
+      @project_name = "vcr_project"
+      @role         = ::Client.with(:admin).role
+      @project      = ::Client.with(:admin).project
+    end
+
+    it "applies a set of global and per-project permissions to the given 'user_name'" do
+      VCR.use_cassette "user_register" do
+        @response = @user.register @user_name, @project_name
+      end
+
+      VCR.use_cassette "user_register_assert" do
+        @role.all(@user_name).first.name.must_equal "sysadmin"
+        @role.all(@user_name, @project_name).first.name.must_equal "sysadmin"
+        @project.member?(@user_name, @project_name).must_equal true
+      end
+    end
+  end
 end
