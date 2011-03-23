@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nephophobia (0.0.6)
+    nephophobia (0.0.7)
       hugs (~> 2.5.0)
 
 GEM

@@ -16,7 +16,7 @@ module Nephophobia
       @private_dns_name = item['privateDnsName']
       @image_id         = item['imageId']
       @dns_name         = item['dnsName']
-      @launch_time      = Time.new(item['launchTime']).utc
+      @launch_time      = DateTime.parse(item['launchTime'])
       @placement        = item['placement']['availabilityZone']
       @instance_type    = item['instanceType']
     end

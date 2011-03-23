@@ -102,7 +102,7 @@ describe Nephophobia::Compute do
       compute.private_dns_name.must_be_nil # fix
       compute.image_id.must_equal "ami-usc3oydl"
       compute.dns_name.must_be_nil # fix
-      compute.launch_time.must_equal Time.new("2011-02-21 17:54:35").utc
+      compute.launch_time.must_equal DateTime.parse("2011-03-15 07:05:27")
       compute.placement.must_equal "nova"
       compute.instance_type.must_equal "m1.small"
     end

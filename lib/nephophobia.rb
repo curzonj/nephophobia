@@ -1,5 +1,6 @@
 require "aws"
 require "hashify"
+require "date"
 require "nephophobia/client"
 require "nephophobia/compute"
 require "nephophobia/image"
