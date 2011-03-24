@@ -16,6 +16,10 @@ Compatibility with [VCR](https://github.com/myronmarston/vcr) largely drove this
 
 See the examples section in the [wiki](http://github.com/retr0h/nephophobia/wiki).
 
+## Compatability
+
+ruby 1.9.2
+
 ## Testing
 
 Tests can run offline thanks to [VCR](https://github.com/myronmarston/vcr).
