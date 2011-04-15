@@ -7,6 +7,7 @@ module Nephophobia
     def initialize hash
       @project_id       = hash['ownerId']
       item              = hash['instancesSet']['item']
+      item              = item.first if item.is_a?(Array)
       @description      = item['displayDescription']
       @name             = item['displayName']
       @key_name         = item['keyName']
