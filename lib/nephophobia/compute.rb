@@ -60,11 +60,7 @@ module Nephophobia
     #           }
 
     def create image_id, params = {}
-      filter = {
-        "ImageId" => image_id
-      }.merge params
-
-      response = @client.action "RunInstances", filter
+      response = @client.action "RunInstances", { "ImageId" => image_id }.merge(params)
 
       ComputeData.new response.body['RunInstancesResponse']
     end

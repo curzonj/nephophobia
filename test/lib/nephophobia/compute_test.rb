@@ -5,7 +5,7 @@ describe Nephophobia::Compute do
     @compute = ::Client.with(:user,
       :access_key => "9dd4add8-ca15-42fd-8874-9a3d294ba459",
       :secret_key => "857c0bb3-b048-449e-b152-2f6cec97a164",
-      :project => "vcr_project"
+      :project    => "vcr_project"
     ).compute
   end
 

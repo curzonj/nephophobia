@@ -64,6 +64,14 @@ module Nephophobia
     end
 
     ##
+    # Provide a simple interface to the EC2 Credential resources.
+
+    def credential
+      @path      = "/services/Cloud"
+      @compute ||= Nephophobia::Credential.new self
+    end
+
+    ##
     # Provide a simple interface to the EC2 Image resources.
 
     def image

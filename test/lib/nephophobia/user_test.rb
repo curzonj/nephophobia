@@ -16,18 +16,6 @@ describe Nephophobia::User do
     end
   end
 
-  describe "#credentials" do
-    before { @project_name = "vcr_project" }
-
-    it "returns the credentials for a given 'user_name' for the specified 'project_name'." do
-      VCR.use_cassette "user_credentials" do
-        response = @user.credentials @user_name, @project_name
-
-        response.must_match %r{BEGIN CERTIFICATE}
-      end
-    end
-  end
-
   describe "#destroy" do
     it "destroys the given 'user_name'" do
       VCR.use_cassette "user_destroy" do

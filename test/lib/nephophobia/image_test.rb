@@ -5,7 +5,7 @@ describe Nephophobia::Image do
     @image = ::Client.with(:user,
       :access_key => "57c971e9-0225-4fa4-8969-60b880e9f827",
       :secret_key => "86a6a123-2d11-4e99-9931-20b01f6fb236",
-      :project => "vcr_project"
+      :project    => "vcr_project"
     ).image
   end
 
