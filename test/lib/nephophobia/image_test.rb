@@ -1,11 +1,18 @@
 require "test_helper"
 
 describe Nephophobia::Image do
+  ##
+  # Note:
+  #   Assumes there is always at least one valid image.
+  #   Images need to be manually uploaded with euca2ools
+  #   or ogle.
+
   before do
     @image = ::Client.with(:user,
-      :access_key => "57c971e9-0225-4fa4-8969-60b880e9f827",
-      :secret_key => "86a6a123-2d11-4e99-9931-20b01f6fb236",
-      :project    => "vcr_project"
+      :host       => "10.3.170.32",
+      :access_key => "beeb1bd0-c920-4352-b078-5f297a0899a0",
+      :secret_key => "5bf3d424-bcf1-4684-8fb0-2aaec275f896",
+      :project    => "sandbox"
     ).image
   end
 
@@ -14,7 +21,7 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_all" do
         response = @image.all
 
-        response.size.must_equal 10
+        response.size.must_be :>=, 1
       end
     end
 
@@ -22,22 +29,14 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_all_with_filter" do
         response = @image.all "ExecutableBy.1" => "self"
 
-        response.size.must_equal 10
-      end
-    end
-
-    it "has a 'TypeError: can't convert String into Integer' error" do
-      VCR.use_cassette "image_all_with_string_into_int_error" do
-        response = @image.all
-
-        response.size.must_equal 1
+        response.size.must_be :>=, 1
       end
     end
   end
 
   describe "#find" do
     before do
-      @image_id = "ami-d0f0o14c"
+      @image_id = "ami-00000002"
 
       VCR.use_cassette "image_find" do
         @response = @image.find @image_id
@@ -49,16 +48,14 @@ describe Nephophobia::Image do
     end
 
     it "contains the image data" do
-      image = @response
-
-      image.architecture.must_equal "x86_64"
-      image.image_id.must_equal @image_id
-      image.image_location.must_equal "ttylinx-bucket/ttylinux-uec-amd64-12.1_2.6.35-22_1-vmlinuz.manifest.xml"
-      image.image_owner_id.must_equal "production"
-      image.image_type.must_equal "kernel"
-      image.is_public.must_equal "false"
-      image.kernel_id.must_equal "true"
-      image.state.must_equal "available"
+      @response.architecture.must_be_nil
+      @response.image_id.must_equal @image_id
+      @response.image_location.must_equal "None (maverick-server-uec-amd64.img)"
+      @response.image_owner_id.must_be_nil
+      @response.image_type.must_equal "machine"
+      @response.is_public.must_equal "true"
+      @response.kernel_id.must_equal "aki-00000001"
+      @response.state.must_equal "available"
     end
   end
 
@@ -67,7 +64,7 @@ describe Nephophobia::Image do
       VCR.use_cassette "image_all" do
         response = @image.public
 
-        response.size.must_equal 1
+        response.any? { |i| i.image_type != "kernel"}.must_equal true
       end
     end
   end

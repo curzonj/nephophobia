@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=57c971e9-0225-4fa4-8969-60b880e9f827%3Avcr_project&Action=DescribeImages&ImageId.1=ami-d0f0o14c&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=r6WhUJvsU%2BAuWCwQkLG%2FgmIv18g5LtZfuK%2FWQxNZzf0%3D
+    uri: http://10.3.170.32:8773/services/Cloud?AWSAccessKeyId=beeb1bd0-c920-4352-b078-5f297a0899a0%3Asandbox&Action=DescribeImages&ImageId.1=ami-00000011&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=99HAEkBEHEIaNgUgO3d6b66DY0FRhyLspJ7ZRm9SCiE%3D
     body: 
     headers: 
       accept: 
@@ -19,10 +19,37 @@
       content-type: 
       - text/xml
       content-length: 
-      - "587"
+      - "537"
       date: 
-      - Tue, 15 Mar 2011 04:48:27 GMT
+      - Mon, 18 Apr 2011 22:15:38 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeImagesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>BEJO4LXYYVSYGMDFIC9C</requestId><imagesSet><item><displayName></displayName><imageOwnerId>production</imageOwnerId><isPublic>false</isPublic><imageId>ami-d0f0o14c</imageId><imageState>available</imageState><architecture>x86_64</architecture><imageLocation>ttylinx-bucket/ttylinux-uec-amd64-12.1_2.6.35-22_1-vmlinuz.manifest.xml</imageLocation><kernelId>true</kernelId><type>kernel</type><id>ami-d0f0o14c</id><imageType>kernel</imageType></item></imagesSet></DescribeImagesResponse>
+    body: <?xml version="1.0" ?><DescribeImagesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>639WD4PPVHXYMGZOLWD8</requestId><imagesSet><item><displayName>maverick-server-uec-amd64-CloudFoundry</displayName><description/><imageOwnerId/><isPublic>true</isPublic><imageId>ami-00000011</imageId><imageState>available</imageState><architecture/><imageLocation>None (maverick-server-uec-amd64-CloudFoundry)</imageLocation><kernelId>aki-00000001</kernelId><imageType>machine</imageType></item></imagesSet></DescribeImagesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.32:8773/services/Cloud?AWSAccessKeyId=beeb1bd0-c920-4352-b078-5f297a0899a0%3Asandbox&Action=DescribeImages&ImageId.1=ami-00000002&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=84UjV%2FMchVeDM2MLmlbsqkVTFo9CIYrZ7BRL7Nos%2BWg%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "519"
+      date: 
+      - Mon, 18 Apr 2011 22:17:10 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeImagesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>8JEHP3I75VM0F4-VD53K</requestId><imagesSet><item><displayName>maverick-server-uec-amd64.img</displayName><description/><imageOwnerId/><isPublic>true</isPublic><imageId>ami-00000002</imageId><imageState>available</imageState><architecture/><imageLocation>None (maverick-server-uec-amd64.img)</imageLocation><kernelId>aki-00000001</kernelId><imageType>machine</imageType></item></imagesSet></DescribeImagesResponse>
     http_version: "1.1"
