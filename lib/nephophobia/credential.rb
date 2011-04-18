@@ -15,7 +15,7 @@ module Nephophobia
     end
 
     ##
-    # Returns information about all keypairs owned by +@client+.
+    # Returns information about key pairs that +@client+ owns.
 
     def all
       response = @client.action "DescribeKeyPairs", {}
@@ -30,7 +30,7 @@ module Nephophobia
     # Create a key pair with the given 'key_name'.
     # Returns information about the new key.
     #
-    # +key_name+: A String containing a unique name for the keypair.
+    # +key_name+: A String containing a unique name for the key pair.
 
     def create key_name
       params = {
@@ -46,7 +46,7 @@ module Nephophobia
     # Deletes the key pair for the given 'key_name'.
     # Returns a response to the state change.
     #
-    # +key_name+: A String containing a unique name for the keypair.
+    # +key_name+: A String containing a unique name for the key pair.
 
     def destroy key_name
       params = {

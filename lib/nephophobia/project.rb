@@ -24,7 +24,7 @@ module Nephophobia
     end
 
     ##
-    # Adds the given 'user_name' to the specified "project_name".
+    # Adds the given 'user_name' to the specified 'project_name'.
     # Returns a response to the state change.
     #
     # +user_name+: A String representing a nova user_name.
@@ -60,12 +60,12 @@ module Nephophobia
     # +user_name+: A String representing a nova user_name.
 
     def create project_name, user_name
-      filter = {
+      params = {
         "Name"        => project_name,
         "ManagerUser" => user_name
       }
 
-      response = @client.action "RegisterProject", filter
+      response = @client.action "RegisterProject", params
 
       ProjectData.new response.body['RegisterProjectResponse']
     end

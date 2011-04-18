@@ -72,11 +72,11 @@ module Nephophobia
     # +instance_id+: A String representing the ID of the instance.
 
     def destroy instance_id
-      filter = {
+      params = {
         "InstanceId.1" => instance_id
       }
 
-      response = @client.action "TerminateInstances", filter
+      response = @client.action "TerminateInstances", params
 
       ResponseData.new response.body['TerminateInstancesResponse']
     end
@@ -87,11 +87,11 @@ module Nephophobia
     # +instance_id+: A String representing the ID of the instance.
 
     def find instance_id
-      filter = {
+      params = {
         "InstanceId.1" => instance_id
       }
 
-      response = @client.action "DescribeInstances", filter
+      response = @client.action "DescribeInstances", params
 
       ComputeData.new response.body['DescribeInstancesResponse']['reservationSet']['item']
     end
@@ -103,11 +103,11 @@ module Nephophobia
     # +instance_id+: A String representing the ID of the instance.
 
     def reboot instance_id
-      filter = {
+      params = {
         "InstanceId.1" => instance_id
       }
 
-      response = @client.action "RebootInstances", filter
+      response = @client.action "RebootInstances", params
 
       ResponseData.new response.body['RebootInstancesResponse']
     end
@@ -119,11 +119,11 @@ module Nephophobia
     # +instance_id+: A String representing the ID of the instance.
 
     def start instance_id
-      filter = {
+      params = {
         "InstanceId.1" => instance_id
       }
 
-      response = @client.action "StopInstances", filter
+      response = @client.action "StopInstances", params
 
       ResponseData.new response.body
     end
@@ -135,11 +135,11 @@ module Nephophobia
     # +instance_id+: A String representing the ID of the instance.
 
     def stop instance_id
-      filter = {
+      params = {
         "InstanceId.1" => instance_id
       }
 
-      response = @client.action "StartInstances", filter
+      response = @client.action "StartInstances", params
 
       ResponseData.new response.body
     end

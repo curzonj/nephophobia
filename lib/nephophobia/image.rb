@@ -49,11 +49,11 @@ module Nephophobia
     # +image_id+: A String representing the ID of the image.
 
     def find image_id
-      filter = {
+      params = {
         "ImageId.1" => image_id
       }
 
-      response = @client.action "DescribeImages", filter
+      response = @client.action "DescribeImages", params
 
       ImageData.new response.body['DescribeImagesResponse']['imagesSet']['item']
     end
