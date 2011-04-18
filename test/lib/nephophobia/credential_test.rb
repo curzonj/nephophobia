@@ -19,6 +19,7 @@ describe Nephophobia::Credential do
           @response = @credential.all
         end
       end
+
       after do
         VCR.use_cassette "credential_all" do
           @credential.destroy @key_name
@@ -47,6 +48,7 @@ describe Nephophobia::Credential do
         @response = @credential.create @key_name
       end
     end
+
     after do
       VCR.use_cassette "credential_create" do
         @credential.destroy @key_name
