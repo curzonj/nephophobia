@@ -35,6 +35,10 @@ describe Nephophobia::Image do
   end
 
   describe "#find" do
+    ##
+    # Note:
+    #   Assumes this is a public, runnable, machine type.
+
     before do
       @image_id = "ami-00000002"
 
@@ -50,11 +54,11 @@ describe Nephophobia::Image do
     it "contains the image data" do
       @response.architecture.must_be_nil
       @response.image_id.must_equal @image_id
-      @response.image_location.must_equal "None (maverick-server-uec-amd64.img)"
+      @response.image_location.must_match %r{[a-z]+}
       @response.image_owner_id.must_be_nil
       @response.image_type.must_equal "machine"
       @response.is_public.must_equal "true"
-      @response.kernel_id.must_equal "aki-00000001"
+      @response.kernel_id.must_match %r{[a-z]+-[0-9]+}
       @response.state.must_equal "available"
     end
   end
@@ -62,7 +66,7 @@ describe Nephophobia::Image do
   describe "#public" do
     it "returns all public images" do
       VCR.use_cassette "image_all" do
-        response = @image.public
+        response = @image.runnable
 
         response.any? { |i| i.image_type != "kernel"}.must_equal true
       end

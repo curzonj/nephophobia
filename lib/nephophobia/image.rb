@@ -61,9 +61,9 @@ module Nephophobia
     ##
     # Return information about all public images.
 
-    def public
+    def runnable
       all.select do |image|
-        public? image
+        runnable? image
       end
     end
 
@@ -71,7 +71,7 @@ module Nephophobia
     ##
     # Images which do not have a valid kernel_id are not runnable.
 
-    def public? image
+    def runnable? image
       image.is_public == "true" &&
       image.kernel_id != "true" &&
       image.image_type == "machine"
