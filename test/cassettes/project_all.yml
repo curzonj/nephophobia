@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProjects&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=9X90VDxMZC4r85r5C3CuAAqIFkDNdwp7xW%2BMKybpbVo%3D
+    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjects&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=aLDnU%2F5Nk%2B%2FTkTtSQWBE3J4dWCaTBFNLPRBLoRw5EQ8%3D
     body: 
     headers: 
       accept: 
@@ -19,120 +19,10 @@
       content-type: 
       - text/xml
       content-length: 
-      - "852"
+      - "430"
       date: 
-      - Tue, 15 Mar 2011 05:25:05 GMT
+      - Tue, 19 Apr 2011 01:00:02 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectsResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>14AT8GET5S8HT3MARR1N</requestId><projectSet><item><projectname>production</projectname><projectManagerId>kbringard</projectManagerId><description>production</description></item><item><projectname>non-production</projectname><projectManagerId>root</projectManagerId><description>non-production</description></item><item><projectname>jtran</projectname><projectManagerId>jtran</projectManagerId><description>jtran</description></item><item><projectname>foobar_project</projectname><projectManagerId>foobar_user</projectManagerId><description>foobar_project</description></item><item><projectname>vcr_project</projectname><projectManagerId>vcr</projectManagerId><description>vcr_project</description></item></projectSet></DescribeProjectsResponse>
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProjectMembers&Name=production&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=to4Ia9Otnptorh4mIc11yfQgkbSZOiUdvt2%2FcqD%2Foa8%3D
-    body: 
-    headers: 
-      accept: 
-      - application/xml
-      connection: 
-      - keep-alive
-      keep-alive: 
-      - 30
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
-      code: 200
-      message: OK
-    headers: 
-      content-type: 
-      - text/xml
-      content-length: 
-      - "568"
-      date: 
-      - Tue, 15 Mar 2011 19:38:27 GMT
-      connection: 
-      - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>OSFBXUB0L1OZYX-D7ALD</requestId><members><item><member>tr0001</member></item><item><member>jtran</member></item><item><member>jdewey</member></item><item><member>jkleinpeter</member></item><item><member>kbringard</member></item><item><member>root</member></item><item><member>jt708u</member></item><item><member>xx1234</member></item><item><member>jk520u</member></item><item><member>foobar_user</member></item></members></DescribeProjectMembersResponse>
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProjectMembers&Name=non-production&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=6F%2Fg04mZ17i5VyPzeZSDleMiAKbRdqhKSXDzGpE%2BdjU%3D
-    body: 
-    headers: 
-      accept: 
-      - application/xml
-      connection: 
-      - keep-alive
-      keep-alive: 
-      - 30
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
-      code: 200
-      message: OK
-    headers: 
-      content-type: 
-      - text/xml
-      content-length: 
-      - "752"
-      date: 
-      - Tue, 15 Mar 2011 19:38:27 GMT
-      connection: 
-      - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>9XIELH48TMI7AX5QQPML</requestId><members><item><member>xx1234</member></item><item><member>root</member></item><item><member>jkleinpeter</member></item><item><member>jt708u</member></item><item><member>tr0001</member></item><item><member>jdewey</member></item><item><member>ccrissman</member></item><item><member>kbringard</member></item><item><member>cnoshpitz</member></item><item><member>dfong</member></item><item><member>jheiss</member></item><item><member>gnolan</member></item><item><member>msaltman</member></item><item><member>amikula</member></item><item><member>jk520u</member></item></members></DescribeProjectMembersResponse>
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProjectMembers&Name=jtran&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=aFpEU0vSiw3TVrDh2U55abIUl0PjVhr8J1b8AzViiqE%3D
-    body: 
-    headers: 
-      accept: 
-      - application/xml
-      connection: 
-      - keep-alive
-      keep-alive: 
-      - 30
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
-      code: 200
-      message: OK
-    headers: 
-      content-type: 
-      - text/xml
-      content-length: 
-      - "233"
-      date: 
-      - Tue, 15 Mar 2011 19:38:27 GMT
-      connection: 
-      - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>QEBDLN4L5ADKEEK7S6QK</requestId><members><item><member>jtran</member></item></members></DescribeProjectMembersResponse>
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=DescribeProjectMembers&Name=foobar_project&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=KPVzBFN8AFrlySQ%2FaVy3xnVy2tDKZIWQcMcvcZ01W%2BE%3D
-    body: 
-    headers: 
-      accept: 
-      - application/xml
-      connection: 
-      - keep-alive
-      keep-alive: 
-      - 30
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
-      code: 400
-      message: Bad Request
-    headers: 
-      content-type: 
-      - text/xml
-      content-length: 
-      - "191"
-      date: 
-      - Tue, 15 Mar 2011 19:38:27 GMT
-      connection: 
-      - keep-alive
-    body: |-
-      <?xml version="1.0"?>
-      <Response><Errors><Error><Code>NotFound</Code><Message>No project with id foobar_project</Message></Error></Errors><RequestID>XOSK7KB49YY73XMXJOAQ</RequestID></Response>
+    body: <?xml version="1.0" ?><DescribeProjectsResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>NWW-M413KMEKV14KAVQ8</requestId><projectSet><item><projectname>sandbox</projectname><projectManagerId>root</projectManagerId><description>sandbox</description></item><item><projectname>core</projectname><projectManagerId>root</projectManagerId><description>core</description></item></projectSet></DescribeProjectsResponse>
     http_version: "1.1"

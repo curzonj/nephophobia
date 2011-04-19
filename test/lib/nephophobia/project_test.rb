@@ -1,22 +1,47 @@
 require "test_helper"
 
 describe Nephophobia::Project do
+  ##
+  # Note:
+  #   Assumes there is always at least one valid project.
+  #   Projects are core functionality to nova networking.
+  #   We will always have at least one project configured.
+
   before do
-    @project      = ::Client.with(:admin).project
-    @user         = ::Client.with(:admin).user
-    @user_name    = "vcr"
-    @project_name = "vcr_project"
+    @user_name    = "vcr_user"
+    @project_name = "sandbox"
+    @project      = ::Client.with(:admin,
+      :host       => "10.3.170.32",
+      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
+      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
+      :project    => @project_name
+    ).project
+    @user         = ::Client.with(:admin,
+      :host       => "10.3.170.32",
+      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
+      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
+      :project    => @project_name
+    ).user
   end
 
   describe "#add_member" do
-    before { @project_name = "vcr_secondary_project" }
-
-    it "adds the given 'user_name' to the specified 'project_name'" do
+    before do
       VCR.use_cassette "project_add_member" do
-        response = @project.add_member @user_name, @project_name
+        @user.create @user_name
 
-        response.return.must_equal true
+        @response = @project.add_member @user_name, @project_name
       end
+    end
+
+    after do
+      VCR.use_cassette "project_add_member" do
+        @project.remove_member @user_name, @project_name
+        @user.destroy @user_name
+      end
+    end
+
+    it "adds the given user name to the project" do
+      @response.return.must_equal true
     end
   end
 
@@ -25,47 +50,75 @@ describe Nephophobia::Project do
       VCR.use_cassette "project_all" do
         response = @project.all
 
-        response.size.must_equal 5
-      end
-    end
-
-    it "has a 'TypeError: can't convert String into Integer' error" do
-      VCR.use_cassette "project_all_with_string_into_int_error" do
-        response = @project.all
-
-        response.size.must_equal 1
+        response.size.must_be :>=, 1
       end
     end
   end
 
-  describe "#all with a user_name" do
-    it "returns all projects for the given 'user_name'" do
-      VCR.use_cassette "project_all_with_with_user_name" do
-        response = @project.all @user_name
+  describe "#all with a 'user_name'" do
+    before do
+      VCR.use_cassette "project_all_with_user_name" do
+        @user.create @user_name
+        @project.add_member @user_name, @project_name
 
-        response.size.must_equal 1
+        @response = @project.all @user_name
       end
+    end
+
+    after do
+      VCR.use_cassette "project_all_with_user_name" do
+        @project.remove_member @user_name, @project_name
+        @user.destroy @user_name
+      end
+    end
+
+    it "returns all projects" do
+      @response.size.must_be :>=, 1
     end
   end
 
   describe "#create" do
-    it "creates the given 'user_name' in the specified 'project_name'" do
+    before do
       VCR.use_cassette "project_create" do
-        response = @project.create @project_name, @user_name
+        @project_name = "vcr_project"
+        @user.create @user_name
 
-        response.name.must_equal @project_name
-        response.manager_id.must_equal @user_name
+        @response = @project.create @project_name, @user_name
       end
+    end
+
+    after do
+      VCR.use_cassette "project_create" do
+        @user.destroy @user_name
+        @project.destroy @project_name
+      end
+    end
+
+    it "creates the project and adds the user name as the manager" do
+      @response.name.must_equal @project_name
+      @response.manager_id.must_equal @user_name
     end
   end
 
   describe "#destroy" do
-    it "destroys the given 'project_name'" do
+    before do
       VCR.use_cassette "project_destroy" do
-        response = @project.destroy @project_name
+        @project_name = "vcr_project"
+        @user.create @user_name
+        @project.create @project_name, @user_name
 
-        response.return.must_equal true
+        @response = @project.destroy @project_name
       end
+    end
+
+    after do
+      VCR.use_cassette "project_destroy" do
+        @user.destroy @user_name
+      end
+    end
+
+    it "destroys the project" do
+      @response.return.must_equal true
     end
   end
 
@@ -76,21 +129,19 @@ describe Nephophobia::Project do
       end
     end
 
-    it "returns the given 'project_name'" do
+    it "returns the project" do
       @response.name.must_equal @project_name
     end
 
     it "contains the project data" do
-      project = @response
-
-      project.name.must_equal "vcr_project"
-      project.manager_id.must_equal "vcr"
-      project.description.must_equal "vcr_project"
+      @response.name.must_equal @project_name
+      @response.manager_id.must_match %r{[a-z]+}
+      @response.description.must_equal @project_name
     end
   end
 
   describe "#find with invalid project_name" do
-    it "rescues Hugs::Errors::BadRequest" do
+    it "returns nil" do
       VCR.use_cassette "project_find_with_invalid_project_name" do
         @response = @project.find "invalid_project_name"
       end
@@ -100,25 +151,27 @@ describe Nephophobia::Project do
   end
 
   describe "#members" do
-    it "returns all project members for the given 'project_name'" do
+    before do
       VCR.use_cassette "project_members" do
-        response = @project.members @project_name
+        @user.create @user_name
 
-        response.size.must_equal 2
+        @response = @project.members @project_name
       end
     end
 
-    it "has a 'TypeError: can't convert String into Integer' error" do
-      VCR.use_cassette "project_members_with_string_into_int_error" do
-        response = @project.members @project_name
-
-        response.size.must_equal 1
+    after do
+      VCR.use_cassette "project_members" do
+        @user.destroy @user_name
       end
+    end
+
+    it "returns all project members for the project" do
+      @response.size.must_be :>=, 1
     end
   end
 
   describe "#members with invalid 'project_name'" do
-    it "rescues Hugs::Errors::BadRequest" do
+    it "returns nil" do
       VCR.use_cassette "project_members_with_invalid_project_name" do
         @response = @project.members "invalid_project_name"
       end
@@ -128,24 +181,45 @@ describe Nephophobia::Project do
   end
 
   describe "#member?" do
-    it "returns true if the given 'user_name' is a member of the specified 'project_name'" do
-      VCR.use_cassette "project_members" do
-        response = @project.member? @user_name, @project_name
+    before do
+      VCR.use_cassette "project_member" do
+        @user.create @user_name
+        @project.add_member @user_name, @project_name
 
-        response.must_equal true
+        @response = @project.member? @user_name, @project_name
       end
+    end
+
+    after do
+      VCR.use_cassette "project_member" do
+        @project.remove_member @user_name, @project_name
+        @user.destroy @user_name
+      end
+    end
+
+    it "returns true if the user name is a member of the project" do
+      @response.must_equal true
     end
   end
 
   describe "#remove_member" do
-    before { @project_name = "vcr_secondary_project" }
-
-    it "removes the given 'user_name' from the specified 'project_name'" do
+    before do
       VCR.use_cassette "project_remove_member" do
-        response = @project.remove_member @user_name, @project_name
+        @user.create @user_name
+        @project.add_member @user_name, @project_name
 
-        response.return.must_equal true
+        @response = @project.remove_member @user_name, @project_name
       end
+    end
+
+    after do
+      VCR.use_cassette "project_remove_member" do
+        @user.destroy @user_name
+      end
+    end
+
+    it "removes the user name from the specified project" do
+      @response.return.must_equal true
     end
   end
 end

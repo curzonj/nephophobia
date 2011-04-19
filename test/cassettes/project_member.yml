@@ -21,10 +21,10 @@
       content-length: 
       - "313"
       date: 
-      - Tue, 19 Apr 2011 01:01:40 GMT
+      - Tue, 19 Apr 2011 01:25:10 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>7MNYFVHBKEKE0KP182YK</requestId><username>vcr_user</username><secretkey>7d64c93f-3761-4087-b213-9f8ccf2482cd</secretkey><accesskey>0c2abd1d-b5c6-4531-bd59-70d70b78805f</accesskey><file/></RegisterUserResponse>
+    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>K9BYUKSH6EIJ7X3IXEBD</requestId><username>vcr_user</username><secretkey>d63cb1ec-ea7a-469e-95ce-9ae79d09b55c</secretkey><accesskey>68f1466b-bfcc-4aad-9f47-ba43e0f20bbd</accesskey><file/></RegisterUserResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
@@ -48,10 +48,37 @@
       content-length: 
       - "194"
       date: 
-      - Tue, 19 Apr 2011 01:01:40 GMT
+      - Tue, 19 Apr 2011 01:25:11 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>34RP2TYGCQ3V96B7FO0W</requestId><return>true</return></ModifyProjectMemberResponse>
+    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>MVUACY3O36APOR8C8M96</requestId><return>true</return></ModifyProjectMemberResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjectMembers&Name=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=TNzeGrVLbfQ8DFlrUFUA7poSyY69GIrLZd%2FZX3RDfno%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "414"
+      date: 
+      - Tue, 19 Apr 2011 01:25:11 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>OPZS4R4K-G-71PJSBY-J</requestId><members><item><member>root</member></item><item><member>jk520u</member></item><item><member>jd265j</member></item><item><member>kb718q</member></item><item><member>pe623x</member></item><item><member>vcr_user</member></item></members></DescribeProjectMembersResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
@@ -75,10 +102,10 @@
       content-length: 
       - "194"
       date: 
-      - Tue, 19 Apr 2011 01:01:40 GMT
+      - Tue, 19 Apr 2011 01:25:11 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>5-ITY8H8J3Z10JPECIA7</requestId><return>true</return></ModifyProjectMemberResponse>
+    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>9T77Q17PG4IT1A4YYHGA</requestId><return>true</return></ModifyProjectMemberResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
@@ -102,8 +129,8 @@
       content-length: 
       - "184"
       date: 
-      - Tue, 19 Apr 2011 01:01:41 GMT
+      - Tue, 19 Apr 2011 01:25:12 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DeregisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>QCF3M4VHWSU-0ZFP16YI</requestId><return>true</return></DeregisterUserResponse>
+    body: <?xml version="1.0" ?><DeregisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>T4NNPL8B149D94YE4ZG5</requestId><return>true</return></DeregisterUserResponse>
     http_version: "1.1"
