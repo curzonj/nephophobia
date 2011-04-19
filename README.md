@@ -25,3 +25,7 @@ ruby 1.9.2
 Tests can run offline thanks to [VCR](https://github.com/myronmarston/vcr).
 
     $ bundle exec rake
+
+## TODO
+
+* Cleanup test initializers once all tests use same API key.
