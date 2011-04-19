@@ -1,4 +1,10 @@
 describe Nephophobia::Credential do
+  ##
+  # Note:
+  #   Assumes there is always at least one valid project.
+  #   Projects are core functionality to nova networking.
+  #   We will always have at least one project configured.
+
   before do
     @key_name     = "vcr_keypair"
     @project_name = "sandbox"

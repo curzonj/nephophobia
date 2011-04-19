@@ -6,6 +6,10 @@ describe Nephophobia::Image do
   #   Assumes there is always at least one valid image.
   #   Images need to be manually uploaded with euca2ools
   #   or ogle.
+  #
+  #   Assumes there is always at least one valid project.
+  #   Projects are core functionality to nova networking.
+  #   We will always have at least one project configured.
 
   before do
     @image = ::Client.with(:user,

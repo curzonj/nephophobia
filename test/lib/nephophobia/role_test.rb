@@ -1,6 +1,12 @@
 require "test_helper"
 
 describe Nephophobia::Role do
+  ##
+  # Note:
+  #   Assumes there is always at least one valid project.
+  #   Projects are core functionality to nova networking.
+  #   We will always have at least one project configured.
+
   before do
     @user_name    = "vcr_user"
     @project_name = "sandbox"
