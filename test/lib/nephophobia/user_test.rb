@@ -27,7 +27,7 @@ describe Nephophobia::User do
 
     after do
       VCR.use_cassette "user_create" do
-        response = @user.destroy @user_name
+        @user.destroy @user_name
       end
     end
 

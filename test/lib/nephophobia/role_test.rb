@@ -2,99 +2,218 @@ require "test_helper"
 
 describe Nephophobia::Role do
   before do
-    @role         = ::Client.with(:admin).role
-    @user_name    = "vcr"
-    @project_name = "vcr_project"
+    @user_name    = "vcr_user"
+    @project_name = "sandbox"
+    @role_name    = "netadmin"
+    @role         = ::Client.with(:admin,
+      :host       => "10.3.170.32",
+      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
+      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
+      :project    => @project_name
+    ).role
+    @user         = ::Client.with(:admin,
+      :host       => "10.3.170.32",
+      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
+      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
+      :project    => @project_name
+    ).user
   end
 
   describe "#all" do
-    it "returns all roles for the given 'user_name'" do
-      VCR.use_cassette "role_all" do
-        response = @role.all @user_name
+    describe "with 'user_name'" do
+      before do
+        VCR.use_cassette "role_all" do
+          @user.create @user_name
+          @role.create @user_name
 
-        response.size.must_equal 2
+          @response = @role.all @user_name
+        end
+      end
+
+      after do
+        VCR.use_cassette "role_all" do
+          @user.destroy @user_name
+          @role.destroy @user_name
+        end
+      end
+
+      it "returns all roles" do
+        VCR.use_cassette "role_all" do
+          @response.size.must_be :>=, 1
+        end
       end
     end
 
-    it "has a 'TypeError: can't convert String into Integer' error" do
-      VCR.use_cassette "role_all_with_string_into_int_error" do
-        response = @role.all @user_name
+    describe "without roles" do
+      before do
+        VCR.use_cassette "role_all_without_roles" do
+          @user.create @user_name
 
-        response.size.must_equal 1
+          @response = @role.all @user_name
+        end
+      end
+
+      after do
+        VCR.use_cassette "role_all_without_roles" do
+          @user.destroy @user_name
+          @role.destroy @user_name
+        end
+      end
+
+      it "returns all roles" do
+        @response.must_be_nil
       end
     end
 
-    it "has a 'NoMethodError: undefined method `[]' for nil:NilClass' error" do
-      VCR.use_cassette "role_all_with_no_roles" do
-        response = @role.all @user_name
+    describe "with 'user_name' and 'project_name'" do
+      before do
+        VCR.use_cassette "role_all_with_project_name" do
+          @user.create @user_name
+          @role.create @user_name, @project_name
 
-        response.must_be_nil
+          @response = @role.all @user_name, @project_name
+        end
       end
-    end
-  end
 
-  describe "#all with a project_name" do
-    it "returns all roles for the given 'user_name' and 'project_name'" do
-      VCR.use_cassette "role_all_with_project_name" do
-        response = @role.all @user_name, @project_name
+      after do
+        VCR.use_cassette "role_all_with_project_name" do
+          @user.destroy @user_name
+          @role.destroy @user_name, @project_name
+        end
+      end
 
-        response.size.must_equal 1
+      it "returns all roles" do
+        @response.size.must_be :>=, 1
       end
     end
   end
 
   describe "#create" do
-    before { @role_name = "netadmin" }
+    describe "with 'user_name'" do
+      before do
+        VCR.use_cassette "role_create" do
+          @user.create @user_name
 
-    it "adds the default global role to the given 'user_name'" do
-      VCR.use_cassette "role_create" do
-        response = @role.create @user_name
+          @response = @role.create @user_name
+        end
+      end
 
-        response.return.must_equal true
+      after do
+        VCR.use_cassette "role_create" do
+          @user.destroy @user_name
+          @role.destroy @user_name
+        end
+      end
+
+      it "adds role" do
+        @response.return.must_equal true
       end
     end
 
-    it "adds the default role to the given 'user_name' and 'project_name'" do
-      VCR.use_cassette "role_create_with_project_name" do
-        response = @role.create @user_name, @project_name
+    describe "with 'user_name' and 'project_name'" do
+      before do
+        VCR.use_cassette "role_create_with_project_name" do
+          @user.create @user_name
 
-        response.return.must_equal true
+          @response = @role.create @user_name, @project_name
+        end
+      end
+
+      after do
+        VCR.use_cassette "role_create_with_project_name" do
+          @user.destroy @user_name
+          @role.destroy @user_name, @project_name
+        end
+      end
+
+      it "adds role" do
+        @response.return.must_equal true
       end
     end
 
-    it "adds the specified 'role_name' to the given 'user_name' and 'project_name'" do
-      VCR.use_cassette "role_create_with_project_name_and_role_name" do
-        response = @role.create @user_name, @project_name, @role_name
+    describe "with 'user_name', 'project_name', and 'role_name'" do
+      before do
+        VCR.use_cassette "role_create_with_project_name_and_role_name" do
+          @user.create @user_name
 
-        response.return.must_equal true
+          @response = @role.create @user_name, @project_name, @role_name
+        end
+      end
+
+      after do
+        VCR.use_cassette "role_create_with_project_name_and_role_name" do
+          @user.destroy @user_name
+          @role.destroy @user_name, @project_name, @role_name
+        end
+      end
+
+      it "adds role" do
+        @response.return.must_equal true
       end
     end
   end
 
   describe "#destroy" do
-    before { @role_name = "netadmin" }
+    describe "with 'user_name'" do
+      before do
+        VCR.use_cassette "role_destroy" do
+          @user.create @user_name
+          @role.create @user_name
 
-    it "removes the default global role to the given 'user_name'" do
-      VCR.use_cassette "role_destroy" do
-        response = @role.destroy @user_name
+          @response = @role.destroy @user_name
+        end
+      end
 
-        response.return.must_equal true
+      after do
+        VCR.use_cassette "role_destroy" do
+          @user.destroy @user_name
+        end
+      end
+
+      it "removes role" do
+        @response.return.must_equal true
       end
     end
 
-    it "removes the default role to the given 'user_name' and 'project_name'" do
-      VCR.use_cassette "role_destroy_with_project_name" do
-        response = @role.destroy @user_name, @project_name
+    describe "with 'user_name' and 'project_name'" do
+      before do
+        VCR.use_cassette "role_destroy_with_project_name" do
+          @user.create @user_name
+          @role.create @user_name, @project_name
 
-        response.return.must_equal true
+          @response = @role.destroy @user_name, @project_name
+        end
+      end
+
+      after do
+        VCR.use_cassette "role_destroy_with_project_name" do
+          @user.destroy @user_name
+        end
+      end
+
+      it "removes role" do
+        @response.return.must_equal true
       end
     end
 
-    it "removes the specified 'role_name' to the given 'user_name' and 'project_name'" do
-      VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
-        response = @role.destroy @user_name, @project_name, @role_name
+    describe "with 'user_name', 'project_name', and 'role_name'" do
+      before do
+        VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
+          @user.create @user_name
+          @role.create @user_name, @project_name, @role_name
 
-        response.return.must_equal true
+          @response = @role.destroy @user_name, @project_name, @role_name
+        end
+      end
+
+      after do
+        VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
+          @user.destroy @user_name
+        end
+      end
+
+      it "removes role" do
+        @response.return.must_equal true
       end
     end
   end

@@ -2,7 +2,34 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Admin/?AWSAccessKeyId=1d7a687b-0065-44d6-9611-5bf6c6c72424%3Aproduction&Action=ModifyUserRole&Operation=add&Project=vcr_project&Role=netadmin&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr&Version=2010-11-15&Signature=%2FS%2BG3qLo52kfwFMbcH5fKVAjId98%2BAlxUPfP54JGVFk%3D
+    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=RegisterUser&Name=vcr_user&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=nthXQq43tPrgjgiuaeCImXCS3kfDdv47YuT6tzxZ6wg%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "313"
+      date: 
+      - Tue, 19 Apr 2011 00:04:14 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>TYNXFZBIMIUHSNKL8EJX</requestId><username>vcr_user</username><secretkey>905e69a4-156e-4afd-bc7f-c86fd44df4f8</secretkey><accesskey>4fbe1bda-4320-4d54-a09e-a1d3a8da2626</accesskey><file/></RegisterUserResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=ModifyUserRole&Operation=add&Project=sandbox&Role=netadmin&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr_user&Version=2010-11-15&Signature=3ZCD8flgSPSMRir4JOkoYS6ZuFpbevpyMn%2F6wnOnvdE%3D
     body: 
     headers: 
       accept: 
@@ -21,8 +48,62 @@
       content-length: 
       - "184"
       date: 
-      - Tue, 15 Mar 2011 05:11:49 GMT
+      - Tue, 19 Apr 2011 00:04:15 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><ModifyUserRoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>BWORTYN9M6IKYPKBJLRD</requestId><return>true</return></ModifyUserRoleResponse>
+    body: <?xml version="1.0" ?><ModifyUserRoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>AKPZJBPEGVZE4125ZL4J</requestId><return>true</return></ModifyUserRoleResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DeregisterUser&Name=vcr_user&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=aa2vpTcy0i2JfYcxUgDitUVqb3aPgH1FzgCcbQc2D5E%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "184"
+      date: 
+      - Tue, 19 Apr 2011 00:04:15 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DeregisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>2HWDLYVNMET9QZQ05HSX</requestId><return>true</return></DeregisterUserResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=ModifyUserRole&Operation=remove&Project=sandbox&Role=sysadmin&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr_user&Version=2010-11-15&Signature=9NDSbN2e7rJYiFuVicbaY%2F0VUk01loPiU4GkO8%2BUGto%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "184"
+      date: 
+      - Tue, 19 Apr 2011 00:04:15 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><ModifyUserRoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>6VMH4LQM4R1JYZ1LX1G0</requestId><return>true</return></ModifyUserRoleResponse>
     http_version: "1.1"
