@@ -25,202 +25,196 @@ describe Nephophobia::Role do
     ).user
   end
 
-  describe "#all" do
-    describe "with 'user_name'" do
-      before do
-        VCR.use_cassette "role_all" do
-          @user.create @user_name
-          @role.create @user_name
+  describe "#all with a 'user_name'" do
+    before do
+      VCR.use_cassette "role_all" do
+        @user.create @user_name
+        @role.create @user_name
 
-          @response = @role.all @user_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_all" do
-          @user.destroy @user_name
-          @role.destroy @user_name
-        end
-      end
-
-      it "returns all roles" do
-        VCR.use_cassette "role_all" do
-          @response.size.must_be :>=, 1
-        end
+        @response = @role.all @user_name
       end
     end
 
-    describe "without roles" do
-      before do
-        VCR.use_cassette "role_all_without_roles" do
-          @user.create @user_name
-
-          @response = @role.all @user_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_all_without_roles" do
-          @user.destroy @user_name
-          @role.destroy @user_name
-        end
-      end
-
-      it "returns all roles" do
-        @response.must_be_nil
+    after do
+      VCR.use_cassette "role_all" do
+        @user.destroy @user_name
+        @role.destroy @user_name
       end
     end
 
-    describe "with 'user_name' and 'project_name'" do
-      before do
-        VCR.use_cassette "role_all_with_project_name" do
-          @user.create @user_name
-          @role.create @user_name, @project_name
-
-          @response = @role.all @user_name, @project_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_all_with_project_name" do
-          @user.destroy @user_name
-          @role.destroy @user_name, @project_name
-        end
-      end
-
-      it "returns all roles" do
+    it "returns all roles" do
+      VCR.use_cassette "role_all" do
         @response.size.must_be :>=, 1
       end
     end
   end
 
-  describe "#create" do
-    describe "with 'user_name'" do
-      before do
-        VCR.use_cassette "role_create" do
-          @user.create @user_name
+  describe "#all without roles" do
+    before do
+      VCR.use_cassette "role_all_without_roles" do
+        @user.create @user_name
 
-          @response = @role.create @user_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_create" do
-          @user.destroy @user_name
-          @role.destroy @user_name
-        end
-      end
-
-      it "adds role" do
-        @response.return.must_equal true
+        @response = @role.all @user_name
       end
     end
 
-    describe "with 'user_name' and 'project_name'" do
-      before do
-        VCR.use_cassette "role_create_with_project_name" do
-          @user.create @user_name
-
-          @response = @role.create @user_name, @project_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_create_with_project_name" do
-          @user.destroy @user_name
-          @role.destroy @user_name, @project_name
-        end
-      end
-
-      it "adds role" do
-        @response.return.must_equal true
+    after do
+      VCR.use_cassette "role_all_without_roles" do
+        @user.destroy @user_name
+        @role.destroy @user_name
       end
     end
 
-    describe "with 'user_name', 'project_name', and 'role_name'" do
-      before do
-        VCR.use_cassette "role_create_with_project_name_and_role_name" do
-          @user.create @user_name
-
-          @response = @role.create @user_name, @project_name, @role_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_create_with_project_name_and_role_name" do
-          @user.destroy @user_name
-          @role.destroy @user_name, @project_name, @role_name
-        end
-      end
-
-      it "adds role" do
-        @response.return.must_equal true
-      end
+    it "returns all roles" do
+      @response.must_be_nil
     end
   end
 
-  describe "#destroy" do
-    describe "with 'user_name'" do
-      before do
-        VCR.use_cassette "role_destroy" do
-          @user.create @user_name
-          @role.create @user_name
+  describe "#all with 'user_name' and 'project_name'" do
+    before do
+      VCR.use_cassette "role_all_with_project_name" do
+        @user.create @user_name
+        @role.create @user_name, @project_name
 
-          @response = @role.destroy @user_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_destroy" do
-          @user.destroy @user_name
-        end
-      end
-
-      it "removes role" do
-        @response.return.must_equal true
+        @response = @role.all @user_name, @project_name
       end
     end
 
-    describe "with 'user_name' and 'project_name'" do
-      before do
-        VCR.use_cassette "role_destroy_with_project_name" do
-          @user.create @user_name
-          @role.create @user_name, @project_name
-
-          @response = @role.destroy @user_name, @project_name
-        end
-      end
-
-      after do
-        VCR.use_cassette "role_destroy_with_project_name" do
-          @user.destroy @user_name
-        end
-      end
-
-      it "removes role" do
-        @response.return.must_equal true
+    after do
+      VCR.use_cassette "role_all_with_project_name" do
+        @user.destroy @user_name
+        @role.destroy @user_name, @project_name
       end
     end
 
-    describe "with 'user_name', 'project_name', and 'role_name'" do
-      before do
-        VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
-          @user.create @user_name
-          @role.create @user_name, @project_name, @role_name
+    it "returns all roles" do
+      @response.size.must_be :>=, 1
+    end
+  end
 
-          @response = @role.destroy @user_name, @project_name, @role_name
-        end
-      end
+  describe "#create with a 'user_name'" do
+    before do
+      VCR.use_cassette "role_create" do
+        @user.create @user_name
 
-      after do
-        VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
-          @user.destroy @user_name
-        end
+        @response = @role.create @user_name
       end
+    end
 
-      it "removes role" do
-        @response.return.must_equal true
+    after do
+      VCR.use_cassette "role_create" do
+        @user.destroy @user_name
+        @role.destroy @user_name
       end
+    end
+
+    it "adds role" do
+      @response.return.must_equal true
+    end
+  end
+
+  describe "#create with 'user_name' and 'project_name'" do
+    before do
+      VCR.use_cassette "role_create_with_project_name" do
+        @user.create @user_name
+
+        @response = @role.create @user_name, @project_name
+      end
+    end
+
+    after do
+      VCR.use_cassette "role_create_with_project_name" do
+        @user.destroy @user_name
+        @role.destroy @user_name, @project_name
+      end
+    end
+
+    it "adds role" do
+      @response.return.must_equal true
+    end
+  end
+
+  describe "#create with 'user_name', 'project_name', and 'role_name'" do
+    before do
+      VCR.use_cassette "role_create_with_project_name_and_role_name" do
+        @user.create @user_name
+
+        @response = @role.create @user_name, @project_name, @role_name
+      end
+    end
+
+    after do
+      VCR.use_cassette "role_create_with_project_name_and_role_name" do
+        @user.destroy @user_name
+        @role.destroy @user_name, @project_name, @role_name
+      end
+    end
+
+    it "adds role" do
+      @response.return.must_equal true
+    end
+  end
+
+  describe "#destroy with 'user_name'" do
+    before do
+      VCR.use_cassette "role_destroy" do
+        @user.create @user_name
+        @role.create @user_name
+
+        @response = @role.destroy @user_name
+      end
+    end
+
+    after do
+      VCR.use_cassette "role_destroy" do
+        @user.destroy @user_name
+      end
+    end
+
+    it "removes role" do
+      @response.return.must_equal true
+    end
+  end
+
+  describe "#destroy with 'user_name' and 'project_name'" do
+    before do
+      VCR.use_cassette "role_destroy_with_project_name" do
+        @user.create @user_name
+        @role.create @user_name, @project_name
+
+        @response = @role.destroy @user_name, @project_name
+      end
+    end
+
+    after do
+      VCR.use_cassette "role_destroy_with_project_name" do
+        @user.destroy @user_name
+      end
+    end
+
+    it "removes role" do
+      @response.return.must_equal true
+    end
+  end
+
+  describe "#destroy with 'user_name', 'project_name', and 'role_name'" do
+    before do
+      VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
+        @user.create @user_name
+        @role.create @user_name, @project_name, @role_name
+
+        @response = @role.destroy @user_name, @project_name, @role_name
+      end
+    end
+
+    after do
+      VCR.use_cassette "role_destroy_with_project_name_and_role_name" do
+        @user.destroy @user_name
+      end
+    end
+
+    it "removes role" do
+      @response.return.must_equal true
     end
   end
 end

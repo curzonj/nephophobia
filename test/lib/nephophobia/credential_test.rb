@@ -61,7 +61,7 @@ describe Nephophobia::Credential do
       end
     end
 
-    it "creates a key pair for the given 'key_name'" do
+    it "creates a key pair for the key name" do
       @response.material.must_match %r{BEGIN RSA PRIVATE KEY.*END RSA PRIVATE KEY}m
     end
   end
@@ -75,7 +75,7 @@ describe Nephophobia::Credential do
       end
     end
 
-    it "deletes the key pair for the given 'key_name'" do
+    it "deletes the key pair for the key name" do
       @response.return.must_equal true
     end
   end

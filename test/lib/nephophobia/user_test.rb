@@ -31,7 +31,7 @@ describe Nephophobia::User do
       end
     end
 
-    it "creates the given 'user_name'" do
+    it "creates the user name" do
       VCR.use_cassette "user_create" do
         @response.username.must_equal @user_name
       end
@@ -39,7 +39,7 @@ describe Nephophobia::User do
   end
 
   describe "#destroy" do
-    it "destroys the given 'user_name'" do
+    it "destroys the user name" do
       VCR.use_cassette "user_destroy" do
         @user.create @user_name
 
@@ -65,7 +65,7 @@ describe Nephophobia::User do
       end
     end
 
-    it "returns the given 'user_name'" do
+    it "returns the user name" do
       @response.username.must_equal @user_name
     end
 
@@ -114,7 +114,7 @@ describe Nephophobia::User do
       end
     end
 
-    it "applies a set of global and per-project permissions to the given 'user_name'" do
+    it "applies a set of global and per-project permissions to user name" do
       VCR.use_cassette "user_register_asserts" do
         @role.all(@user_name).first.name.must_equal "sysadmin"
         @role.all(@user_name, @project_name).first.name.must_equal "sysadmin"

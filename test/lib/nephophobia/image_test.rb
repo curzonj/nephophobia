@@ -51,7 +51,7 @@ describe Nephophobia::Image do
       end
     end
 
-    it "returns the given 'image_id'" do
+    it "returns the image" do
       @response.image_id.must_equal @image_id
     end
 
