@@ -8,17 +8,17 @@ require "nokogiri"
 require "vcr"
 
 class MiniTest::Unit::TestCase
-  def cassette_for cassette
+  def cassette_for cassette, interaction = 0
     c = VCR::Cassette.new(cassette).send :recorded_interactions
 
-    Nokogiri::XML::Document.parse c.first.response.body
+    Nokogiri::XML::Document.parse c[interaction].response.body
   end
 end
 
 VCR.config do |c|
   c.stub_with :fakeweb
   c.cassette_library_dir     = "test/cassettes"
-  c.default_cassette_options = { :record => :new_episodes }
+  c.default_cassette_options = { :record => :none }
 end
 
 class Client

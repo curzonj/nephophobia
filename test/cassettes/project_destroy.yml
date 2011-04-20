@@ -21,10 +21,10 @@
       content-length: 
       - "313"
       date: 
-      - Tue, 19 Apr 2011 01:18:09 GMT
+      - Tue, 19 Apr 2011 23:04:45 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>I7N-QUYYWU85DF3LGLRC</requestId><username>vcr_user</username><secretkey>179774a0-9c6e-4c6f-87d6-fccc71379bfe</secretkey><accesskey>6ffa6bde-1301-4baa-8675-50f029340371</accesskey><file/></RegisterUserResponse>
+    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>LZSRPDNTK2BSUWQ0VJF9</requestId><username>vcr_user</username><secretkey>d1b40da6-46f5-4ba1-ab87-2a45f60a97f7</secretkey><accesskey>ca2111ec-2100-4ae5-81b2-9da1935706f8</accesskey><file/></RegisterUserResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
@@ -48,10 +48,10 @@
       content-length: 
       - "286"
       date: 
-      - Tue, 19 Apr 2011 01:18:10 GMT
+      - Tue, 19 Apr 2011 23:04:45 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><RegisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>-Q3C7QHT2VX150TJQFQV</requestId><projectname>vcr_project</projectname><projectManagerId>vcr_user</projectManagerId><description>vcr_project</description></RegisterProjectResponse>
+    body: <?xml version="1.0" ?><RegisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>EIT92XE3LH11-RLRCQUI</requestId><projectname>vcr_project</projectname><projectManagerId>vcr_user</projectManagerId><description>vcr_project</description></RegisterProjectResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
@@ -75,10 +75,10 @@
       content-length: 
       - "190"
       date: 
-      - Tue, 19 Apr 2011 01:18:10 GMT
+      - Tue, 19 Apr 2011 23:04:45 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DeregisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>7CRS46SCHR6SMH4L3JE-</requestId><return>true</return></DeregisterProjectResponse>
+    body: <?xml version="1.0" ?><DeregisterProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>NT1--MRNNE8HRTYP86WD</requestId><return>true</return></DeregisterProjectResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
@@ -102,8 +102,8 @@
       content-length: 
       - "184"
       date: 
-      - Tue, 19 Apr 2011 01:18:10 GMT
+      - Tue, 19 Apr 2011 23:04:45 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DeregisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>GPQ7THRHIGK0P5AG6MBL</requestId><return>true</return></DeregisterUserResponse>
+    body: <?xml version="1.0" ?><DeregisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>MYE5OCE9354X0Y071BV6</requestId><return>true</return></DeregisterUserResponse>
     http_version: "1.1"

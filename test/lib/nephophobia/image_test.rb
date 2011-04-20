@@ -56,10 +56,10 @@ describe Nephophobia::Image do
     end
 
     it "contains the image data" do
-      @response.architecture.must_be_nil
+      @response.respond_to?(:architecture).must_equal true
       @response.image_id.must_equal @image_id
       @response.image_location.must_match %r{[a-z]+}
-      @response.image_owner_id.must_be_nil
+      @response.respond_to?(:image_owner_id).must_equal true
       @response.image_type.must_equal "machine"
       @response.is_public.must_equal "true"
       @response.kernel_id.must_match %r{[a-z]+-[0-9]+}

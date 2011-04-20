@@ -2,7 +2,34 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.1.170.32:8773/services/Cloud?AWSAccessKeyId=9dd4add8-ca15-42fd-8874-9a3d294ba459%3Avcr_project&Action=DescribeInstances&Filter.1.Name=instance-type&Filter.1.Value.1=m1.small&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=y6HWMUnV8uqUtrKHiflQWCROJo%2FojgY3qIhTIHBUElQ%3D
+    uri: http://10.3.170.32:8773/services/Cloud?AWSAccessKeyId=beeb1bd0-c920-4352-b078-5f297a0899a0%3Asandbox&Action=RunInstances&ImageId=ami-00000002&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=dvPNbClu44bc4nKLl6ikjJ98zeok9OZmuXEZVhi4XJE%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "779"
+      date: 
+      - Wed, 20 Apr 2011 00:08:22 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>NVYQLLK4MMKNDLJYCQSQ</requestId><ownerId>sandbox</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-xs2lezaq</reservationId><instancesSet><item><displayDescription/><displayName>Server 232</displayName><keyName/><instanceId>i-000000e8</instanceId><instanceState><code>0</code><name>scheduling</name></instanceState><publicDnsName/><imageId>ami-00000002</imageId><productCodesSet/><privateDnsName/><dnsName/><launchTime>2011-04-20T00:08:22Z</launchTime><placement><availabilityZone>unknown zone</availabilityZone></placement><amiLaunchIndex>0</amiLaunchIndex><instanceType>m1.small</instanceType></item></instancesSet></RunInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.32:8773/services/Cloud?AWSAccessKeyId=beeb1bd0-c920-4352-b078-5f297a0899a0%3Asandbox&Action=DescribeInstances&Filter.1.Name=instance-type&Filter.1.Value.1=m1.small&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=H7nSd%2FmQdDMLVZgwK%2BcfHT35FAatQ6ysO1wceQYtEiw%3D
     body: 
     headers: 
       accept: 
@@ -21,10 +48,37 @@
       content-length: 
       - "223"
       date: 
-      - Tue, 15 Mar 2011 07:08:12 GMT
+      - Wed, 20 Apr 2011 00:08:22 GMT
       connection: 
       - keep-alive
     body: |-
       <?xml version="1.0"?>
-      <Response><Errors><Error><Code>UnknownError</Code><Message>An unknown error has occurred. Please try your request again.</Message></Error></Errors><RequestID>HBD56VDFYVODQ8BNFFX4</RequestID></Response>
+      <Response><Errors><Error><Code>UnknownError</Code><Message>An unknown error has occurred. Please try your request again.</Message></Error></Errors><RequestID>VMHQ4EK16Y3XMXE9PYHB</RequestID></Response>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.32:8773/services/Cloud?AWSAccessKeyId=beeb1bd0-c920-4352-b078-5f297a0899a0%3Asandbox&Action=TerminateInstances&InstanceId.1=i-000000e8&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=wr9Iw9fe%2F7%2Fve1utl9F%2FpTch6jNme3ma%2BLfcYDNLaW4%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "192"
+      date: 
+      - Wed, 20 Apr 2011 00:08:23 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><TerminateInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>XI-062EJV4CSXAWUSBS6</requestId><return>true</return></TerminateInstancesResponse>
     http_version: "1.1"
