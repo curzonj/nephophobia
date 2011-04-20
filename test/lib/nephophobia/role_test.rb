@@ -11,18 +11,8 @@ describe Nephophobia::Role do
     @user_name    = "vcr_user"
     @project_name = "sandbox"
     @role_name    = "netadmin"
-    @role         = ::Client.with(:admin,
-      :host       => "10.3.170.32",
-      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
-      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
-      :project    => @project_name
-    ).role
-    @user         = ::Client.with(:admin,
-      :host       => "10.3.170.32",
-      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
-      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
-      :project    => @project_name
-    ).user
+    @role         = ::Client.with(:admin).role
+    @user         = ::Client.with(:admin).user
   end
 
   describe "#all with a 'user_name'" do

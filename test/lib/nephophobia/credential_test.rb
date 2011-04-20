@@ -8,12 +8,7 @@ describe Nephophobia::Credential do
   before do
     @key_name     = "vcr_keypair"
     @project_name = "sandbox"
-    @credential   = ::Client.with(:user,
-      :host       => "10.3.170.32",
-      :access_key => "beeb1bd0-c920-4352-b078-5f297a0899a0",
-      :secret_key => "5bf3d424-bcf1-4684-8fb0-2aaec275f896",
-      :project    => @project_name
-    ).credential
+    @credential   = ::Client.with(:user).credential
   end
 
   describe "#all" do

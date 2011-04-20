@@ -10,12 +10,7 @@ describe Nephophobia::Compute do
   before do
     @project_name = "sandbox"
     @image_id     = "ami-00000002"
-    @compute      = ::Client.with(:user,
-      :host       => "10.3.170.32",
-      :access_key => "beeb1bd0-c920-4352-b078-5f297a0899a0",
-      :secret_key => "5bf3d424-bcf1-4684-8fb0-2aaec275f896",
-      :project    => @project_name
-    ).compute
+    @compute      = ::Client.with(:user).compute
   end
 
   describe "#all" do

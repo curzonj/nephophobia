@@ -10,12 +10,7 @@ describe Nephophobia::User do
   before do
     @user_name    = "vcr_user"
     @project_name = "sandbox"
-    @user         = ::Client.with(:admin,
-      :host       => "10.3.170.32",
-      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
-      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
-      :project    => @project_name
-    ).user
+    @user         = ::Client.with(:admin).user
   end
 
   describe "#create" do
@@ -88,18 +83,8 @@ describe Nephophobia::User do
 
   describe "#register" do
     before do
-      @role    = ::Client.with(:admin,
-        :host       => "10.3.170.32",
-        :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
-        :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
-        :project    => @project_name
-      ).role
-      @project = ::Client.with(:admin,
-        :host       => "10.3.170.32",
-        :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
-        :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
-        :project    => @project_name
-      ).project
+      @role    = ::Client.with(:admin).role
+      @project = ::Client.with(:admin).project
 
       VCR.use_cassette "user_register" do
         @user.create @user_name

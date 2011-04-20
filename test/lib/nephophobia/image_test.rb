@@ -12,12 +12,7 @@ describe Nephophobia::Image do
   #   We will always have at least one project configured.
 
   before do
-    @image = ::Client.with(:user,
-      :host       => "10.3.170.32",
-      :access_key => "beeb1bd0-c920-4352-b078-5f297a0899a0",
-      :secret_key => "5bf3d424-bcf1-4684-8fb0-2aaec275f896",
-      :project    => "sandbox"
-    ).image
+    @image = ::Client.with(:user).image
   end
 
   describe "#all" do

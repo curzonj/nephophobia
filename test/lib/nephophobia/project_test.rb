@@ -10,18 +10,8 @@ describe Nephophobia::Project do
   before do
     @user_name    = "vcr_user"
     @project_name = "sandbox"
-    @project      = ::Client.with(:admin,
-      :host       => "10.3.170.32",
-      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
-      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
-      :project    => @project_name
-    ).project
-    @user         = ::Client.with(:admin,
-      :host       => "10.3.170.32",
-      :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
-      :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e",
-      :project    => @project_name
-    ).user
+    @project      = ::Client.with(:admin).project
+    @user         = ::Client.with(:admin).user
   end
 
   describe "#add_member" do

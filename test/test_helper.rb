@@ -24,14 +24,15 @@ end
 class Client
   def self.with type, options = {}
     client_options = case type
-      when :user
-        { :project => "vcr_project" }
-      when :admin ; {
-        :access_key => "1d7a687b-0065-44d6-9611-5bf6c6c72424",
-        :secret_key => "fd3053fd-25c2-48f8-b893-9f22661ec63c",
-        :project    => "production"
+      when :user ; {
+        :access_key => "beeb1bd0-c920-4352-b078-5f297a0899a0",
+        :secret_key => "5bf3d424-bcf1-4684-8fb0-2aaec275f896"
       }
-    end.merge(:host => "10.1.170.32")
+      when :admin ; {
+        :access_key => "03982c2e-8e28-40b6-95e2-f2811383b4a2",
+        :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e"
+      }
+    end.merge(:host => "10.3.170.32", :project => "sandbox")
 
     Nephophobia::Client.new client_options.merge options
   end
