@@ -2,8 +2,12 @@ module Nephophobia
   class RoleData
     attr_reader :name
 
-    def initialize hash
-      @name = hash['role']
+    attr_accessor :attributes
+
+    def initialize attributes
+      @attributes = attributes
+
+      @name = attributes['role']
     end
   end
 

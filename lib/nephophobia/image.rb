@@ -3,16 +3,20 @@ module Nephophobia
     attr_reader :architecture, :image_id, :image_location, :image_owner_id
     attr_reader :image_type, :kernel_id, :is_public, :state
 
-    def initialize hash
-      @architecture   = hash['architecture']
-      @id             = hash['id']
-      @image_id       = hash['imageId']
-      @image_location = hash['imageLocation']
-      @image_owner_id = hash['imageOwnerId']
-      @image_type     = hash['imageType']
-      @is_public      = hash['isPublic']
-      @kernel_id      = hash['kernelId']
-      @state          = hash['imageState']
+    attr_accessor :attributes
+
+    def initialize attributes
+      @attributes = attributes
+
+      @architecture   = attributes['architecture']
+      @id             = attributes['id']
+      @image_id       = attributes['imageId']
+      @image_location = attributes['imageLocation']
+      @image_owner_id = attributes['imageOwnerId']
+      @image_type     = attributes['imageType']
+      @is_public      = attributes['isPublic']
+      @kernel_id      = attributes['kernelId']
+      @state          = attributes['imageState']
     end
   end
 

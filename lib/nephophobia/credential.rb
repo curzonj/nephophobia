@@ -2,10 +2,14 @@ module Nephophobia
   class CredentialData
     attr_reader :fingerprint, :material, :name
 
-    def initialize hash
-      @material    = hash['keyMaterial']
-      @name        = hash['keyName']
-      @fingerprint = hash['keyFingerprint']
+    attr_accessor :attributes
+
+    def initialize attributes
+      @attributes = attributes
+
+      @material    = attributes['keyMaterial']
+      @name        = attributes['keyName']
+      @fingerprint = attributes['keyFingerprint']
     end
   end
 

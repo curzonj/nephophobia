@@ -2,10 +2,14 @@ module Nephophobia
   class UserData
     attr_reader :accesskey, :username, :secretkey
 
-    def initialize hash
-      @accesskey = hash['accesskey']
-      @username  = hash['username']
-      @secretkey = hash['secretkey']
+    attr_accessor :attributes
+
+    def initialize attributes
+      @attributes = attributes
+
+      @accesskey = attributes['accesskey']
+      @username  = attributes['username']
+      @secretkey = attributes['secretkey']
     end
   end
 

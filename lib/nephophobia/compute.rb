@@ -4,9 +4,13 @@ module Nephophobia
     attr_reader :key_name, :launch_time, :name, :owner_id, :placement
     attr_reader :private_dns_name, :project_id, :public_dns_name, :state
 
-    def initialize hash
-      @project_id       = hash['ownerId']
-      item              = hash['instancesSet']['item']
+    attr_accessor :attributes
+
+    def initialize attributes
+      @attributes = attributes
+
+      @project_id       = attributes['ownerId']
+      item              = attributes['instancesSet']['item']
       item              = item.first if item.is_a?(Array)
       @description      = item['displayDescription']
       @name             = item['displayName']

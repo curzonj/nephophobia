@@ -2,19 +2,27 @@ module Nephophobia
   class ProjectData
     attr_reader :name, :manager_id, :description
 
-    def initialize hash
-      @name        = hash['projectname']
-      @manager_id  = hash['projectManagerId']
-      @description = hash['description']
-      @member      = hash['member']
+    attr_accessor :attributes
+
+    def initialize attributes
+      @attributes = attributes
+
+      @name        = attributes['projectname']
+      @manager_id  = attributes['projectManagerId']
+      @description = attributes['description']
+      @member      = attributes['member']
     end
   end
 
   class MemberData
     attr_reader :member
 
-    def initialize hash
-      @member = hash['member']
+    attr_accessor :attributes
+
+    def initialize attributes
+      @attributes = attributes
+
+      @member = attributes['member']
     end
   end
 
