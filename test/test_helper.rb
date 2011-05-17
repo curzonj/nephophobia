@@ -10,6 +10,7 @@ require "vcr"
 class MiniTest::Unit::TestCase
   def cassette_for cassette, interaction = 0
     c = VCR::Cassette.new(cassette).send :recorded_interactions
+    VCR.eject_cassette
 
     Nokogiri::XML::Document.parse c[interaction].response.body
   end

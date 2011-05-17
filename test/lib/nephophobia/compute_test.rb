@@ -32,7 +32,7 @@ describe Nephophobia::Compute do
       @response.size.must_be :>=, 1
     end
   end
-  
+
   describe "#all with filter" do
     before do
       VCR.use_cassette "compute_all_with_filter" do
@@ -155,6 +155,35 @@ describe Nephophobia::Compute do
 
     it "reboots the given 'instance_id'" do
       @response.return.must_equal true
+    end
+  end
+  describe "#vnc_url" do
+    before do
+      VCR.use_cassette "compute_vnc_url" do
+        ##
+        # Pointing to the nova trunk version.
+
+        @compute = ::Client.with(:admin,
+          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+          :host       => "10.3.170.35",
+          :project    => "sandbox"
+        ).compute
+
+        @instance_id = @compute.create(@image_id).instance_id
+
+        @response = @compute.vnc_url @instance_id
+      end
+    end
+
+    after do
+      VCR.use_cassette "compute_vnc_url" do
+        @compute.destroy @instance_id
+      end
+    end
+
+    it "has a vnc url for the given 'instance_id'" do
+      @response.url.must_match %r{/vnc_auto.html\?token=[a-z0-9-]+}
     end
   end
 end

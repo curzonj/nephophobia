@@ -1,0 +1,82 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=RunInstances&ImageId=ami-00000002&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=tPz8K7mYsXFNuGeGmQCf3JFCOWsQ5iGKP%2B4CU1PUoOI%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "838"
+      date: 
+      - Tue, 17 May 2011 22:54:02 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>UQI84EDZKAJCI9OD6P7-</requestId><ownerId>sandbox</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-g3dtl3nz</reservationId><instancesSet><item><displayDescription/><displayName>Server 44</displayName><keyName>None (sandbox, None)</keyName><instanceId>i-0000002c</instanceId><instanceState><code>0</code><name>scheduling</name></instanceState><publicDnsName/><imageId>ami-00000002</imageId><productCodesSet/><privateDnsName/><dnsName/><launchTime>2011-05-17T22:54:02Z</launchTime><amiLaunchIndex>0</amiLaunchIndex><placement><availabilityZone>unknown zone</availabilityZone></placement><ipAddress/><instanceType>m1.small</instanceType><privateIpAddress/></item></instancesSet></RunInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=GetVncConsole&InstanceId=i-0000002c&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=CTnwl8XghsgR%2BvLufr6apb%2F7CxBRHWXMDzbVqARIvM0%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "292"
+      date: 
+      - Tue, 17 May 2011 22:55:08 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><GetVncConsoleResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>MQGGGBRZT52RW30-Q0HC</requestId><url>http://10.3.170.35:6080/vnc_auto.html?token=43d60f5f-b4d6-406a-a4ec-c6ff8e8a741e&amp;host=hostignore&amp;port=portignore</url></GetVncConsoleResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=TerminateInstances&InstanceId.1=i-0000002c&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=jM8GDD%2B9KoSnyC2CgqXhvp2FXKlZriKt6ZVEU1w38Fk%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "192"
+      date: 
+      - Tue, 17 May 2011 22:55:19 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><TerminateInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>3JEB2L90CZG-HQ6-KDG5</requestId><return>true</return></TerminateInstancesResponse>
+    http_version: "1.1"
