@@ -12,13 +12,12 @@ module Nephophobia
       @port = options[:port] || 8773
 
       @connection = Hugs::Client.new(
-        :host     => options[:host],
-        :scheme   => options[:scheme] || "http",
-        :port     => @port,
-        :type     => options[:type] || :xml
+        :host         => options[:host],
+        :scheme       => options[:scheme] || "http",
+        :port         => @port,
+        :type         => options[:type] || :xml,
+        :raise_errors => true
       )
-      @connection.raise_4xx = true
-      @connection.raise_5xx = true
 
       @aws = AWS.new(
         :host       => options[:host],
