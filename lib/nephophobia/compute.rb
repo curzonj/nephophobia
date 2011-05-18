@@ -27,6 +27,14 @@ module Nephophobia
     end
   end
 
+  class VncData
+    attr_reader :url, :attributes
+
+    def initialize attributes
+      @url = attributes['url']
+    end
+  end
+
   class Compute
     def initialize client
       @client = client
@@ -146,6 +154,22 @@ module Nephophobia
       response = @client.action "StartInstances", params
 
       ResponseData.new response.body
+    end
+
+    ##
+    # Returns the VNC browser URL.  Used by the Portal.
+    # __Must__ execute as a user with the +admin+ role.
+    #
+    # +instance_id+: A String representing the ID of the instance.
+
+    def vnc_url instance_id
+      params = {
+        "InstanceId" => instance_id
+      }
+
+      response = @client.action "GetVncConsole", params
+
+      VncData.new response.body['GetVncConsoleResponse']
     end
   end
 end

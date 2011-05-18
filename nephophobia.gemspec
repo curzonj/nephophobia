@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "hugs", "~> 2.6.0"
 
   s.add_development_dependency "fakeweb", "~> 1.3.0"
-  s.add_development_dependency "minitest", "~> 2.0.2"
+  s.add_development_dependency "minitest", "~> 2.1.0"
   s.add_development_dependency "nokogiri", "~> 1.4.4"
   s.add_development_dependency "rake", "~> 0.8.7"
   s.add_development_dependency "vcr", "1.5.0"

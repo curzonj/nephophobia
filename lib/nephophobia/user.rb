@@ -1,3 +1,6 @@
+##
+# __Must__ execute as a user with the +admin+ role.
+
 module Nephophobia
   class UserData
     attr_reader :accesskey, :username, :secretkey
