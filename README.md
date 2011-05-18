@@ -25,3 +25,7 @@ ruby 1.9.2
 Tests can run offline thanks to [VCR](https://github.com/myronmarston/vcr).
 
     $ bundle exec rake
+
+## TODO
+
+* Should really handle users better.  Once you have a user object perform actions on it vs passing user all over the place.
