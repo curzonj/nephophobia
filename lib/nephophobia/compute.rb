@@ -28,7 +28,7 @@ module Nephophobia
   end
 
   class VncData
-    attr_reader :url
+    attr_reader :url, :attributes
 
     def initialize attributes
       @url = attributes['url']
@@ -158,7 +158,7 @@ module Nephophobia
 
     ##
     # Returns the VNC browser URL.  Used by the Portal.
-    # __Must__ have an +admin+ role to use.
+    # __Must__ execute as a user with the +admin+ role.
     #
     # +instance_id+: A String representing the ID of the instance.
 

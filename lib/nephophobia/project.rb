@@ -1,3 +1,6 @@
+##
+# __Must__ execute as a user with the +admin+ role.
+
 module Nephophobia
   class ProjectData
     attr_reader :name, :manager_id, :description
