@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.version     = Nephophobia::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["John Dewey", "Josh Kleinpeter"]
-  s.email       = ["jdewey@attinteractive.com", "jkleinpeter@attinteractive.com"]
-  s.homepage    = ""
+  s.email       = ["john@dewey.ws", "jkleinpeter@attinteractive.com"]
+  s.homepage    = "http://github.com/retr0h/nephophobia"
   s.summary     = %q{Bindings to EC2/OpenStack}
   s.description = %q{This gem is a simple binding to the EC2 API. It has specific extensions to allow extra functionality provided by OpenStack.}
 
