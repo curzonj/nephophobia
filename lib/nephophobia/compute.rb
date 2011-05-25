@@ -171,5 +171,28 @@ module Nephophobia
 
       VncData.new response.body['GetVncConsoleResponse']
     end
+
+    def allocate_address
+      response = @client.action "AllocateAddress", {}
+      ResponseData.new response.body["AllocateAddressResponse"]
+    end
+
+    def associate_address instance_id, floating_ip
+      params = {
+        "InstanceId" => instance_id,
+        "PublicIp" => floating_ip
+      }
+      response = @client.action "AssociateAddress", params
+      ResponseData.new response.body["AssociateAddressResponse"]
+    end
+
+    def disassociate_address floating_ip
+      params = {
+        "PublicIp" => floating_ip
+      }
+      response = @client.action "DisassociateAddress", params
+      ResponseData.new response.body["DisassociateAddressResponse"]
+    end
+
   end
 end

@@ -186,4 +186,105 @@ describe Nephophobia::Compute do
       @response.url.must_match %r{/vnc_auto.html\?token=[a-z0-9-]+}
     end
   end
+
+  describe "#allocate_address_available" do
+    before do
+      VCR.use_cassette "compute_allocate_address" do
+        @compute = ::Client.with(:admin,
+          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+          :host       => "10.3.170.35",
+          :project    => "sandbox"
+        ).compute
+
+        @response = @compute.allocate_address
+      end
+    end
+
+    after do
+      VCR.use_cassette "compute_allocate_address" do
+        @compute.release_address '69.1.1.1'
+      end
+    end
+
+    it 'allocates address' do
+      @response.attributes['publicIp'].must_equal '69.1.1.1'
+    end
+  end
+
+  describe "#allocate_address_not_available" do
+    before do
+      VCR.use_cassette "compute_allocate_address_fail" do
+        @compute = ::Client.with(:admin,
+          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+          :host       => "10.3.170.35",
+          :project    => "sandbox"
+        ).compute
+      end
+    end
+
+    it 'has no available address' do
+      VCR.use_cassette "compute_allocate_address_fail" do
+        lambda { @compute.allocate_address}.must_raise Hugs::Errors::BadRequest
+      end
+    end
+  end
+
+  describe '#associate_address' do
+    before do
+      VCR.use_cassette "compute_associate_address" do
+        @compute = ::Client.with(:admin,
+          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+          :host       => "10.3.170.35",
+          :project    => "sandbox"
+        ).compute
+        @instance_id = @compute.create(@image_id).instance_id
+        # when vcr recording, vm create takes some time to assign fixed ip to come up
+        sleep 5 unless VCR.current_cassette.record_mode == :none
+        @response = @compute.associate_address(@instance_id, '69.1.1.1')
+      end
+    end
+
+    after do
+      VCR.use_cassette "compute_associate_address" do
+        @compute.destroy @instance_id
+      end
+    end
+
+    it 'has associated the address' do
+      @response.attributes["associateResponse"]["item"].must_equal 'Address associated.'
+    end
+  end
+
+  describe '#disassociate_address' do
+    before do
+      VCR.use_cassette "compute_disassociate_address" do
+        @compute = ::Client.with(:admin,
+          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+          :host       => "10.3.170.35",
+          :project    => "sandbox"
+        ).compute
+        @instance_id = @compute.create(@image_id).instance_id
+        # when vcr recording, vm create takes some time to assign fixed ip to come up
+        sleep 5 unless VCR.current_cassette.record_mode == :none
+        @compute.associate_address(@instance_id, '69.1.1.1')
+        sleep 5 unless VCR.current_cassette.record_mode == :none
+        @response = @compute.disassociate_address '69.1.1.1'
+      end
+    end
+
+    after do
+      VCR.use_cassette "compute_disassociate_address" do
+        @compute.destroy @instance_id
+      end
+    end
+
+    it 'remove the floating from instance' do
+      @response.attributes["disassociateResponse"]["item"].must_equal "Address disassociated."
+    end
+  end
+
 end
