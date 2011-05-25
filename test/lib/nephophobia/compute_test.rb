@@ -202,13 +202,14 @@ describe Nephophobia::Compute do
     end
 
     after do
+      pubip = @response.attributes['publicIp']
       VCR.use_cassette "compute_allocate_address" do
-        @compute.release_address '69.1.1.1'
+        @compute.release_address pubip
       end
     end
 
     it 'allocates address' do
-      @response.attributes['publicIp'].must_equal '69.1.1.1'
+      @response.attributes['publicIp'].must_be_kind_of String
     end
   end
 
@@ -231,6 +232,26 @@ describe Nephophobia::Compute do
     end
   end
 
+  describe "#release_address" do
+    before do
+      VCR.use_cassette "compute_release_address" do
+        @compute = ::Client.with(:admin,
+          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+          :host       => "10.3.170.35",
+          :project    => "sandbox"
+        ).compute
+
+        pubip = @compute.allocate_address.attributes['publicIp']
+        @response = @compute.release_address pubip
+      end
+    end
+
+    it 'had removed the floating ip' do
+      @response.attributes["releaseResponse"]["item"].must_equal "Address released."
+    end
+  end
+
   describe '#associate_address' do
     before do
       VCR.use_cassette "compute_associate_address" do
@@ -240,16 +261,18 @@ describe Nephophobia::Compute do
           :host       => "10.3.170.35",
           :project    => "sandbox"
         ).compute
+        @pubip = @compute.allocate_address.attributes['publicIp']
         @instance_id = @compute.create(@image_id).instance_id
         # when vcr recording, vm create takes some time to assign fixed ip to come up
         sleep 5 unless VCR.current_cassette.record_mode == :none
-        @response = @compute.associate_address(@instance_id, '69.1.1.1')
+        @response = @compute.associate_address(@instance_id, @pubip)
       end
     end
 
     after do
       VCR.use_cassette "compute_associate_address" do
         @compute.destroy @instance_id
+        @compute.release_address @pubip
       end
     end
 
@@ -267,18 +290,20 @@ describe Nephophobia::Compute do
           :host       => "10.3.170.35",
           :project    => "sandbox"
         ).compute
+        @pubip = @compute.allocate_address.attributes['publicIp']
         @instance_id = @compute.create(@image_id).instance_id
         # when vcr recording, vm create takes some time to assign fixed ip to come up
         sleep 5 unless VCR.current_cassette.record_mode == :none
-        @compute.associate_address(@instance_id, '69.1.1.1')
+        @compute.associate_address(@instance_id, @pubip)
         sleep 5 unless VCR.current_cassette.record_mode == :none
-        @response = @compute.disassociate_address '69.1.1.1'
+        @response = @compute.disassociate_address @pubip
       end
     end
 
     after do
       VCR.use_cassette "compute_disassociate_address" do
         @compute.destroy @instance_id
+        @compute.release_address @pubip
       end
     end
 

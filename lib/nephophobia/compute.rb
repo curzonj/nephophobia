@@ -177,6 +177,14 @@ module Nephophobia
       ResponseData.new response.body["AllocateAddressResponse"]
     end
 
+    def release_address floating_ip
+      params = {
+        "PublicIp" => floating_ip
+      }
+      response = @client.action "ReleaseAddress", params
+      ResponseData.new response.body["ReleaseAddressResponse"]
+    end
+
     def associate_address instance_id, floating_ip
       params = {
         "InstanceId" => instance_id,
