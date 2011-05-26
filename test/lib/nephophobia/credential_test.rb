@@ -1,3 +1,5 @@
+require 'test_helper'
+
 describe Nephophobia::Credential do
   ##
   # Note:
@@ -75,17 +77,38 @@ describe Nephophobia::Credential do
     end
   end
 
-  #describe "#download" do
-  #  before do
-  #    @user_name = "jd265j"
-  #  end
+  describe "#download" do
+    before do
+      VCR.use_cassette "credential_download" do
+        @client = ::Client.with(:admin,
+          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+          :host       => "10.3.170.35",
+          :project    => "sandbox"
+        )
 
-  #  it "returns the credentials for a given 'user_name' for the specified 'project_name'." do
-  #    VCR.use_cassette "credential_download" do
-  #      response = @credential.download @user_name, @project_name
+        @uname = 'jsmith'
+        @client.user.create 'jsmith'
+        @client.project.create 'myproj1', 'jsmith'
+        @client.project.create 'myproj2', 'jsmith'
+      end
+    end
 
-  #      response.must_match %r{BEGIN CERTIFICATE}
-  #    end
-  #  end
-  #end
+    after do
+      VCR.use_cassette "credential_download" do
+        @client.project.destroy 'myproj1'
+        @client.project.destroy 'myproj2'
+        @client.user.destroy 'jsmith'
+      end
+    end
+
+    it "returns the credentials for a given 'user_name' for the specified 'project_name'." do
+      VCR.use_cassette "credential_download" do
+        @client.project.members('myproj1')[0].member.must_equal @uname
+        @client.project.members('myproj2')[0].member.must_equal @uname
+        response = @client.admin_credential.download @uname, @project_name
+        response.must_match %r{BEGIN CERTIFICATE}
+      end
+    end
+  end
 end

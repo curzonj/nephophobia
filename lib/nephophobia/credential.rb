@@ -70,15 +70,14 @@ module Nephophobia
     #
     # TODO: Determine why it fails in Nova when a user is in more than one project.
 
-    #def download user_name, project_name
-    #  params = {
-    #    "Name"    => user_name,
-    #    "Project" => project_name
-    #  }
+    def download user_name, project_name
+      params = {
+        "Name"    => user_name,
+        "Project" => project_name
+      }
 
-    #  response = @client.action "GenerateX509ForUser", params
-
-    #  Base64.decode64 response.body['GenerateX509ForUserResponse']['file']
-    #end
+      response = @client.action "GenerateX509ForUser", params
+      Base64.decode64 response.body['GenerateX509ForUserResponse']['file']
+    end
   end
 end

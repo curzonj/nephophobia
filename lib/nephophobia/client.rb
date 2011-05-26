@@ -70,6 +70,10 @@ module Nephophobia
       @credential ||= Nephophobia::Credential.new self
     end
 
+    def admin_credential
+      @path         = "/services/Admin"
+      @credential ||= Nephophobia::Credential.new self
+    end
     ##
     # Provide a simple interface to the EC2 Image resources.
 
