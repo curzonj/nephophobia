@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=AllocateAddress&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=bCaGs5tWfNNy%2F3sg%2FRP0ISHMEnT0EZzuoPe%2Fcconzn8%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 400
+      message: Bad Request
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "223"
+      date: 
+      - Wed, 25 May 2011 20:18:57 GMT
+      connection: 
+      - keep-alive
+    body: |-
+      <?xml version="1.0"?>
+      <Response><Errors><Error><Code>UnknownError</Code><Message>An unknown error has occurred. Please try your request again.</Message></Error></Errors><RequestID>XMJSQ3C9JVKG8425FI48</RequestID></Response>
+    http_version: "1.1"

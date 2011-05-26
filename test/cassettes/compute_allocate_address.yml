@@ -1,0 +1,55 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=AllocateAddress&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=bCaGs5tWfNNy%2F3sg%2FRP0ISHMEnT0EZzuoPe%2Fcconzn8%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "194"
+      date: 
+      - Wed, 25 May 2011 22:30:56 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><AllocateAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>PW8TPJTX8XSPDPTNSAIR</requestId><publicIp>69.1.1.1</publicIp></AllocateAddressResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=ReleaseAddress&PublicIp=69.1.1.1&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=lQpO7lKIr7pdJWi7J%2FWS3T6e6X%2FYjVixw2qaK%2FJyS30%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "228"
+      date: 
+      - Wed, 25 May 2011 22:30:56 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><ReleaseAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>6RRU8VV0CEG-SPEB5KKP</requestId><releaseResponse><item>Address released.</item></releaseResponse></ReleaseAddressResponse>
+    http_version: "1.1"
