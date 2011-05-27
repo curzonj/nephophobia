@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=RegisterUser&Name=vcr_user&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=nthXQq43tPrgjgiuaeCImXCS3kfDdv47YuT6tzxZ6wg%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=RegisterUser&Name=vcr_user&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=6AjzqntOVWOXKISXoh%2BEAq9jrsgrH%2BKnfpTSBzx%2B%2F6A%3D
     body: 
     headers: 
       accept: 
@@ -21,15 +21,15 @@
       content-length: 
       - "313"
       date: 
-      - Tue, 19 Apr 2011 22:19:06 GMT
+      - Fri, 27 May 2011 17:46:08 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>KL1VTSY0LO1YTR9IUCGD</requestId><username>vcr_user</username><secretkey>91edc33c-b6f0-44e1-8806-6e33c3699c87</secretkey><accesskey>92ac1c95-69c2-4b6d-b6c4-0831be388f6b</accesskey><file/></RegisterUserResponse>
+    body: <?xml version="1.0" ?><RegisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>IIN0O6E4GGSLTM5HW-ZX</requestId><username>vcr_user</username><secretkey>a6f8532b-4073-494f-b71e-b55773609e05</secretkey><accesskey>ee81dda8-6458-49d2-97f5-2b5ae0ace2b8</accesskey><file/></RegisterUserResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=ModifyProjectMember&Operation=add&Project=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr_user&Version=2010-11-15&Signature=IrvE46vanO2TpR4KZT%2FTyvmyERyATesOdA9iY8Wxlmo%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=ModifyProjectMember&Operation=add&Project=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr_user&Version=2010-11-15&Signature=K0g5BrmtuGPDHSMkbSWNtTuIzkF08MeWnIFVkDgKH78%3D
     body: 
     headers: 
       accept: 
@@ -48,15 +48,15 @@
       content-length: 
       - "194"
       date: 
-      - Tue, 19 Apr 2011 22:19:07 GMT
+      - Fri, 27 May 2011 17:46:08 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>Q5AAVNUOV3VEJG68VVOT</requestId><return>true</return></ModifyProjectMemberResponse>
+    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>HE55QG0Z2PN0F25FND6F</requestId><return>true</return></ModifyProjectMemberResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjects&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=aLDnU%2F5Nk%2B%2FTkTtSQWBE3J4dWCaTBFNLPRBLoRw5EQ8%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjects&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=x%2BZKorCAof93BhH%2FHG%2BCvpBDHW1nQHtOe4LXUPiOyfQ%3D
     body: 
     headers: 
       accept: 
@@ -75,15 +75,15 @@
       content-length: 
       - "430"
       date: 
-      - Tue, 19 Apr 2011 22:19:07 GMT
+      - Fri, 27 May 2011 17:46:08 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectsResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>0CP8CR1DL0QYWNBFXW2E</requestId><projectSet><item><projectname>sandbox</projectname><projectManagerId>root</projectManagerId><description>sandbox</description></item><item><projectname>core</projectname><projectManagerId>root</projectManagerId><description>core</description></item></projectSet></DescribeProjectsResponse>
+    body: <?xml version="1.0" ?><DescribeProjectsResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>TJC2E11KN0JVP7OH1ADZ</requestId><projectSet><item><projectname>sandbox</projectname><projectManagerId>root</projectManagerId><description>sandbox</description></item><item><projectname>core</projectname><projectManagerId>root</projectManagerId><description>core</description></item></projectSet></DescribeProjectsResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjectMembers&Name=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=TNzeGrVLbfQ8DFlrUFUA7poSyY69GIrLZd%2FZX3RDfno%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjectMembers&Name=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=wTXaX6kI6U7c01YgfL5w2fX5BhhEBCK%2FfupkcS6T1NQ%3D
     body: 
     headers: 
       accept: 
@@ -100,17 +100,17 @@
       content-type: 
       - text/xml
       content-length: 
-      - "414"
+      - "630"
       date: 
-      - Tue, 19 Apr 2011 22:19:07 GMT
+      - Fri, 27 May 2011 17:46:09 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>MOQ8LGFZBBP1FDO0MPZD</requestId><members><item><member>root</member></item><item><member>jk520u</member></item><item><member>jd265j</member></item><item><member>kb718q</member></item><item><member>pe623x</member></item><item><member>vcr_user</member></item></members></DescribeProjectMembersResponse>
+    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>KXA0WYYM-T6CSM659CVT</requestId><members><item><member>eh0377</member></item><item><member>cc520u</member></item><item><member>kb718q</member></item><item><member>root</member></item><item><member>jd265j</member></item><item><member>pe623x</member></item><item><member>jk520u</member></item><item><member>cn5542</member></item><item><member>fh865a</member></item><item><member>aa873p</member></item><item><member>jt708u</member></item><item><member>vcr_user</member></item></members></DescribeProjectMembersResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjectMembers&Name=core&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=qx4VGV9NS%2B%2FdcLo0T0UunA%2FcDavQHctr8xC9sP2mceA%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProjectMembers&Name=core&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=TscHTBajvvdenH4c7nctcynLgvv4SksDYG0JPzU8MJU%3D
     body: 
     headers: 
       accept: 
@@ -129,15 +129,15 @@
       content-length: 
       - "304"
       date: 
-      - Tue, 19 Apr 2011 22:19:07 GMT
+      - Fri, 27 May 2011 17:46:09 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>A-UWFMCBQAQXNX6V5JCH</requestId><members><item><member>root</member></item><item><member>jd265j</member></item><item><member>kb718q</member></item></members></DescribeProjectMembersResponse>
+    body: <?xml version="1.0" ?><DescribeProjectMembersResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>O7PEWBFY8KXJU-4QW0XB</requestId><members><item><member>kb718q</member></item><item><member>root</member></item><item><member>jd265j</member></item></members></DescribeProjectMembersResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=ModifyProjectMember&Operation=remove&Project=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr_user&Version=2010-11-15&Signature=JUnvvNONN0%2FHmk83IzkhZW%2FRySqqBfWcF94lYvO9qoc%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=ModifyProjectMember&Operation=remove&Project=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&User=vcr_user&Version=2010-11-15&Signature=%2FmZ3tUMmDZDP0%2FDtcTzYKz7NkjKx%2Bj6TWHhaXrLtyJA%3D
     body: 
     headers: 
       accept: 
@@ -156,15 +156,15 @@
       content-length: 
       - "194"
       date: 
-      - Tue, 19 Apr 2011 22:19:08 GMT
+      - Fri, 27 May 2011 17:46:09 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>DOZP7O2HQ6J6Y-I5GR21</requestId><return>true</return></ModifyProjectMemberResponse>
+    body: <?xml version="1.0" ?><ModifyProjectMemberResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>EWE3GJS4W1L4ODF7BAWR</requestId><return>true</return></ModifyProjectMemberResponse>
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DeregisterUser&Name=vcr_user&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=aa2vpTcy0i2JfYcxUgDitUVqb3aPgH1FzgCcbQc2D5E%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DeregisterUser&Name=vcr_user&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=xE0f9t0Pixm0FkSRS%2B9oaao1FoM7o682i0gYkIlfwSU%3D
     body: 
     headers: 
       accept: 
@@ -183,8 +183,8 @@
       content-length: 
       - "184"
       date: 
-      - Tue, 19 Apr 2011 22:19:08 GMT
+      - Fri, 27 May 2011 17:46:10 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DeregisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>7S5APEOOEDF0AB2208PG</requestId><return>true</return></DeregisterUserResponse>
+    body: <?xml version="1.0" ?><DeregisterUserResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>ER-Y180CO76EYHEO38IR</requestId><return>true</return></DeregisterUserResponse>
     http_version: "1.1"

@@ -98,7 +98,7 @@ module Nephophobia
     # Provide a simple interface to the OpenStack Role resources.
 
     def role
-      @path   = "/services/Admin/"
+      @path   = "/services/Admin"
       @role ||= Nephophobia::Role.new self
     end
   end

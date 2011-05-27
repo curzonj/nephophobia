@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProject&Name=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=dCAynoKeFfRis3QgNeJj5SuiI56mzJ1ISCHD0ZSZoPI%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProject&Name=sandbox&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=33w9A06ePw0hs4Wa12QMXpO0GOW%2FjN7H2xG%2F3l13dEs%3D
     body: 
     headers: 
       accept: 
@@ -21,8 +21,8 @@
       content-length: 
       - "274"
       date: 
-      - Tue, 19 Apr 2011 01:04:21 GMT
+      - Fri, 27 May 2011 17:46:12 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>447-19QV84745K8J8ZH9</requestId><projectname>sandbox</projectname><projectManagerId>root</projectManagerId><description>sandbox</description></DescribeProjectResponse>
+    body: <?xml version="1.0" ?><DescribeProjectResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>CF7JOI5-YZPHHSMZ2FSB</requestId><projectname>sandbox</projectname><projectManagerId>root</projectManagerId><description>sandbox</description></DescribeProjectResponse>
     http_version: "1.1"

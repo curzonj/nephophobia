@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: http://10.3.170.32:8773/services/Admin/?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProject&Name=invalid_project_name&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=e14%2BWdKmHfs3kI6rhkvcxBfN3ON%2BvntH351jR1zpCGE%3D
+    uri: http://10.3.170.32:8773/services/Admin?AWSAccessKeyId=03982c2e-8e28-40b6-95e2-f2811383b4a2%3Asandbox&Action=DescribeProject&Name=invalid_project_name&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=9YeckMEUNLExXLIOeZ5njcQ5quRAuBxHQioO9Nnmnw0%3D
     body: 
     headers: 
       accept: 
@@ -21,10 +21,10 @@
       content-length: 
       - "197"
       date: 
-      - Tue, 19 Apr 2011 01:03:23 GMT
+      - Fri, 27 May 2011 17:46:12 GMT
       connection: 
       - keep-alive
     body: |-
       <?xml version="1.0"?>
-      <Response><Errors><Error><Code>NotFound</Code><Message>No project with id invalid_project_name</Message></Error></Errors><RequestID>JO8X76PWK7NITO2TW8OW</RequestID></Response>
+      <Response><Errors><Error><Code>NotFound</Code><Message>No project with id invalid_project_name</Message></Error></Errors><RequestID>MG9EO-DIS237I-XGU66D</RequestID></Response>
     http_version: "1.1"
