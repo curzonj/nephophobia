@@ -70,10 +70,6 @@ module Nephophobia
       @credential ||= Nephophobia::Credential.new self
     end
 
-    def admin_credential
-      @path         = "/services/Admin"
-      @credential ||= Nephophobia::Credential.new self
-    end
     ##
     # Provide a simple interface to the EC2 Image resources.
 
@@ -86,7 +82,7 @@ module Nephophobia
     # Provide a simple interface to the OpenStack Project resources.
 
     def project
-      @path      = "/services/Admin/"
+      @path      = "/services/Admin"
       @project ||= Nephophobia::Project.new self
     end
 
@@ -94,7 +90,7 @@ module Nephophobia
     # Provide a simple interface to the OpenStack User resources.
 
     def user
-      @path   = "/services/Admin/"
+      @path   = "/services/Admin"
       @user ||= Nephophobia::User.new self
     end
 

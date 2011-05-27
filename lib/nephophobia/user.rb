@@ -34,6 +34,23 @@ module Nephophobia
     end
 
     ##
+    # Returns the credentials for a given 'user_name' for the specified 'project_name'.
+    #
+    # +user_name+: A String containing a nova user_name.
+    # +project_name+: A String containing a nova project_name name.
+
+    def credentials user_name, project_name
+      params = {
+        "Name"    => user_name,
+        "Project" => project_name
+      }
+
+      response = @client.action "GenerateX509ForUser", params
+
+      Base64.decode64 response.body['GenerateX509ForUserResponse']['file']
+    end
+
+    ##
     # Removes the given 'user_name'.
     # Returns a response to the state change.
     #

@@ -160,15 +160,7 @@ describe Nephophobia::Compute do
   describe "#vnc_url" do
     before do
       VCR.use_cassette "compute_vnc_url" do
-        ##
-        # Pointing to the nova trunk version.
-
-        @compute = ::Client.with(:admin,
-          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
-          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
-          :host       => "10.3.170.35",
-          :project    => "sandbox"
-        ).compute
+        @compute = ::Client.trunk_with(:admin).compute
 
         @instance_id = @compute.create(@image_id).instance_id
 
@@ -187,47 +179,36 @@ describe Nephophobia::Compute do
     end
   end
 
-  describe "#allocate_address_available" do
+  describe "#allocate_address" do
     before do
       VCR.use_cassette "compute_allocate_address" do
-        @compute = ::Client.with(:admin,
-          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
-          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
-          :host       => "10.3.170.35",
-          :project    => "sandbox"
-        ).compute
+        @compute = ::Client.trunk_with(:admin).compute
 
         @response = @compute.allocate_address
       end
     end
 
     after do
-      pubip = @response.attributes['publicIp']
       VCR.use_cassette "compute_allocate_address" do
-        @compute.release_address pubip
+        @compute.release_address @response.floating_ip
       end
     end
 
-    it 'allocates address' do
-      @response.attributes['publicIp'].must_be_kind_of String
+    it "allocates address" do
+      @response.floating_ip.must_match %r{[0-9]{1,3}+\.[0-9]{1,3}}
     end
   end
 
-  describe "#allocate_address_not_available" do
-    before do
-      VCR.use_cassette "compute_allocate_address_fail" do
-        @compute = ::Client.with(:admin,
-          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
-          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
-          :host       => "10.3.170.35",
-          :project    => "sandbox"
-        ).compute
+  describe "not available" do
+    describe "#allocate_address" do
+      before do
+        @compute = ::Client.trunk_with(:admin).compute
       end
-    end
 
-    it 'has no available address' do
-      VCR.use_cassette "compute_allocate_address_fail" do
-        lambda { @compute.allocate_address}.must_raise Hugs::Errors::BadRequest
+      it "has no available address" do
+        VCR.use_cassette "compute_allocate_address_when_not_available" do
+          lambda { @compute.allocate_address}.must_raise Hugs::Errors::BadRequest
+        end
       end
     end
   end
@@ -235,81 +216,69 @@ describe Nephophobia::Compute do
   describe "#release_address" do
     before do
       VCR.use_cassette "compute_release_address" do
-        @compute = ::Client.with(:admin,
-          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
-          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
-          :host       => "10.3.170.35",
-          :project    => "sandbox"
-        ).compute
+        @compute = ::Client.trunk_with(:admin).compute
 
-        pubip = @compute.allocate_address.attributes['publicIp']
-        @response = @compute.release_address pubip
+        floating_ip = @compute.allocate_address.floating_ip
+        @response   = @compute.release_address floating_ip
       end
     end
 
-    it 'had removed the floating ip' do
-      @response.attributes["releaseResponse"]["item"].must_equal "Address released."
+    it "released the floating ip" do
+      @response.status.must_equal "Address released."
     end
   end
 
-  describe '#associate_address' do
+  describe "#associate_address" do
     before do
       VCR.use_cassette "compute_associate_address" do
-        @compute = ::Client.with(:admin,
-          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
-          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
-          :host       => "10.3.170.35",
-          :project    => "sandbox"
-        ).compute
-        @pubip = @compute.allocate_address.attributes['publicIp']
+        @compute = ::Client.trunk_with(:admin).compute
+
+        @floating_ip = @compute.allocate_address.floating_ip
         @instance_id = @compute.create(@image_id).instance_id
-        # when vcr recording, vm create takes some time to assign fixed ip to come up
+
         sleep 5 unless VCR.current_cassette.record_mode == :none
-        @response = @compute.associate_address(@instance_id, @pubip)
+
+        @response = @compute.associate_address @instance_id, @floating_ip
       end
     end
 
     after do
       VCR.use_cassette "compute_associate_address" do
         @compute.destroy @instance_id
-        @compute.release_address @pubip
+        @compute.release_address @floating_ip
       end
     end
 
-    it 'has associated the address' do
-      @response.attributes["associateResponse"]["item"].must_equal 'Address associated.'
+    it "has associated the address" do
+      @response.status.must_equal "Address associated."
     end
   end
 
-  describe '#disassociate_address' do
+  describe "#disassociate_address" do
     before do
       VCR.use_cassette "compute_disassociate_address" do
-        @compute = ::Client.with(:admin,
-          :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
-          :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
-          :host       => "10.3.170.35",
-          :project    => "sandbox"
-        ).compute
-        @pubip = @compute.allocate_address.attributes['publicIp']
+        @compute = ::Client.trunk_with(:admin).compute
+
+        @floating_ip = @compute.allocate_address.floating_ip
         @instance_id = @compute.create(@image_id).instance_id
-        # when vcr recording, vm create takes some time to assign fixed ip to come up
+
         sleep 5 unless VCR.current_cassette.record_mode == :none
-        @compute.associate_address(@instance_id, @pubip)
+        @compute.associate_address @instance_id, @floating_ip
+
         sleep 5 unless VCR.current_cassette.record_mode == :none
-        @response = @compute.disassociate_address @pubip
+        @response = @compute.disassociate_address @floating_ip
       end
     end
 
     after do
       VCR.use_cassette "compute_disassociate_address" do
         @compute.destroy @instance_id
-        @compute.release_address @pubip
+        @compute.release_address @floating_ip
       end
     end
 
-    it 'remove the floating from instance' do
-      @response.attributes["disassociateResponse"]["item"].must_equal "Address disassociated."
+    it "remove the floating from instance" do
+      @response.status.must_equal "Address disassociated."
     end
   end
-
 end

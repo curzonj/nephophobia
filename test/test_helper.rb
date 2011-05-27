@@ -19,7 +19,7 @@ end
 VCR.config do |c|
   c.stub_with :fakeweb
   c.cassette_library_dir     = "test/cassettes"
-  c.default_cassette_options = { :record => :none }
+  c.default_cassette_options = { :record => :new_episodes }
 end
 
 class Client
@@ -34,6 +34,17 @@ class Client
         :secret_key => "a523e209-64cf-4d7a-978e-7bf3d5d0ca7e"
       }
     end.merge(:host => "10.3.170.32", :project => "sandbox")
+
+    Nephophobia::Client.new client_options.merge options
+  end
+
+  def self.trunk_with type, options = {}
+    client_options = case type
+      when :admin ; {
+        :access_key => "2ea76797-229c-4e52-a21b-f30513cb91a6",
+        :secret_key => "3d16b391-820f-4f5c-893b-0f65d5f35312",
+      }
+    end.merge(:host => "10.3.170.35", :project => "sandbox")
 
     Nephophobia::Client.new client_options.merge options
   end

@@ -28,10 +28,19 @@ module Nephophobia
   end
 
   class VncData
-    attr_reader :url, :attributes
+    attr_reader :attributes, :url
 
     def initialize attributes
       @url = attributes['url']
+    end
+  end
+
+  class AddressData
+    attr_reader :attributes, :floating_ip, :status
+
+    def initialize attributes
+      @floating_ip = attributes['publicIp']
+      @status      = attributes['item']
     end
   end
 
@@ -172,35 +181,63 @@ module Nephophobia
       VncData.new response.body['GetVncConsoleResponse']
     end
 
+    ##
+    # Acquires an elastic IP address.
+    # Returns an elastic IP.
+
     def allocate_address
       response = @client.action "AllocateAddress", {}
-      ResponseData.new response.body["AllocateAddressResponse"]
+
+      AddressData.new response.body['AllocateAddressResponse']
     end
+
+    ##
+    # Releases an elastic IP address.
+    #
+    # +floating_ip+: A String representing a floating IP address.
 
     def release_address floating_ip
       params = {
         "PublicIp" => floating_ip
       }
+
       response = @client.action "ReleaseAddress", params
-      ResponseData.new response.body["ReleaseAddressResponse"]
+
+      AddressData.new response.body['ReleaseAddressResponse']['releaseResponse']
     end
+
+    ##
+    # Associates an elastic IP address with an instance.
+    #
+    # +instance_id+: A String representing the ID of the instance.
+    # +floating_ip+: A String representing a floating IP address.
 
     def associate_address instance_id, floating_ip
       params = {
         "InstanceId" => instance_id,
-        "PublicIp" => floating_ip
+        "PublicIp"   => floating_ip
       }
+
       response = @client.action "AssociateAddress", params
-      ResponseData.new response.body["AssociateAddressResponse"]
+
+      AddressData.new response.body['AssociateAddressResponse']['associateResponse']
     end
+
+    ##
+    # Disassociates the specified elastic IP address from the instance
+    # to which it is assigned.
+    #
+    # +instance_id+: A String representing the ID of the instance.
+    # +floating_ip+: A String representing a floating IP address.
 
     def disassociate_address floating_ip
       params = {
         "PublicIp" => floating_ip
       }
-      response = @client.action "DisassociateAddress", params
-      ResponseData.new response.body["DisassociateAddressResponse"]
-    end
 
+      response = @client.action "DisassociateAddress", params
+
+      AddressData.new response.body['DisassociateAddressResponse']['disassociateResponse']
+    end
   end
 end

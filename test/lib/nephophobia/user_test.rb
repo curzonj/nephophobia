@@ -33,6 +33,39 @@ describe Nephophobia::User do
     end
   end
 
+  #describe "#credentials" do
+  #  before do
+  #    VCR.use_cassette "user_credentials" do
+  #      @project_one = "foo_project"
+  #      @project_two = "bar_project"
+  #      @client      = ::Client.trunk_with(:admin)
+
+  #      @client.user.create @user_name
+  #      @client.project.create @project_one, @user_name
+  #      @client.project.create @project_two, @user_name
+  #    end
+  #  end
+
+  #  after do
+  #    VCR.use_cassette "user_credentials" do
+  #      @client.project.destroy @project_one
+  #      @client.project.destroy @project_two
+  #      @client.user.destroy @user_name
+  #    end
+  #  end
+
+  #  it "returns the credentials for a given 'user_name' for the specified 'project_name'." do
+  #    VCR.use_cassette "user_credentials" do
+  #      #@client.project.members('myproj1')[0].member.must_equal @uname
+  #      #@client.project.members('myproj2')[0].member.must_equal @uname
+
+  #      response = @client.user.credentials @user_name, @project_one
+
+  #      response.must_match %r{BEGIN CERTIFICATE}
+  #    end
+  #  end
+  #end
+
   describe "#destroy" do
     it "destroys the user name" do
       VCR.use_cassette "user_destroy" do
