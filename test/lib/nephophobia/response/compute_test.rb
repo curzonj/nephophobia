@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe Nephophobia::Compute do
+describe Nephophobia::Resource::Compute do
   ##
   # Note:
   #   Assumes there is always at least one valid project.

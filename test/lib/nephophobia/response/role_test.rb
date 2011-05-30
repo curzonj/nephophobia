@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe Nephophobia::Role do
+describe Nephophobia::Resource::Role do
   ##
   # Note:
   #   Assumes there is always at least one valid project.

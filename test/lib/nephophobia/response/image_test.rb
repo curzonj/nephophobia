@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe Nephophobia::Image do
+describe Nephophobia::Resource::Image do
   ##
   # Note:
   #   Assumes there is always at least one valid image.

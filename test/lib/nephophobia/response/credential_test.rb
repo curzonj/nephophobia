@@ -1,6 +1,6 @@
 require 'test_helper'
 
-describe Nephophobia::Credential do
+describe Nephophobia::Resource::Credential do
   ##
   # Note:
   #   Assumes there is always at least one valid project.

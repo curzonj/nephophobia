@@ -59,7 +59,7 @@ module Nephophobia
 
     def compute
       @path      = "/services/Cloud"
-      @compute ||= Nephophobia::Compute.new self
+      @compute ||= Nephophobia::Resource::Compute.new self
     end
 
     ##
@@ -67,7 +67,7 @@ module Nephophobia
 
     def credential
       @path         = "/services/Cloud"
-      @credential ||= Nephophobia::Credential.new self
+      @credential ||= Nephophobia::Resource::Credential.new self
     end
 
     ##
@@ -75,7 +75,7 @@ module Nephophobia
 
     def image
       @path    = "/services/Cloud"
-      @image ||= Nephophobia::Image.new self
+      @image ||= Nephophobia::Resource::Image.new self
     end
 
     ##
@@ -83,7 +83,7 @@ module Nephophobia
 
     def project
       @path      = "/services/Admin"
-      @project ||= Nephophobia::Project.new self
+      @project ||= Nephophobia::Resource::Project.new self
     end
 
     ##
@@ -91,7 +91,7 @@ module Nephophobia
 
     def user
       @path   = "/services/Admin"
-      @user ||= Nephophobia::User.new self
+      @user ||= Nephophobia::Resource::User.new self
     end
 
     ##
@@ -99,7 +99,7 @@ module Nephophobia
 
     def role
       @path   = "/services/Admin"
-      @role ||= Nephophobia::Role.new self
+      @role ||= Nephophobia::Resource::Role.new self
     end
   end
 end
