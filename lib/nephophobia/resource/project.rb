@@ -29,7 +29,7 @@ module Nephophobia
         response = @client.action "DescribeProjects", {}
 
         item     = response.body['DescribeProjectsResponse']['projectSet']['item']
-        projects = Nephophobia.coerce(item).collect do |data|
+        projects = Nephophobia::Util.coerce(item).collect do |data|
           Response::Project.new data
         end
 
@@ -88,7 +88,7 @@ module Nephophobia
         response = @client.action "DescribeProjectMembers", "Name" => project_name
 
         item = response.body['DescribeProjectMembersResponse']['members']['item']
-        Nephophobia.coerce(item).collect do |data|
+        Nephophobia::Util.coerce(item).collect do |data|
           Response::Member.new data
         end
       rescue Hugs::Errors::BadRequest

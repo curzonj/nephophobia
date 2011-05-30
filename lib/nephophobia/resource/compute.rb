@@ -19,7 +19,7 @@ module Nephophobia
         response = @client.action "DescribeInstances", filter
 
         item = response.body['DescribeInstancesResponse']['reservationSet']['item']
-        Nephophobia.coerce(item).collect do |data|
+        Nephophobia::Util.coerce(item).collect do |data|
           Response::Compute.new data
         end
       end

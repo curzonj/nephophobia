@@ -12,7 +12,7 @@ module Nephophobia
         response = @client.action "DescribeKeyPairs", {}
 
         key_set = response.body['DescribeKeyPairsResponse']['keySet']
-        key_set && Nephophobia.coerce(key_set['item']).collect do |data|
+        key_set && Nephophobia::Util.coerce(key_set['item']).collect do |data|
           Response::Credential.new data
         end
       end

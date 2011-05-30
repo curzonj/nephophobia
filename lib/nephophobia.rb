@@ -2,6 +2,7 @@ require "aws"
 require "hashify"
 require "date"
 require "nephophobia/client"
+require "nephophobia/util"
 require "nephophobia/response/address"
 require "nephophobia/response/compute"
 require "nephophobia/response/credential"
@@ -20,17 +21,6 @@ require "nephophobia/resource/role"
 require "nephophobia/resource/user"
 
 require "hugs"
-
-module Nephophobia
-  ##
-  # Wraps a Hash with an Array.
-  #
-  # +obj+: The Object to be tested for wrapping.
-
-  def self.coerce obj
-    (obj.is_a? Hash) ? [obj] : obj
-  end
-end
 
 ##
 # Allow Data Classes to comply with ActiveModel.
