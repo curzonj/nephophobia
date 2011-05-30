@@ -2,20 +2,6 @@
 # __Must__ execute as a user with the +admin+ role.
 
 module Nephophobia
-  class UserData
-    attr_reader :accesskey, :username, :secretkey
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @accesskey = attributes['accesskey']
-      @username  = attributes['username']
-      @secretkey = attributes['secretkey']
-    end
-  end
-
   class User
     def initialize client
       @client = client
@@ -30,7 +16,7 @@ module Nephophobia
     def create user_name
       response = @client.action "RegisterUser", "Name" => user_name
 
-      UserData.new response.body['RegisterUserResponse']
+      Response::User.new response.body['RegisterUserResponse']
     end
 
     ##
@@ -59,7 +45,7 @@ module Nephophobia
     def destroy user_name
       response = @client.action "DeregisterUser", "Name" => user_name
 
-      ResponseData.new response.body['DeregisterUserResponse']
+      Response::Return.new response.body['DeregisterUserResponse']
     end
 
     ##
@@ -70,7 +56,7 @@ module Nephophobia
     def find user_name
       response = @client.action "DescribeUser", "Name" => user_name
 
-      UserData.new response.body['DescribeUserResponse']
+      Response::User.new response.body['DescribeUserResponse']
     rescue Hugs::Errors::BadRequest
     end
 

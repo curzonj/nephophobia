@@ -1,49 +1,4 @@
 module Nephophobia
-  class ComputeData
-    attr_reader :description, :dns_name, :image_id, :instance_id, :instance_type
-    attr_reader :key_name, :launch_time, :name, :owner_id, :placement
-    attr_reader :private_dns_name, :project_id, :public_dns_name, :state
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @project_id       = attributes['ownerId']
-      item              = attributes['instancesSet']['item']
-      item              = item.first if item.is_a?(Array)
-      @description      = item['displayDescription']
-      @name             = item['displayName']
-      @key_name         = item['keyName']
-      @instance_id      = item['instanceId']
-      @state            = item['instanceState']['name']
-      @public_dns_name  = item['publicDnsName']
-      @private_dns_name = item['privateDnsName']
-      @image_id         = item['imageId']
-      @dns_name         = item['dnsName']
-      @launch_time      = DateTime.parse(item['launchTime'])
-      @placement        = item['placement']['availabilityZone']
-      @instance_type    = item['instanceType']
-    end
-  end
-
-  class VncData
-    attr_reader :attributes, :url
-
-    def initialize attributes
-      @url = attributes['url']
-    end
-  end
-
-  class AddressData
-    attr_reader :attributes, :floating_ip, :status
-
-    def initialize attributes
-      @floating_ip = attributes['publicIp']
-      @status      = attributes['item']
-    end
-  end
-
   class Compute
     def initialize client
       @client = client
@@ -64,7 +19,7 @@ module Nephophobia
 
       item = response.body['DescribeInstancesResponse']['reservationSet']['item']
       Nephophobia.coerce(item).collect do |data|
-        ComputeData.new data
+        Response::Compute.new data
       end
     end
 
@@ -83,7 +38,7 @@ module Nephophobia
     def create image_id, params = {}
       response = @client.action "RunInstances", { "ImageId" => image_id }.merge(params)
 
-      ComputeData.new response.body['RunInstancesResponse']
+      Response::Compute.new response.body['RunInstancesResponse']
     end
 
     ##
@@ -99,7 +54,7 @@ module Nephophobia
 
       response = @client.action "TerminateInstances", params
 
-      ResponseData.new response.body['TerminateInstancesResponse']
+      Response::Return.new response.body['TerminateInstancesResponse']
     end
 
     ##
@@ -114,7 +69,7 @@ module Nephophobia
 
       response = @client.action "DescribeInstances", params
 
-      ComputeData.new response.body['DescribeInstancesResponse']['reservationSet']['item']
+      Response::Compute.new response.body['DescribeInstancesResponse']['reservationSet']['item']
     end
 
     ##
@@ -130,7 +85,7 @@ module Nephophobia
 
       response = @client.action "RebootInstances", params
 
-      ResponseData.new response.body['RebootInstancesResponse']
+      Response::Return.new response.body['RebootInstancesResponse']
     end
 
     ##
@@ -146,7 +101,7 @@ module Nephophobia
 
       response = @client.action "StopInstances", params
 
-      ResponseData.new response.body
+      Response::Return.new response.body
     end
 
     ##
@@ -162,7 +117,7 @@ module Nephophobia
 
       response = @client.action "StartInstances", params
 
-      ResponseData.new response.body
+      Response::Return.new response.body
     end
 
     ##
@@ -178,7 +133,7 @@ module Nephophobia
 
       response = @client.action "GetVncConsole", params
 
-      VncData.new response.body['GetVncConsoleResponse']
+      Response::Vnc.new response.body['GetVncConsoleResponse']
     end
 
     ##
@@ -188,7 +143,7 @@ module Nephophobia
     def allocate_address
       response = @client.action "AllocateAddress", {}
 
-      AddressData.new response.body['AllocateAddressResponse']
+      Response::Address.new response.body['AllocateAddressResponse']
     end
 
     ##
@@ -203,7 +158,7 @@ module Nephophobia
 
       response = @client.action "ReleaseAddress", params
 
-      AddressData.new response.body['ReleaseAddressResponse']['releaseResponse']
+      Response::Address.new response.body['ReleaseAddressResponse']['releaseResponse']
     end
 
     ##
@@ -220,7 +175,7 @@ module Nephophobia
 
       response = @client.action "AssociateAddress", params
 
-      AddressData.new response.body['AssociateAddressResponse']['associateResponse']
+      Response::Address.new response.body['AssociateAddressResponse']['associateResponse']
     end
 
     ##
@@ -237,7 +192,7 @@ module Nephophobia
 
       response = @client.action "DisassociateAddress", params
 
-      AddressData.new response.body['DisassociateAddressResponse']['disassociateResponse']
+      Response::Address.new response.body['DisassociateAddressResponse']['disassociateResponse']
     end
   end
 end

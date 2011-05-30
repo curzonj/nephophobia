@@ -1,25 +1,4 @@
 module Nephophobia
-  class ImageData
-    attr_reader :architecture, :image_id, :image_location, :image_owner_id
-    attr_reader :image_type, :kernel_id, :is_public, :state
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @architecture   = attributes['architecture']
-      @id             = attributes['id']
-      @image_id       = attributes['imageId']
-      @image_location = attributes['imageLocation']
-      @image_owner_id = attributes['imageOwnerId']
-      @image_type     = attributes['imageType']
-      @is_public      = attributes['isPublic']
-      @kernel_id      = attributes['kernelId']
-      @state          = attributes['imageState']
-    end
-  end
-
   class Image
     def initialize client
       @client = client
@@ -43,7 +22,7 @@ module Nephophobia
       response = @client.action "DescribeImages", filter
 
       item = response.body['DescribeImagesResponse']['imagesSet']['item'].collect do |data|
-        ImageData.new data
+        Response::Image.new data
       end
     end
 
@@ -59,7 +38,7 @@ module Nephophobia
 
       response = @client.action "DescribeImages", params
 
-      ImageData.new response.body['DescribeImagesResponse']['imagesSet']['item']
+      Response::Image.new response.body['DescribeImagesResponse']['imagesSet']['item']
     end
 
     ##

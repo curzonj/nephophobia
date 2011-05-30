@@ -2,33 +2,6 @@
 # __Must__ execute as a user with the +admin+ role.
 
 module Nephophobia
-  class ProjectData
-    attr_reader :name, :manager_id, :description
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @name        = attributes['projectname']
-      @manager_id  = attributes['projectManagerId']
-      @description = attributes['description']
-      @member      = attributes['member']
-    end
-  end
-
-  class MemberData
-    attr_reader :member
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @member = attributes['member']
-    end
-  end
-
   class Project
     def initialize client
       @client = client
@@ -56,7 +29,7 @@ module Nephophobia
 
       item     = response.body['DescribeProjectsResponse']['projectSet']['item']
       projects = Nephophobia.coerce(item).collect do |data|
-        ProjectData.new data
+        Response::Project.new data
       end
 
       return projects unless user_name
@@ -78,7 +51,7 @@ module Nephophobia
 
       response = @client.action "RegisterProject", params
 
-      ProjectData.new response.body['RegisterProjectResponse']
+      Response::Project.new response.body['RegisterProjectResponse']
     end
 
     ##
@@ -90,7 +63,7 @@ module Nephophobia
     def destroy project_name
       response = @client.action "DeregisterProject", "Name" => project_name
 
-      ResponseData.new response.body['DeregisterProjectResponse']
+      Response::Return.new response.body['DeregisterProjectResponse']
     end
 
     ##
@@ -101,7 +74,7 @@ module Nephophobia
     def find project_name
       response = @client.action "DescribeProject", "Name" => project_name
 
-      ProjectData.new response.body['DescribeProjectResponse']
+      Response::Project.new response.body['DescribeProjectResponse']
     rescue Hugs::Errors::BadRequest
     end
 
@@ -115,7 +88,7 @@ module Nephophobia
 
       item = response.body['DescribeProjectMembersResponse']['members']['item']
       Nephophobia.coerce(item).collect do |data|
-        MemberData.new data
+        Response::Member.new data
       end
     rescue Hugs::Errors::BadRequest
     end
@@ -151,7 +124,7 @@ module Nephophobia
 
       response = @client.action "ModifyProjectMember", params
 
-      ResponseData.new response.body['ModifyProjectMemberResponse']
+      Response::Return.new response.body['ModifyProjectMemberResponse']
     end
   end
 end

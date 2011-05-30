@@ -8,23 +8,20 @@ require "nephophobia/image"
 require "nephophobia/project"
 require "nephophobia/role"
 require "nephophobia/user"
+require "nephophobia/response/address"
+require "nephophobia/response/compute"
+require "nephophobia/response/credential"
+require "nephophobia/response/image"
+require "nephophobia/response/member"
+require "nephophobia/response/project"
+require "nephophobia/response/return"
+require "nephophobia/response/role"
+require "nephophobia/response/user"
+require "nephophobia/response/vnc"
 
 require "hugs"
 
 module Nephophobia
-  class ResponseData
-    attr_reader :return, :request_id
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @request_id = attributes["requestId"]
-      @return     = attributes["return"] == "true"
-    end
-  end
-
   ##
   # Wraps a Hash with an Array.
   #
@@ -41,13 +38,15 @@ end
 module Nephophobia
   class Rails
     CLASSES = [
-      ::Nephophobia::ComputeData,
-      ::Nephophobia::CredentialData,
-      ::Nephophobia::ImageData,
-      ::Nephophobia::MemberData,
-      ::Nephophobia::ProjectData,
-      ::Nephophobia::RoleData,
-      ::Nephophobia::UserData
+      ::Nephophobia::Response::Address,
+      ::Nephophobia::Response::Compute,
+      ::Nephophobia::Response::Credential,
+      ::Nephophobia::Response::Image,
+      ::Nephophobia::Response::Member,
+      ::Nephophobia::Response::Project,
+      ::Nephophobia::Response::Role,
+      ::Nephophobia::Response::User,
+      ::Nephophobia::Response::Vnc
     ].freeze
 
     def self.insert

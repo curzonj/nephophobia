@@ -1,18 +1,4 @@
 module Nephophobia
-  class CredentialData
-    attr_reader :fingerprint, :material, :name
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @material    = attributes['keyMaterial']
-      @name        = attributes['keyName']
-      @fingerprint = attributes['keyFingerprint']
-    end
-  end
-
   class Credential
     def initialize client
       @client = client
@@ -26,7 +12,7 @@ module Nephophobia
 
       key_set = response.body['DescribeKeyPairsResponse']['keySet']
       key_set && Nephophobia.coerce(key_set['item']).collect do |data|
-        CredentialData.new data
+        Response::Credential.new data
       end
     end
 
@@ -43,7 +29,7 @@ module Nephophobia
 
       response = @client.action "CreateKeyPair", params
 
-      CredentialData.new response.body['CreateKeyPairResponse']
+      Response::Credential.new response.body['CreateKeyPairResponse']
     end
 
     ##
@@ -59,7 +45,7 @@ module Nephophobia
 
       response = @client.action "DeleteKeyPair", params
 
-      ResponseData.new response.body['DeleteKeyPairResponse']
+      Response::Return.new response.body['DeleteKeyPairResponse']
     end
   end
 end

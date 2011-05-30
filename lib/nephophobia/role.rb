@@ -2,18 +2,6 @@
 # __Must__ execute as a user with the +admin+ role.
 
 module Nephophobia
-  class RoleData
-    attr_reader :name
-
-    attr_accessor :attributes
-
-    def initialize attributes
-      @attributes = attributes
-
-      @name = attributes['role']
-    end
-  end
-
   class Role
     DEFAULT = "sysadmin"
 
@@ -37,7 +25,7 @@ module Nephophobia
 
       roles = response.body['DescribeUserRolesResponse']['roles']
       roles && Nephophobia.coerce(roles['item']).collect do |data|
-        RoleData.new data
+        Response::Role.new data
       end
     end
 
@@ -77,7 +65,7 @@ module Nephophobia
 
       response = @client.action "ModifyUserRole", params
 
-      ResponseData.new response.body['ModifyUserRoleResponse']
+      Response::Return.new response.body['ModifyUserRoleResponse']
     end
   end
 end
