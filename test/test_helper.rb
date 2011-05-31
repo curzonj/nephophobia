@@ -8,6 +8,10 @@ require "nokogiri"
 require "vcr"
 
 class MiniTest::Unit::TestCase
+  def wait seconds = 5
+    sleep seconds unless VCR.current_cassette.record_mode == :none
+  end
+
   def cassette_for cassette, interaction = 0
     c = VCR::Cassette.new(cassette).send :recorded_interactions
     VCR.eject_cassette
@@ -18,8 +22,11 @@ end
 
 VCR.config do |c|
   c.stub_with :fakeweb
+
   c.cassette_library_dir     = "test/cassettes"
   c.default_cassette_options = { :record => :none }
+
+  c.allow_http_connections_when_no_cassette = true
 end
 
 class Client

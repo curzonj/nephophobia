@@ -236,7 +236,7 @@ describe Nephophobia::Resource::Compute do
         @floating_ip = @compute.allocate_address.floating_ip
         @instance_id = @compute.create(@image_id).instance_id
 
-        sleep 5 unless VCR.current_cassette.record_mode == :none
+        wait
 
         @response = @compute.associate_address @instance_id, @floating_ip
       end
@@ -262,10 +262,10 @@ describe Nephophobia::Resource::Compute do
         @floating_ip = @compute.allocate_address.floating_ip
         @instance_id = @compute.create(@image_id).instance_id
 
-        sleep 5 unless VCR.current_cassette.record_mode == :none
+        wait
         @compute.associate_address @instance_id, @floating_ip
 
-        sleep 5 unless VCR.current_cassette.record_mode == :none
+        wait
         @response = @compute.disassociate_address @floating_ip
       end
     end
