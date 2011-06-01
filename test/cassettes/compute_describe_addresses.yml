@@ -1,0 +1,28 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=DescribeAddresses&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=nHB%2BoHPbNrN7HM6UELiJzslN1e9Nv3svB%2BrIMSQnE6U%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "544"
+      date: 
+      - Wed, 01 Jun 2011 17:19:07 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DescribeAddressesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>BDGP53SGAX3HAWP79MQS</requestId><addressesSet><item><publicIp>10.3.170.137</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.138</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.139</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.140</publicIp><instanceId>i-00000072 (sandbox)</instanceId></item></addressesSet></DescribeAddressesResponse>
+    http_version: "1.1"

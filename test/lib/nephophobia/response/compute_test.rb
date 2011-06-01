@@ -281,4 +281,23 @@ describe Nephophobia::Resource::Compute do
       @response.status.must_equal "Address disassociated."
     end
   end
+
+  describe "#describe_addresses" do
+    before do
+      # Test strictly based on cassette.  Will fail in any other env
+      VCR.use_cassette "compute_describe_addresses" do
+        @compute = ::Client.trunk_with(:admin).compute
+        @response = @compute.describe_addresses
+      end
+    end
+
+    it "lists floating ips" do
+      @response.must_be_kind_of Array
+      @response.size.must_be :>=, 1
+      @response.first.instance_id.must_match %r{None \(sandbox\)}
+      @response.first.floating_ip.must_match %r{[0-9]{1,3}+\.[0-9]{1,3}}
+      @response.last.instance_id.must_match %r{i-\d+ \(sandbox\)}
+    end
+  end
+
 end

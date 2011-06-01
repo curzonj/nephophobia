@@ -195,6 +195,15 @@ module Nephophobia
 
         Response::Address.new response.body['DisassociateAddressResponse']['disassociateResponse']
       end
+
+      def describe_addresses
+        response = @client.action "DescribeAddresses", {}
+
+        item = response.body['DescribeAddressesResponse']['addressesSet']['item']
+        Nephophobia::Util.coerce(item).collect do |data|
+          Response::Address.new data
+        end
+      end
     end
   end
 end
