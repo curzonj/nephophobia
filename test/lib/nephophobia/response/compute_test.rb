@@ -284,19 +284,32 @@ describe Nephophobia::Resource::Compute do
 
   describe "#describe_addresses" do
     before do
-      # Test strictly based on cassette.  Will fail in any other env
       VCR.use_cassette "compute_describe_addresses" do
         @compute = ::Client.trunk_with(:admin).compute
+        @floating_ip1 = @compute.allocate_address.floating_ip
+        @floating_ip2 = @compute.allocate_address.floating_ip
+        @instance_id = @compute.create(@image_id).instance_id
+
+        wait unless VCR.current_cassette.record_mode == :none
+        @compute.associate_address @instance_id, @floating_ip1
         @response = @compute.describe_addresses
       end
     end
 
+    after do
+      VCR.use_cassette "compute_describe_addresses" do
+        @response = @compute.disassociate_address @floating_ip1
+        @compute.destroy @instance_id
+        @compute.release_address @floating_ip1
+        @compute.release_address @floating_ip2
+      end
+    end
+
     it "lists floating ips" do
-      @response.must_be_kind_of Array
-      @response.size.must_be :>=, 1
-      @response.first.instance_id.must_match %r{None \(sandbox\)}
-      @response.first.floating_ip.must_match %r{[0-9]{1,3}+\.[0-9]{1,3}}
-      @response.last.instance_id.must_match %r{i-\d+ \(sandbox\)}
+      resp1 = @response.find{|a| a.floating_ip == @floating_ip1}
+      resp1.instance_id.must_match %r{#{@instance_id} \(#{@project_name}\)}
+      resp2 = @response.find{|a| a.floating_ip == @floating_ip2}
+      resp2.instance_id.must_match %r{None \(#{@project_name}\)}
     end
   end
 

@@ -2,6 +2,114 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=AllocateAddress&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=bCaGs5tWfNNy%2F3sg%2FRP0ISHMEnT0EZzuoPe%2Fcconzn8%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "194"
+      date: 
+      - Wed, 01 Jun 2011 17:39:12 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><AllocateAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>8UTGGHL0ZCT8DO27LQ1A</requestId><publicIp>69.1.1.1</publicIp></AllocateAddressResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=AllocateAddress&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=bCaGs5tWfNNy%2F3sg%2FRP0ISHMEnT0EZzuoPe%2Fcconzn8%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "194"
+      date: 
+      - Wed, 01 Jun 2011 17:39:13 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><AllocateAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>NL9IZW7N9PSB9IEEROUA</requestId><publicIp>69.1.1.2</publicIp></AllocateAddressResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=RunInstances&ImageId=ami-00000002&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=tPz8K7mYsXFNuGeGmQCf3JFCOWsQ5iGKP%2B4CU1PUoOI%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "839"
+      date: 
+      - Wed, 01 Jun 2011 17:39:13 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><RunInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>FF3O1WG6U8P1BNXUK-6H</requestId><ownerId>sandbox</ownerId><groupSet><item><groupId>default</groupId></item></groupSet><reservationId>r-1wbc2eb0</reservationId><instancesSet><item><displayDescription/><displayName>Server 115</displayName><keyName>None (sandbox, None)</keyName><instanceId>i-00000073</instanceId><instanceState><code>0</code><name>scheduling</name></instanceState><publicDnsName/><imageId>ami-00000002</imageId><productCodesSet/><privateDnsName/><dnsName/><launchTime>2011-06-01T17:39:13Z</launchTime><amiLaunchIndex>0</amiLaunchIndex><placement><availabilityZone>unknown zone</availabilityZone></placement><ipAddress/><instanceType>m1.small</instanceType><privateIpAddress/></item></instancesSet></RunInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=AssociateAddress&InstanceId=i-00000073&PublicIp=69.1.1.1&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=R1TQcGdGxJLODiwFfQ3dE%2BIhVsoH6LWjm%2Bk%2B3EJ3BYE%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "238"
+      date: 
+      - Wed, 01 Jun 2011 17:39:19 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><AssociateAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>EKI9-28Q2CLPMH4JAXPF</requestId><associateResponse><item>Address associated.</item></associateResponse></AssociateAddressResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
     uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=DescribeAddresses&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=nHB%2BoHPbNrN7HM6UELiJzslN1e9Nv3svB%2BrIMSQnE6U%3D
     body: 
     headers: 
@@ -19,10 +127,118 @@
       content-type: 
       - text/xml
       content-length: 
-      - "544"
+      - "712"
       date: 
-      - Wed, 01 Jun 2011 17:19:07 GMT
+      - Wed, 01 Jun 2011 17:39:19 GMT
       connection: 
       - keep-alive
-    body: <?xml version="1.0" ?><DescribeAddressesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>BDGP53SGAX3HAWP79MQS</requestId><addressesSet><item><publicIp>10.3.170.137</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.138</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.139</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.140</publicIp><instanceId>i-00000072 (sandbox)</instanceId></item></addressesSet></DescribeAddressesResponse>
+    body: <?xml version="1.0" ?><DescribeAddressesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>7WP4812HYUX49G5P0BMG</requestId><addressesSet><item><publicIp>10.3.170.137</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.138</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.139</publicIp><instanceId>None (sandbox)</instanceId></item><item><publicIp>10.3.170.140</publicIp><instanceId>i-00000072 (sandbox)</instanceId></item><item><publicIp>69.1.1.1</publicIp><instanceId>i-00000073 (sandbox)</instanceId></item><item><publicIp>69.1.1.2</publicIp><instanceId>None (sandbox)</instanceId></item></addressesSet></DescribeAddressesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=DisassociateAddress&PublicIp=69.1.1.1&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=05XOTLVuYVdBW7I%2BZyB5Fkcox0h6YX%2BBH2wD9Arz4mg%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "253"
+      date: 
+      - Wed, 01 Jun 2011 17:39:19 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><DisassociateAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>ZVEIY5OKSZ0B95320A-H</requestId><disassociateResponse><item>Address disassociated.</item></disassociateResponse></DisassociateAddressResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=TerminateInstances&InstanceId.1=i-00000073&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=0%2FpuANVxdo1xgI3YincObShzJlEJ8p8fObL1wR2H1kE%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "192"
+      date: 
+      - Wed, 01 Jun 2011 17:39:19 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><TerminateInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>P5TYDNCTOFIB7S2PV1J0</requestId><return>true</return></TerminateInstancesResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=ReleaseAddress&PublicIp=69.1.1.1&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=lQpO7lKIr7pdJWi7J%2FWS3T6e6X%2FYjVixw2qaK%2FJyS30%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "228"
+      date: 
+      - Wed, 01 Jun 2011 17:39:20 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><ReleaseAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>SQWB8DF5FNYRHU26NIK9</requestId><releaseResponse><item>Address released.</item></releaseResponse></ReleaseAddressResponse>
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://10.3.170.35:8773/services/Cloud?AWSAccessKeyId=2ea76797-229c-4e52-a21b-f30513cb91a6%3Asandbox&Action=ReleaseAddress&PublicIp=69.1.1.2&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=1999-12-31T19%3A59%3A59Z&Version=2010-11-15&Signature=QXzXhCXy0oO9oXpYydbLiWbWPPQCkVVOXpbm3WqAKwQ%3D
+    body: 
+    headers: 
+      accept: 
+      - application/xml
+      connection: 
+      - keep-alive
+      keep-alive: 
+      - 30
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/xml
+      content-length: 
+      - "228"
+      date: 
+      - Wed, 01 Jun 2011 17:39:20 GMT
+      connection: 
+      - keep-alive
+    body: <?xml version="1.0" ?><ReleaseAddressResponse xmlns="http://ec2.amazonaws.com/doc/2010-11-15/"><requestId>LRRFLVSDUHTBKV5BSTX-</requestId><releaseResponse><item>Address released.</item></releaseResponse></ReleaseAddressResponse>
     http_version: "1.1"
