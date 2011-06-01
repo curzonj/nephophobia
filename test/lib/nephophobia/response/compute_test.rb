@@ -281,4 +281,36 @@ describe Nephophobia::Resource::Compute do
       @response.status.must_equal "Address disassociated."
     end
   end
+
+  describe "#describe_addresses" do
+    before do
+      VCR.use_cassette "compute_describe_addresses" do
+        @compute = ::Client.trunk_with(:admin).compute
+        @floating_ip1 = @compute.allocate_address.floating_ip
+        @floating_ip2 = @compute.allocate_address.floating_ip
+        @instance_id = @compute.create(@image_id).instance_id
+
+        wait unless VCR.current_cassette.record_mode == :none
+        @compute.associate_address @instance_id, @floating_ip1
+        @response = @compute.describe_addresses
+      end
+    end
+
+    after do
+      VCR.use_cassette "compute_describe_addresses" do
+        @response = @compute.disassociate_address @floating_ip1
+        @compute.destroy @instance_id
+        @compute.release_address @floating_ip1
+        @compute.release_address @floating_ip2
+      end
+    end
+
+    it "lists floating ips" do
+      resp1 = @response.find{|a| a.floating_ip == @floating_ip1}
+      resp1.instance_id.must_match %r{#{@instance_id} \(#{@project_name}\)}
+      resp2 = @response.find{|a| a.floating_ip == @floating_ip2}
+      resp2.instance_id.must_match %r{None \(#{@project_name}\)}
+    end
+  end
+
 end
