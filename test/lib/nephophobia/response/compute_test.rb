@@ -105,6 +105,7 @@ describe Nephophobia::Resource::Compute do
   describe "#find" do
     before do
       VCR.use_cassette "compute_find" do
+        @compute = ::Client.trunk_with(:admin).compute
         @instance_id = @compute.create(@image_id).instance_id
 
         @response = @compute.find @instance_id
@@ -135,6 +136,8 @@ describe Nephophobia::Resource::Compute do
       @response.launch_time.must_be_kind_of DateTime
       @response.placement.must_match %r{[a-z]+}
       @response.instance_type.must_match %r{[a-z]{2}.[a-z]+}
+      @response.ip_address.must_match %r{[0-9]{1,3}+\.[0-9]{1,3}}
+      @response.private_ip_address.must_match %r{[0-9]{1,3}+\.[0-9]{1,3}}
     end
   end
 
