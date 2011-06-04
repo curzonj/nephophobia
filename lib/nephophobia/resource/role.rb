@@ -55,7 +55,6 @@ module Nephophobia
         modify_role user_name, "remove", project_name
       end
 
-    private
       def modify_role user_name, operation, project_name = nil, role_name = nil
         params = {
           "User"      => user_name,

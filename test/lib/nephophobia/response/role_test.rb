@@ -103,6 +103,35 @@ describe Nephophobia::Resource::Role do
     end
   end
 
+  describe "#modify_role" do
+    before do
+      VCR.use_cassette "role_modify_role" do
+        @user.create @user_name
+      end
+    end
+
+    after do
+      VCR.use_cassette "role_modify_role" do
+        @user.destroy @user_name
+      end
+    end
+
+    it "allows adding and deleting of roles" do
+      VCR.use_cassette "role_modify_role" do
+        @role.modify_role @user_name, 'add', @project_name, 'sysadmin'
+        @role.modify_role @user_name, 'add', @project_name, 'netadmin'
+        roles = @role.all(@user_name, @project_name).collect(&:name)
+        roles.size.must_equal 2
+        roles.must_include 'sysadmin'
+        roles.must_include 'netadmin'
+        @role.modify_role @user_name, 'remove', @project_name, 'sysadmin'
+        roles = @role.all(@user_name, @project_name).collect(&:name)
+        roles.size.must_equal 1
+        roles.must_include 'netadmin'
+      end
+    end
+  end
+
   describe "#create with 'user_name' and 'project_name'" do
     before do
       VCR.use_cassette "role_create_with_project_name" do
