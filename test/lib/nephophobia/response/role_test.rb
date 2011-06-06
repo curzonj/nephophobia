@@ -15,6 +15,30 @@ describe Nephophobia::Resource::Role do
     @user         = ::Client.with(:admin).user
   end
 
+  describe "#all without params" do
+    before do
+      VCR.use_cassette "role_all_no_params" do
+        @user.create @user_name
+        @response = @role.all
+      end
+    end
+
+    after do
+      VCR.use_cassette "role_all_no_params" do
+        @user.destroy @user_name
+      end
+    end
+
+    it "returns all roles" do
+      VCR.use_cassette "role_all_no_params" do
+        all_roles = @response.collect(&:name)
+        all_roles.must_include 'sysadmin'
+        all_roles.must_include 'netadmin'
+        all_roles.must_include 'developer'
+      end
+    end
+  end
+
   describe "#all with a 'user_name'" do
     before do
       VCR.use_cassette "role_all" do
@@ -32,14 +56,14 @@ describe Nephophobia::Resource::Role do
       end
     end
 
-    it "returns all roles" do
+    it "returns all roles for user" do
       VCR.use_cassette "role_all" do
         @response.size.must_be :>=, 1
       end
     end
   end
 
-  describe "#all without roles" do
+  describe "#all with a 'user_name' but without roles" do
     before do
       VCR.use_cassette "role_all_without_roles" do
         @user.create @user_name
@@ -55,7 +79,7 @@ describe Nephophobia::Resource::Role do
       end
     end
 
-    it "returns all roles" do
+    it "returns no roles for user" do
       @response.must_be_nil
     end
   end

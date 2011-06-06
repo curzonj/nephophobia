@@ -16,15 +16,15 @@ module Nephophobia
       # +user_name+: A String representing a nova user_name.
       # +project_name+: An Optional String representing a nova project_name name.
 
-      def all user_name, project_name = nil
-        params = {
-          "User" => user_name,
-        }
+      def all user_name=nil, project_name = nil
+        params = {}
+        params.merge!("User" => user_name) if user_name
         params.merge!("Project" => project_name) if project_name
+        action = ( user_name ? "DescribeUserRoles" : "DescribeRoles" )
 
-        response = @client.action "DescribeUserRoles", params
+        response = @client.action action, params
 
-        roles = response.body['DescribeUserRolesResponse']['roles']
+        roles = response.body["#{action}Response"]['roles']
         roles && Nephophobia::Util.coerce(roles['item']).collect do |data|
           Response::Role.new data
         end
