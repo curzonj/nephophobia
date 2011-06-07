@@ -36,7 +36,7 @@ module Nephophobia
       ##
       # Import a key pair
 
-      def import key_name, pubkey, fprint=nil
+      def import_public_key key_name, pubkey, fprint=nil
         params = { 
           'KeyName' => key_name,
           'PublicKey' => pubkey
