@@ -34,6 +34,21 @@ module Nephophobia
       end
 
       ##
+      # Import a key pair
+
+      def import key_name, pubkey, fprint=nil
+        params = { 
+          'KeyName' => key_name,
+          'PublicKey' => pubkey
+        }
+        params.merge!( 'Fingerprint' => fprint ) unless fprint.nil?
+
+        response = @client.action "ImportPublicKey", params
+
+        Response::Credential.new response.body["ImportPublicKeyResponse"]['return']
+      end
+
+      ##
       # Deletes the key pair for the given 'key_name'.
       # Returns a response to the state change.
       #
