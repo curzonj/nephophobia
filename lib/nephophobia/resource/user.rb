@@ -73,9 +73,11 @@ module Nephophobia
 
       def register user_name, project_name
         unless @client.project.member? user_name, project_name
-          @client.role.create user_name
-          @client.role.create user_name, project_name
-          @client.project.add_member user_name, project_name
+          @client.role.create(user_name)
+          @client.role.create(user_name, nil, 'netadmin')
+          @client.role.create(user_name, project_name)
+          @client.role.create(user_name, project_name, 'netadmin')
+          @client.project.add_member(user_name, project_name)
         end
       end
     end
